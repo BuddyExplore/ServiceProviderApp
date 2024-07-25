@@ -38,7 +38,7 @@ export default function RootLayout() {
           <Stack screenOptions={{
             headerShown:false
           }}>
-            <Stack.Screen name="(ShopManager)" />
+            <Stack.Screen name="index" />
           </Stack>
   );
 }
