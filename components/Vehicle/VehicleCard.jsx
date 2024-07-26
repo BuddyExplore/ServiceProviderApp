@@ -1,4 +1,4 @@
-import { Text, StyleSheet, View } from "react-native";
+import { Text, StyleSheet, View, Dimensions } from "react-native";
 import React, { Component } from "react";
 import { Image } from "react-native";
 
@@ -47,6 +47,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     opacity: 1,
   },
-  VehicleImage: { width: 110, height: 80, borderRadius: 10, opacity: 1 },
+  VehicleImage: { width: Dimensions.get("screen").width/3.7, height: Dimensions.get("screen").height/11, borderRadius: 10, opacity: 1 },
   VehicleName: { justifyContent: "center", textAlign: "center", fontSize: 20 },
 });
