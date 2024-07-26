@@ -50,9 +50,18 @@ export default function Login() {
                 textAlign:'center',
                 fontFamily:'outfit',
                 fontSize:17,
-            }}>Goto Shop Manager's dashboard</Text>
+            }}>Go to Shop Manager's dashboard</Text>
         </TouchableOpacity>
-
+        <TouchableOpacity style={styles.button}
+            onPress={() => router.push('(VehicleOwner)/manage')}
+        >
+            <Text style={{
+                color:Colors.WHITE,
+                textAlign:'center',
+                fontFamily:'outfit',
+                fontSize:17,
+            }}>Go to Vehicle Owner's dashboard</Text>
+        </TouchableOpacity>
       </View>
     </View>
   )
