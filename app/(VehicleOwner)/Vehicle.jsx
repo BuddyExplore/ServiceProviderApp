@@ -1,18 +1,13 @@
 import React, { Component } from "react";
-import { ScrollView } from "react-native-gesture-handler";
+import { ScrollView, Dimensions, ImageBackground, StyleSheet, View, Image, Text } from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import VehicleCard from "../../components/Vehicle/VehicleCard";
-import GestureHandlerRootView from "react-native-gesture-handler";
-import {
-  Dimensions,
-  ImageBackground,
-  StyleSheet,
-  View,
-  Image,
-  Text,
-} from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
+// Functional Component for Vehicles
 const Vehicles = (data) => {
   return (
+    
     <View
       style={{
         padding: 0,
@@ -35,21 +30,22 @@ const Vehicles = (data) => {
       />
       <View>
         <Text>
-          VehcileModel:{!data.VehicleModel ? "Tesla S1" : data.VehicleModel}
+          VehicleModel: {data.VehicleModel || "Tesla S1"}
         </Text>
-        <Text>Seats:{!data.Seats ? "Tesla S1" : data.Seats}</Text>
-        <Text>Speed:{!data.Speed ? "Tesla S1" : data.Speed}</Text>
+        <Text>Seats: {data.Seats || "Tesla S1"}</Text>
+        <Text>Speed: {data.Speed || "Tesla S1"}</Text>
         <Text>
-          Price(Average):{!data.AvgPrice ? "Tesla S1" : data.AvgPrice}
+          Price (Average): {data.AvgPrice || "Tesla S1"}
         </Text>
       </View>
     </View>
   );
 };
+
 export default class Vehicle extends Component {
   render() {
     return (
-      <GestureHandlerRootView style={{ flex: 1 }}>
+      <SafeAreaView>
         <View style={styles.VehicleCardContainer}>
           <VehicleCard vehicle="Car" />
           <VehicleCard vehicle="Jeep" />
@@ -66,11 +62,12 @@ export default class Vehicle extends Component {
             <Vehicles />
           </View>
         </ScrollView>
-      </GestureHandlerRootView>
+        </SafeAreaView>
     );
   }
 }
 
+// Styles
 const styles = StyleSheet.create({
   VehicleCardContainer: {
     display: "flex",
@@ -79,6 +76,6 @@ const styles = StyleSheet.create({
     gap: 18,
     marginHorizontal: 16,
     marginVertical: 18,
-    width: Dimensions.get("window"),
+    width: Dimensions.get("window").width,
   },
 });

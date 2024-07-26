@@ -4,8 +4,8 @@ import MapViewDirections from "react-native-maps-directions";
 import { googleapi } from "../../environment";
 import { Dimensions } from "react-native";
 import { useState, useEffect } from "react";
-
-
+import * as Location from "expo-location"
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const { width, height } = Dimensions.get("window");
 const ASPECT_RATIO = width / height;
@@ -14,7 +14,8 @@ const LONGITUDE = -122.4053769;
 const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
-export default function MapComponent(backbutton) {
+export default function 
+MapComponent(backbutton) {
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
   const [region, setRegion] = useState({
@@ -51,7 +52,7 @@ export default function MapComponent(backbutton) {
   }
 
   return (
-    
+    <SafeAreaView>
     <MapView
       style={styles.map}
       provider={PROVIDER_GOOGLE}
@@ -79,6 +80,7 @@ export default function MapComponent(backbutton) {
         pinColor={"purple"} // any color
       />
     </MapView>
+    </SafeAreaView>
   );
 }
 

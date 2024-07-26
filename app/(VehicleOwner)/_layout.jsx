@@ -23,8 +23,8 @@ export default function TabLayout() {
           tabBarIcon:({color}) => <Ionicons name="compass-outline" size={24} color={color} />
         }}/>
         <Tabs.Screen name='Vehicle' options={{
-          tabBarLabel:"Vehicle",
-          tabBarIcon:({color}) => <Ionicons name="people-circle-outline" size={24} color={color} />
+          tabBarLabel:"Manage",
+          tabBarIcon:({color}) => <Ionicons name="car-outline" size={24} color={color} />
         }}/>
 
     </Tabs>
