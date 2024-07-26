@@ -8,7 +8,7 @@ import {
     Button,
     TouchableOpacity,
   } from "react-native";
-  import { SafeAreaView } from "react-native-safe-area-context";
+ 
   import { ScrollView } from "react-native-gesture-handler";
   import MaterialIcons from "react-native-vector-icons/MaterialIcons";
   import VehicleCard from "./VehicleCard";
@@ -53,8 +53,8 @@ import {
     };
     return (
       <GestureHandlerRootView>
-        <SafeAreaView>
-            <ScrollView showsHorizontalScrollIndicator={false} horizontal={true}>
+       
+            <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} style={{marginBottom:20}}>
               <View style={styles.VehicleCardContainer}>
                 <VehicleCard vehicle="Car" />
                 <VehicleCard vehicle="Jeep" />
@@ -81,7 +81,7 @@ import {
               <TotalAssignments />
             </View>
           
-        </SafeAreaView>
+        
       </GestureHandlerRootView>
     );
   };
