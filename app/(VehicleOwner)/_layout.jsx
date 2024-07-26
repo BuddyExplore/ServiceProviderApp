@@ -6,22 +6,24 @@ import { Colors } from '../../constants/Colors'
 
 export default function TabLayout() {
   return (
-    <Tabs screenOptions={{
-        headerShown:false,
-         tabBarActiveTintColor:Colors.PRIMARY
-    }}>
+    <Tabs screenOptions={({ route }) => ({
+      headerShown: false,
+      tabBarActiveTintColor: Colors.PRIMARY,
+      tabBarStyle: route.name === 'Assignment' ? { display: 'none' } : {},
+    })}>
         
         
         <Tabs.Screen name='Assignment' options={{
-          tabBarLabel:"Assignment",
-          tabBarIcon:({color}) => <MaterialIcons name="assignment" size={24} color={color} />
+          
+          tabBarLabel:"ongoing",
+          tabBarIcon:({color}) => <Ionicons name="map-outline" size={24} color={color} />
         }}/>
                 <Tabs.Screen name='Dashboard' options={{
           tabBarLabel:"Dashboard",
           tabBarIcon:({color}) => <Ionicons name="compass-outline" size={24} color={color} />
         }}/>
-        <Tabs.Screen name='Profile' options={{
-          tabBarLabel:"Profile",
+        <Tabs.Screen name='Vehicle' options={{
+          tabBarLabel:"Vehicle",
           tabBarIcon:({color}) => <Ionicons name="people-circle-outline" size={24} color={color} />
         }}/>
 

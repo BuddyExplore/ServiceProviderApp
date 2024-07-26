@@ -1,8 +1,9 @@
 {
-  "name": "shopmanager",
+  "name": "service_provider",
   "main": "expo-router/entry",
   "version": "1.0.0",
   "scripts": {
+    "postinstall": "node postinstall.jsx",
     "start": "expo start",
     "reset-project": "node ./scripts/reset-project.js",
     "android": "expo start --android",
@@ -17,6 +18,7 @@
   "dependencies": {
     "@clerk/clerk-expo": "^1.2.9",
     "@expo/vector-icons": "^14.0.2",
+    "@react-navigation/drawer": "^6.7.2",
     "@react-navigation/native": "^6.0.2",
     "@react-navigation/stack": "^6.4.1",
     "expo": "~51.0.22",

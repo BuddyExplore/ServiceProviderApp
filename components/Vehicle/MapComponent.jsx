@@ -14,7 +14,7 @@ const LONGITUDE = -122.4053769;
 const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
-export default function MapComponent() {
+export default function MapComponent(backbutton) {
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
   const [region, setRegion] = useState({
@@ -51,6 +51,7 @@ export default function MapComponent() {
   }
 
   return (
+    
     <MapView
       style={styles.map}
       provider={PROVIDER_GOOGLE}
