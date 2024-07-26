@@ -3,6 +3,7 @@ import { ScrollView, Dimensions, ImageBackground, StyleSheet, View, Image, Text 
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import VehicleCard from "../../components/Vehicle/VehicleCard";
 import { SafeAreaView } from "react-native-safe-area-context";
+import Header from "../../components/Vehicle/ManageHeader";
 
 // Functional Component for Vehicles
 const Vehicles = (data) => {
@@ -46,13 +47,14 @@ export default class Vehicle extends Component {
   render() {
     return (
       <SafeAreaView>
+        <Header content="Manage Vehciles"/>
         <View style={styles.VehicleCardContainer}>
           <VehicleCard vehicle="Car" />
           <VehicleCard vehicle="Jeep" />
           <VehicleCard vehicle="Motor Bike" />
         </View>
         <ScrollView showsVerticalScrollIndicator={false}>
-          <View style={{ marginBottom: 100 }}>
+          <View style={{ marginBottom: 400 }}>
             <Vehicles />
             <Vehicles />
             <Vehicles />
