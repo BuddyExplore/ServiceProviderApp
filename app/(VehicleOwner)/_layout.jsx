@@ -10,14 +10,15 @@ export default function TabLayout() {
         headerShown:false,
          tabBarActiveTintColor:Colors.PRIMARY
     }}>
-        <Tabs.Screen name='manage' options={{
-          tabBarLabel:"Manage",
-          tabBarIcon:({color}) => <Ionicons name="compass-outline" size={24} color={color} />
-        }}/>
+        
         
         <Tabs.Screen name='Assignment' options={{
           tabBarLabel:"Assignment",
           tabBarIcon:({color}) => <MaterialIcons name="assignment" size={24} color={color} />
+        }}/>
+                <Tabs.Screen name='Dashboard' options={{
+          tabBarLabel:"Dashboard",
+          tabBarIcon:({color}) => <Ionicons name="compass-outline" size={24} color={color} />
         }}/>
         <Tabs.Screen name='Profile' options={{
           tabBarLabel:"Profile",

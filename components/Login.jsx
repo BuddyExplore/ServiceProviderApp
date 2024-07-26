@@ -53,7 +53,7 @@ export default function Login() {
             }}>Go to Shop Manager's dashboard</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button}
-            onPress={() => router.push('(VehicleOwner)/manage')}
+            onPress={() => router.push('(VehicleOwner)/Dashboard')}
         >
             <Text style={{
                 color:Colors.WHITE,
