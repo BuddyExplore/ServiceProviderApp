@@ -1,8 +1,10 @@
 import { StyleSheet, Text, View , TouchableOpacity} from 'react-native'
 import React from 'react'
 import { Ionicons } from '@expo/vector-icons';
+import { useRouter } from 'expo-router'
 
 const FilterItems = () => {
+    const router = useRouter();
   return (
     <View >
         <View style={{
@@ -38,8 +40,8 @@ const FilterItems = () => {
                 <Text>Filter Items</Text>
             </View>
         </TouchableOpacity>
-
-        <TouchableOpacity style={styles.touchable}>
+        {/* router.push('../ShopAddItems/Screen1') */}
+        <TouchableOpacity style={styles.touchable} onPress={() => router.push('./AddItems')}>
             <View style={{
                 display:'flex',
                 flexDirection:'row',

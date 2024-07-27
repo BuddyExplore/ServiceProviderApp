@@ -2,6 +2,7 @@ import { ClerkProvider, SignedIn, SignedOut, ClerkLoaded } from "@clerk/clerk-ex
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import { Text } from 'react-native'
+
 // import * as SecureStore from 'expo-secure-store';
 
 // export default function RootLayout() {
@@ -39,6 +40,8 @@ export default function RootLayout() {
             headerShown:false
           }}>
             <Stack.Screen name="index" />
+            <Stack.Screen name="(ShopManager)" options={{ title: 'Shop Manager Dashboard' }} />
+            <Stack.Screen name="(TourGuide)" options={{ title: 'Tour Guide Dashboard' }} />
           </Stack>
   );
 }
