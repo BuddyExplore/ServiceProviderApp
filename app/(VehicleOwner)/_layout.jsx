@@ -9,7 +9,7 @@ export default function TabLayout() {
     <Tabs screenOptions={({ route }) => ({
       headerShown: false,
       tabBarActiveTintColor: Colors.PRIMARY,
-      tabBarStyle: route.name === 'Assignment' ? { display: 'none' } : {},
+      // tabBarStyle: route.name === 'Assignment' ? { display: 'none' } : {},
     })}>
         
         
@@ -25,6 +25,10 @@ export default function TabLayout() {
         <Tabs.Screen name='Vehicle' options={{
           tabBarLabel:"Manage",
           tabBarIcon:({color}) => <Ionicons name="car-outline" size={24} color={color} />
+        }}/>
+  <Tabs.Screen name='Profile' options={{
+          tabBarLabel:"Profile",
+          tabBarIcon:({color}) => <Ionicons name="people-circle-outline" size={24} color={color} />
         }}/>
 
     </Tabs>
