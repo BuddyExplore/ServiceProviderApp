@@ -37,5 +37,5 @@ export const Colors = {
   THIRD:'#D7A93B',
   FOURTH:'#70D6E3',
   FIFTH:'#F7E4CA',
-  SIXTH:'00A86B',
+  SIXTH:'#00A86B',
 };
