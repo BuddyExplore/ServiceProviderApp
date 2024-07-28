@@ -3,7 +3,7 @@ import React , {useState} from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { Colors } from '../../constants/Colors';
 import { Picker } from '@react-native-picker/picker';
-
+import RadioGroup from 'react-native-radio-buttons-group';
 
 export default function EditItem({ prefernce , savedPressed}) {
  
@@ -12,6 +12,24 @@ export default function EditItem({ prefernce , savedPressed}) {
     const [itemPrice, setItemPrice] = useState(prefernce.price);
     const [itemAvailability, setItemAvailability] = useState('');
     const [selectedValue, setSelectedValue] = useState("in-stock");
+
+    const [radioButtons, setRadioButtons] = useState([
+      {
+        id: '1', // acts as primary key, should be unique and non-null
+        label: 'In-Stock',
+        value: 'in-stock',
+        selected: true,
+      },
+      {
+        id: '2',
+        label: 'Out-Stock',
+        value: 'out-stock',
+        selected: false,
+      },
+    ]);
+
+    const [selectedId, setSelectedId] = useState('1');
+
 
     const handleSaveBtn = (itemName) => {
       savedPressed(1);
@@ -73,14 +91,24 @@ export default function EditItem({ prefernce , savedPressed}) {
               <Text style={styles.label}>
                 Item Availability
               </Text>
-              <Picker
+              {/* <Picker
               selectedValue={selectedValue}
               style={styles.picker}
               onValueChange={(itemValue) => setSelectedValue(itemValue)}
-            >
+              >
               <Picker.Item style={{color: 'black'}}label="In-stock" value="in-stock" />
               <Picker.Item label="Out-stock" value="out-stock" />
-            </Picker>
+            </Picker> */}
+
+            
+              <RadioGroup 
+                radioButtons={radioButtons} 
+                onPress={setSelectedId}
+                selectedId={selectedId}
+                layout="row"
+              />
+            
+
             </View>
             
             <TouchableOpacity
@@ -132,8 +160,8 @@ const styles = StyleSheet.create({
     borderRadius: 10
   },
   picker: {
-    height: 50,
-    width: 150,
+    height: 30,
+    width: 120,
     color: Colors.PRIMARY
   },
   saveButton: {
