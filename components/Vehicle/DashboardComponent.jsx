@@ -9,7 +9,7 @@ import {
     TouchableOpacity,
   } from "react-native";
   import FilterAssignments from "./FilterAssignments";
-  import AssignmentList from "./AssignmentList";
+
   import { Colors } from "../../constants/Colors";
   import { ScrollView } from "react-native-gesture-handler";
   import MaterialIcons from "react-native-vector-icons/MaterialIcons";
@@ -68,7 +68,7 @@ import {
               <TotalAssignments />
             </View>
             <FilterAssignments />
-            <AssignmentList />
+            
             
             
         

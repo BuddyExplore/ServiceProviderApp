@@ -1,23 +1,47 @@
 import { View, Text, FlatList , Image, StyleSheet , ScrollView} from 'react-native'
-import React from 'react'
+import React,{useState, useEffect} from 'react'
 import { Colors } from '../../constants/Colors'
 import GuidesListItem from './item';
 
 
 
-export default function AssignmentList() {
-    const preferencesList = [
-        { name: 'John', price: 'Rs 2000', where:'Nugegoda' , icon: '🔔', img:require('./../../assets/images/Vehicle/ella.jpeg')  },
-        { name: 'Karan',price: 'Rs 2400', where:'Hokanda' , icon: '👤', img:require('./../../assets/images/Vehicle/Dunhinda_Falls.jpg')  },
-        { name: 'Doe',price: 'Rs 1200', where:'Moratuwa' , icon: '🔔', img:require('./../../assets/images/Vehicle/ella.jpeg')  },
-        { name: 'Adams', price: 'Rs 700',where:'Pannipitiya' , icon: '⚙️', img:require('./../../assets/images/Vehicle/Dunhinda_Falls.jpg')  },
-        { name: 'Peter', price: 'Rs 550',where:'Nugegoda' , icon: '🔔', img:require('./../../assets/images/Vehicle/ella.jpeg')  },
-        { name: 'Smith', price: 'Rs 500',where:'Hokanda', icon: '👤', img:require('./../../assets/images/Vehicle/ella.jpeg')  },
-        { name: 'David', price: 'Rs 300',where:'Moratuwa', icon: '🔔', img:require('./../../assets/images/Vehicle/Dunhinda_Falls.jpg')  },
-        { name: 'Walpaper', price: 'Rs 200',where:'Pannipitiya', icon: '⚙️', img:require('./../../assets/images/Vehicle/Dunhinda_Falls.jpg')  },
-        // { name: 'Kayaking', icon: '🔔', img:require('../../assets/images/Home/Prefernces/kayak.png') },
+export default function AssignmentList(props) {
+  const [preferences, setPreferences] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      const preferencesList = [
+        { name: 'John', price: 'Rs 2000', where: 'Nugegoda', icon: '🔔', img: require('./../../assets/images/Vehicle/ella.jpeg'), status: "Upcoming" },
+        { name: 'Karan', price: 'Rs 2400', where: 'Hokanda', icon: '👤', img: require('./../../assets/images/Vehicle/Dunhinda_Falls.jpg'), status: "Upcoming" },
+        { name: 'Doe', price: 'Rs 1200', where: 'Moratuwa', icon: '🔔', img: require('./../../assets/images/Vehicle/ella.jpeg'), status: "Upcoming" },
+        { name: 'Adams', price: 'Rs 700', where: 'Pannipitiya', icon: '⚙️', img: require('./../../assets/images/Vehicle/Dunhinda_Falls.jpg'), status: "Upcoming" },
+        { name: 'Peter', price: 'Rs 550', where: 'Nugegoda', icon: '🔔', img: require('./../../assets/images/Vehicle/ella.jpeg'), status: "Upcoming" },
+        { name: 'Smith', price: 'Rs 500', where: 'Hokanda', icon: '👤', img: require('./../../assets/images/Vehicle/ella.jpeg'), status: "Upcoming" },
+        { name: 'David', price: 'Rs 300', where: 'Moratuwa', icon: '🔔', img: require('./../../assets/images/Vehicle/Dunhinda_Falls.jpg'), status: "Ongoing" },
+        { name: 'Walpaper', price: 'Rs 200', where: 'Pannipitiya', icon: '⚙️', img: require('./../../assets/images/Vehicle/Dunhinda_Falls.jpg'), status: "Completed" },
       ];
 
+      await new Promise(resolve => setTimeout(resolve, 100));
+
+      if (props.status!=="All") {
+        setPreferences(preferencesList.filter(data => data.status === props.status));
+      } else {
+        setPreferences(preferencesList);
+      }
+
+      setLoading(false);
+    };
+
+    fetchData();
+  }, [props.status]);
+
+  if (loading) {
+    return <Text style={{justifyContent:"center",alignItems:"center"}}>Loading...</Text>;
+  }
+
+        
   return (
     <View>
         <Text style={{
@@ -41,8 +65,9 @@ export default function AssignmentList() {
             
         
         </View>
-        {preferencesList.map((item, index) => (
-                <GuidesListItem prefernce={item} key={index}/>
+        
+        {preferences.map((item, index) => (
+                <GuidesListItem preference={item} key={index}/>
             ))}
        
         </ScrollView>

@@ -57,6 +57,7 @@ MapComponent(backbutton) {
       style={styles.map}
       provider={PROVIDER_GOOGLE}
       initialRegion={region}
+      initialCamera={true}
       showsUserLocation={true}
       showsMyLocationButton={true}
     >
