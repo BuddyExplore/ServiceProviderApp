@@ -3,13 +3,17 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import * as ImagePicker from 'expo-image-picker';
+import { LinearGradient } from 'expo-linear-gradient';
+import { Colors } from '../../../constants/Colors';
+
 
 const ProfileDetails = () => {
+   
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [contactno, setContactno] = useState('');
   const [profilePicture, setProfilePicture] = useState(null);
-
+  let data = {name:"Shaf",email:"Shaf@live.com",contactno:"0777123456",licenceno:"B7125487",province:"Eastern"}
   const pickImage = async () => {
     // Ask the user for the permission to access the media library
     const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -34,9 +38,6 @@ const ProfileDetails = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.card}>
-      <View style={styles.header}>
-        <Text style={styles.title}>Profile</Text>
-      </View>
       <View style={styles.profilePictureContainer}>
         
       <Image source={require("../../../assets/images/Shop/shop.png")} style={styles.profilePicture} />
@@ -46,7 +47,7 @@ const ProfileDetails = () => {
         <Text style={styles.label}>Name</Text>
         <TextInput
           style={styles.input}
-          value={name}
+          value={data.name}
           onChangeText={setName}
           placeholder="Enter your name"
         />
@@ -55,7 +56,7 @@ const ProfileDetails = () => {
         <Text style={styles.label}>Email</Text>
         <TextInput
           style={styles.input}
-          value={email}
+          value={data.email}
           onChangeText={setEmail}
           placeholder="Enter your email"
           keyboardType="email-address"
@@ -65,13 +66,36 @@ const ProfileDetails = () => {
         <Text style={styles.label}>Contact No.</Text>
         <TextInput
           style={styles.input}
-          value={contactno}
+          value={data.contactno}
           onChangeText={setContactno}
           placeholder="Enter your number"
           keyboardType="number-pad"
         />
       </View>
-      <Button title="Save" onPress={handleSave} />
+      <View style={styles.inputContainer}>
+        <Text style={styles.label}>Licence No.</Text>
+        <TextInput
+          style={styles.input}
+          value={data.licenceno}
+          onChangeText={setName}
+          placeholder="Enter your Licence No"
+        />
+      </View>
+      <View style={styles.inputContainer}>
+        <Text style={styles.label}>Province</Text>
+        <TextInput
+          style={styles.input}
+          value={data.province}
+          onChangeText={setName}
+          placeholder="Enter your Province"
+        />
+      </View>
+      <LinearGradient colors={[Colors.PRIMARY, Colors.PRIMARY+"AA"]}
+          start={{x:1, y:0}}
+          end={{x:0, y:0}} 
+          style={{borderRadius:10}}>
+      <Text style={{fontSize:20,padding:10,textAlign:"center",color:"white"}}  onPress={handleSave} >Edit</Text>
+      </LinearGradient>
       </View>
     </SafeAreaView>
   );
@@ -80,7 +104,7 @@ const ProfileDetails = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor:Colors.PRIMARY+"AA",
     padding: 16,
   },
   header: {
@@ -92,12 +116,15 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   profilePictureContainer: {
+    // backgroundColor:Colors.PRIMARY,
     alignItems: 'center',
     marginBottom: 20,
   },
   profilePicture: {
     width: 100,
     height: 100,
+    borderWidth:2,
+    // borderColor:"black",
     borderRadius: 50,
   },
   placeholder: {
@@ -127,9 +154,10 @@ const styles = StyleSheet.create({
   },
   card: {
     padding: 16,
-    backgroundColor: '#f9f9f9',
-    borderRadius: 8,
-    elevation: 1,
+    backgroundColor: "#f9f9f9",
+    borderRadius: 2,
+    elevation: 3,
+    
   },
 });
 

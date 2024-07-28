@@ -1,12 +1,10 @@
 import { View, Text, Image, TextInput } from 'react-native'
 import React from 'react'
 import { Colors } from '../../constants/Colors'
-import { Ionicons } from '@expo/vector-icons';
-import { SafeAreaView } from 'react-native-safe-area-context';
+
 
 export default function Header(props) {
   return (
-    <SafeAreaView>
     <View style={{
         padding:20,
         paddingTop:40,
@@ -40,9 +38,6 @@ export default function Header(props) {
         </View>
 
         {/* search bar */}
-       
-
     </View>
-    </SafeAreaView>
   )
 }

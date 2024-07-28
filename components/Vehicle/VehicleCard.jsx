@@ -32,7 +32,7 @@ const VehicleCard = (props) => {
 
   return (
     <View style={styles.VehicleCard}>
-      <Image source={imagePath} style={styles.VehicleImage} />
+      <Image source={imagePath} style={styles.VehicleImage}/>
       <Text style={styles.VehicleName}>{vehicle}</Text>
     </View>
   );
@@ -42,11 +42,11 @@ export default VehicleCard;
 
 const styles = StyleSheet.create({
   VehicleCard: {
-    padding: 0,
+    padding: 10,
     backgroundColor: "white",
     borderRadius: 10,
     opacity: 1,
   },
-  VehicleImage: { width: Dimensions.get("screen").width/3.7, height: Dimensions.get("screen").height/11, borderRadius: 10, opacity: 1 },
+  VehicleImage: { width: Dimensions.get("screen").width/4.5, height: Dimensions.get("screen").height/13, borderRadius: 10, opacity: 1 },
   VehicleName: { justifyContent: "center", textAlign: "center", fontSize: 20 },
 });

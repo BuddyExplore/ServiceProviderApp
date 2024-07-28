@@ -21,6 +21,7 @@ const Vehicles = (data) => {
         flexWrap: "wrap",
       }}
     >
+      <View style={{paddingBottom:20,}}>
       <Image
         source={require("../../assets/images/Vehicle/bike.png.png")}
         style={{
@@ -28,15 +29,15 @@ const Vehicles = (data) => {
           height: 80,
           borderColor: "black",
         }}
-      />
-      <View>
+      /></View>
+      <View style={{paddingVertical:20}}>
         <Text>
-          VehicleModel: {data.VehicleModel || "Tesla S1"}
+          VehicleModel: {data.VehicleModel || "ZR"}
         </Text>
-        <Text>Seats: {data.Seats || "Tesla S1"}</Text>
-        <Text>Speed: {data.Speed || "Tesla S1"}</Text>
+        <Text>Seats: {data.Seats || "2"}</Text>
+        <Text>Speed: {data.Speed || "80Kmph"}</Text>
         <Text>
-          Price (Average): {data.AvgPrice || "Tesla S1"}
+          Price (Average): {data.AvgPrice || "200"}
         </Text>
       </View>
     </View>
@@ -48,11 +49,13 @@ export default class Vehicle extends Component {
     return (
       <SafeAreaView>
         <Header content="Manage Vehciles"/>
+        <Text style={{paddingHorizontal:20,paddingVertical:2,fontSize:20,fontWeight:700}}>Categories</Text>
         <View style={styles.VehicleCardContainer}>
           <VehicleCard vehicle="Car" />
           <VehicleCard vehicle="Jeep" />
           <VehicleCard vehicle="Motor Bike" />
         </View>
+        <Text style={{paddingHorizontal:20,paddingVertical:2,fontSize:20,fontWeight:700}}>Vehicles</Text>
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={{ marginBottom: 400 }}>
             <Vehicles />

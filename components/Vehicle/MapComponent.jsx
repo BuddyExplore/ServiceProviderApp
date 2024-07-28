@@ -52,7 +52,7 @@ MapComponent(backbutton) {
   }
 
   return (
-    <SafeAreaView>
+   
     <MapView
       style={styles.map}
       provider={PROVIDER_GOOGLE}
@@ -60,7 +60,7 @@ MapComponent(backbutton) {
       showsUserLocation={true}
       showsMyLocationButton={true}
     >
-      {googleapi ? (
+      {/* {googleapi ? (
         <MapViewDirections
           origin={{
             latitude: region.latitude,
@@ -71,16 +71,18 @@ MapComponent(backbutton) {
             longitude: LONGITUDE,
           }}
           apikey={googleapi}
+          strokeColor="blue"
+          strokeWidth={3}
         />
       ) : (
         <Text>apikey not provided</Text>
-      )}
+      )} */}
       <Marker
         coordinate={region}
         pinColor={"purple"} // any color
       />
     </MapView>
-    </SafeAreaView>
+    
   );
 }
 

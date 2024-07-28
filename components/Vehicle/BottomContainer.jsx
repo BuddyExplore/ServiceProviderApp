@@ -7,7 +7,7 @@ export default class BottomContainer extends Component {
     return (
       <View style={styles.bottomcontainer}>
         <Entypo name={"menu"} size={24} />
-        <Text style={styles.bottomText}>You are offline</Text>
+        <Text style={styles.bottomText}>You are Online</Text>
         <Entypo name={"menu"} size={24} />
       </View>
     );

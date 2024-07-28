@@ -8,7 +8,9 @@ import {
     Button,
     TouchableOpacity,
   } from "react-native";
- 
+  import FilterAssignments from "./FilterAssignments";
+  import AssignmentList from "./AssignmentList";
+  import { Colors } from "../../constants/Colors";
   import { ScrollView } from "react-native-gesture-handler";
   import MaterialIcons from "react-native-vector-icons/MaterialIcons";
   import VehicleCard from "./VehicleCard";
@@ -17,16 +19,21 @@ import {
   import { GestureHandlerRootView } from "react-native-gesture-handler";
   const DashboardComponent = (data) => {
     const TotalEarnings = () => {
+      const angle = 45;
+  const radians = angle * (Math.PI / 180); // Convert to radians
+  
       return (
         <TotalAmountContainer
           textColor="white"
-          backgroundColor="#4BAD4FBB"
+          backgroundColor={[Colors.SECOND,Colors.SIXTH+"FA"]}
+          start={{ x: 0, y: 0 }}
+      end={{ x:0.7, y:0.7 }}
           content={
             data.estimated == "completed"
               ? "Earnings"
               : data.estimated
               ? "Earnings Due"
-              : "Total Earnings"
+              : "Earnings"
           }
           data={data.earning}
         />
@@ -37,7 +44,9 @@ import {
       return (
         <TotalAmountContainer
           textColor="white"
-          backgroundColor="#0078A1BB"
+          backgroundColor={[Colors.FOURTH, Colors.PRIMARY]}
+          start={{x:1, y:0}}
+          end={{x:0, y:0}}
           content={
             data.estimated == "ongoing"
               ? "Ongoing Assignments"
@@ -45,42 +54,23 @@ import {
               ? "Finished Assignments"
               : data.estimated
               ? "Due Assignments"
-              : "Total Assignments"
+              : "Assignments"
           }
           data={data.assignments}
         />
       );
     };
     return (
-      <GestureHandlerRootView>
+      <GestureHandlerRootView >
        
-            <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} style={{marginBottom:20}}>
-              <View style={styles.VehicleCardContainer}>
-                <VehicleCard vehicle="Car" />
-                <VehicleCard vehicle="Jeep" />
-                <VehicleCard vehicle="Motor Bike" />
-                <TouchableOpacity>
-                  <View
-                    style={{
-                      backgroundColor: "#F0F0F0",
-                      justifyContent: "center",
-                      alignContent: "center",
-                      padding: 15,
-                      margin: 10,
-                      borderRadius: 100,
-                      opacity: 0.9,
-                    }}
-                  >
-                    <MaterialIcons name="add" size={48} />
-                  </View>
-                </TouchableOpacity>
-              </View>
-            </ScrollView>
             <View style={styles.TotalContainer}>
               <TotalEarnings />
               <TotalAssignments />
             </View>
-          
+            <FilterAssignments />
+            <AssignmentList />
+            
+            
         
       </GestureHandlerRootView>
     );
@@ -89,18 +79,19 @@ import {
     VehicleCardContainer: {
       display: "flex",
       flexDirection: "row",
-      alignItems: "stretch",
+      alignAssignment: "stretch",
       gap: 20,
       marginHorizontal: 16,
       marginVertical: 18,
-      width: Dimensions.get("window"),
+      width: Dimensions.get("screen").width,
     },
     TotalContainer: {
-      width: Dimensions.get("screen"),
-      paddingHorizontal: 50,
-      paddingBottom: 90,
-      height: Dimensions.get("screen"),
-      gap: 30,
+      width: Dimensions.get("screen").width,
+      marginTop:20,
+      marginHorizontal:10,
+      flexDirection:"row",
+      height: Dimensions.get("screen").height/7.5,
+      gap: 12,
     },
   });
   
