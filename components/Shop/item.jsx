@@ -1,11 +1,42 @@
-import { View, Text, ImageBackground, TouchableOpacity, StyleSheet, Image } from 'react-native';
-import React from 'react';
+import { View, Text, ImageBackground, TouchableOpacity, StyleSheet, Image , Modal , Pressable } from 'react-native';
+import React , {useState} from 'react';
 import { Ionicons } from '@expo/vector-icons';
+import { Colors } from '../../constants/Colors';
+import ItemDetails from "./ItemDetails"
+import EditItem from "./EditItem"
 
 export default function GuidesListItem({ prefernce }) {
+
+    const [modalVisible, setModalVisible] = useState(false);
+    const [displayDetails, setDisplayDetails] = useState(true);
+    const [displayEdit, setDisplayEdit] = useState(false);
+
+    const handleOpenEdit = (itemName) => {
+        if(itemName === 1){
+            setDisplayDetails(false);
+            setDisplayEdit(true);
+        }
+      };
+
+    const handleSaved = (itemName) => {
+        if(itemName === 1){
+            setDisplayDetails(true);
+            setDisplayEdit(false);
+        }
+      };
+
+      const handleBack = (itemName) => {
+            setDisplayDetails(true);
+            setDisplayEdit(false);
+            setModalVisible(!modalVisible)
+      };
+      
+
+
+      
     return (
         <View style={styles.container}>
-            <TouchableOpacity style={styles.touchable}>
+            <TouchableOpacity style={styles.touchable} onPress={() => setModalVisible(true)}>
                 <View style={{
                 display:'flex',
                 flexDirection: 'row',
@@ -37,7 +68,7 @@ export default function GuidesListItem({ prefernce }) {
                         <Text style={{
                                 color:'black',
                                 fontSize:15,
-                            }}>{prefernce.price}</Text>
+                            }}>Rs {prefernce.price}</Text>
                             {/* <Image source={require("../../../assets/images/Book/4star.png")}
                             style={{
                                 width:70,
@@ -51,6 +82,42 @@ export default function GuidesListItem({ prefernce }) {
                     <Ionicons name="ellipsis-vertical-outline" size={24} color={'black'} />
                 </View>
             </TouchableOpacity>
+
+            
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <View style={{
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center'
+            }}>
+
+            
+            <TouchableOpacity
+              style={[styles.button, styles.backButton]}
+              onPress={handleBack}
+            >
+              <Ionicons name="arrow-back-outline" size={26} color={'black'} /> 
+            </TouchableOpacity>
+            <Text style={styles.itemName}>  Item Details</Text>
+
+            </View>
+            {displayDetails && <ItemDetails prefernce={prefernce} openEdit={handleOpenEdit}/>}
+            {displayEdit && <EditItem prefernce={prefernce} savedPressed={handleSaved}/>}
+            {/* <ItemDetails prefernce={prefernce}/> */}
+            {/* <EditItem prefernce={prefernce} closeEdit={handleEdited}/> */}
+            
+          </View>
+        </View>
+      </Modal>
             
         </View>
     );
@@ -96,4 +163,59 @@ const styles = StyleSheet.create({
         color: 'green',
         fontSize: 12
     },
+    centeredView: {
+        flex: 1,
+        justifyContent: 'center',
+        // alignItems: 'center',
+      },
+    
+  modalView: {
+    height: '90%',
+    width: '100%',
+    // margin: 20,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 35,
+    // alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  itemName: {
+    fontSize: 28,
+    fontWeight: 'bold'
+  },
+  itemImg: {
+    width: 200,
+    height: 200,
+    
+  },
+
+  backButton: {
+    width: 50,
+    backgroundColor: '#F0EDED',
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+  },
+  editButton: {
+    backgroundColor: Colors.PRIMARY,
+    height: 50,
+    width: 150,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 20
+  },
+  buttonTxt : {
+    fontSize: 23,
+    color: 'white',
+    fontWeight: 'bold'
+  }
 });

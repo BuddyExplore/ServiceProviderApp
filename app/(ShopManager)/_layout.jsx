@@ -4,6 +4,10 @@ import { Tabs } from 'expo-router'
 import { Ionicons } from '@expo/vector-icons';
 import { Colors } from '../../constants/Colors'
 
+import ManageScreen from './manage';
+import OrdersScreen from './orders';
+import ProfileScreen from './profile';
+
 export default function TabLayout() {
   return (
     <Tabs screenOptions={{
@@ -12,7 +16,7 @@ export default function TabLayout() {
     }}>
         <Tabs.Screen name='manage' options={{
           tabBarLabel:"Manage",
-          tabBarIcon:({color}) => <Ionicons name="compass-outline" size={24} color={color} />
+          tabBarIcon:({color}) => <Ionicons name="settings-outline" size={24} color={color} />
         }}/>
         
         <Tabs.Screen name='orders' options={{
@@ -22,6 +26,11 @@ export default function TabLayout() {
         <Tabs.Screen name='profile' options={{
           tabBarLabel:"Profile",
           tabBarIcon:({color}) => <Ionicons name="people-circle-outline" size={24} color={color} />
+        }}/>
+        <Tabs.Screen name='AddItems' options={{
+          // This tab will no longer show up in the tab bar.
+          href: null,
+          tabBarStyle: { display: 'none' }, // Hide tab bar for this screen
         }}/>
 
     </Tabs>
