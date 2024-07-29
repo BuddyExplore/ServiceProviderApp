@@ -4,6 +4,7 @@ import { Stack } from "expo-router";
 import { Text } from 'react-native'
 
 // import * as SecureStore from 'expo-secure-store';
+import { ModalPortal } from 'react-native-modals';
 
 // export default function RootLayout() {
 //   useFonts({
@@ -36,6 +37,7 @@ export default function RootLayout() {
     'outfit-bold':require('./../assets/fonts/Outfit-Bold.ttf')
   })
   return (
+    <>
           <Stack screenOptions={{
             headerShown:false
           }}>
@@ -43,5 +45,7 @@ export default function RootLayout() {
             <Stack.Screen name="(ShopManager)" options={{ title: 'Shop Manager Dashboard' }} />
             <Stack.Screen name="(TourGuide)" options={{ title: 'Tour Guide Dashboard' }} />
           </Stack>
+          <ModalPortal />
+    </>
   );
 }
