@@ -13,11 +13,11 @@ const AddItemCancel = () => {
         flexDirection:'row',
         justifyContent: 'space-between'
     }}>
-      <TouchableOpacity style={styles.button1} onPress={() => router.push('../(ShopManager)/manage')}>
+      <TouchableOpacity style={styles.button1} onPress={() => router.push('./manage')}>
         <Text style={styles.buttonText}>Add Item</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.button2} onPress={() => router.push('../(ShopManager)/manage')}>
+      <TouchableOpacity style={styles.button2} onPress={() => router.push('./manage')}>
         <Text style={styles.buttonText1}>Cancel</Text>
       </TouchableOpacity>
     </View>

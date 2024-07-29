@@ -1,7 +1,7 @@
 import { View, Text, FlatList , Image, StyleSheet , ScrollView} from 'react-native'
 import React from 'react'
 import { Colors } from '../../constants/Colors'
-import GuidesListItem from './item';
+import ListItems from './item';
 
 
 
@@ -43,7 +43,7 @@ export default function itemList() {
             }}>View all</Text> */}
         </View>
         {preferencesList.map((item, index) => (
-                <GuidesListItem prefernce={item} key={index}/>
+                <ListItems prefernce={item} key={index}/>
             ))}
         {/* <FlatList 
             showsHorizontalScrollIndicator={false}

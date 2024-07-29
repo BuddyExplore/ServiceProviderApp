@@ -10,6 +10,10 @@ export default function ItemDetails({ prefernce, openEdit }) {
         openEdit(1);
       };
 
+      const handleDelete = (itemName) => {
+        //Delete function
+      };
+
       
     return(
         <View>
@@ -40,7 +44,11 @@ export default function ItemDetails({ prefernce, openEdit }) {
             
 
 
-
+            <View style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              flexDirection: 'row',
+            }}>
             <TouchableOpacity
             style={[styles.editButton, styles.buttonClose]}
             onPress = {handleEdit}
@@ -48,6 +56,17 @@ export default function ItemDetails({ prefernce, openEdit }) {
             >
             <Text style={styles.buttonTxt}>Edit Item</Text>
             </TouchableOpacity>
+
+            <TouchableOpacity
+            style={[styles.deleteButton]}
+            onPress = {handleDelete}
+            // onPress={() => setModalVisible(!modalVisible)}
+            >
+            <Text style={styles.buttonTxt}>Delete</Text>
+            </TouchableOpacity>
+
+
+            </View>
         </View>
     )
 
@@ -97,6 +116,20 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
   buttonTxt : {
+    fontSize: 21,
+    color: 'white',
+    fontWeight: 'bold'
+  },
+  deleteButton : {
+    backgroundColor: '#DC143C',
+    height: 40,
+    width: 130,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
+    marginTop: 30,
     fontSize: 21,
     color: 'white',
     fontWeight: 'bold'
