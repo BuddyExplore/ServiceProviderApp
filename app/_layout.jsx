@@ -3,6 +3,7 @@ import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import { Text } from 'react-native'
 // import * as SecureStore from 'expo-secure-store';
+import { ModalPortal } from 'react-native-modals';
 
 // export default function RootLayout() {
 //   useFonts({
@@ -35,10 +36,13 @@ export default function RootLayout() {
     'outfit-bold':require('./../assets/fonts/Outfit-Bold.ttf')
   })
   return (
+    <>
           <Stack screenOptions={{
             headerShown:false
           }}>
             <Stack.Screen name="index" />
           </Stack>
+          <ModalPortal />
+    </>
   );
 }
