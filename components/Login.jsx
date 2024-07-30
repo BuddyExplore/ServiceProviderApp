@@ -48,6 +48,7 @@ export default function Login() {
             <Text style={{
                 color:Colors.WHITE,
                 textAlign:'center',
+                
                 fontFamily:'outfit',
                 fontSize:17,
             }}>Go to Shop Manager's dashboard</Text>
@@ -58,9 +59,20 @@ export default function Login() {
             <Text style={{
                 color:Colors.WHITE,
                 textAlign:'center',
+                
                 fontFamily:'outfit',
                 fontSize:17,
             }}>Go to Vehicle Owner's dashboard</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button}
+            onPress={() => router.push('(HotelManager)/home/Dashboard')}
+        >
+            <Text style={{
+                color:Colors.WHITE,
+                textAlign:'center',
+                fontFamily:'outfit',
+                fontSize:17,
+            }}>Goto Hotel Manager's dashboard</Text>
         </TouchableOpacity>
       </View>
     </View>

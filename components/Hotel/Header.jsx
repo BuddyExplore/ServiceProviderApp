@@ -1,9 +1,8 @@
 import { View, Text, Image, TextInput } from 'react-native'
 import React from 'react'
 import { Colors } from '../../constants/Colors'
-import { Ionicons } from '@expo/vector-icons';
 
-export default function Header({headerItems}) {
+export default function Header({subText, mainText}) {
   return (
     <View style={{
         padding:20,
@@ -28,35 +27,17 @@ export default function Header({headerItems}) {
             <View>
                 <Text style={{
                     color:'#fff'
-                }}>{headerItems.Name},</Text>
+                }}>{subText}</Text>
                 <Text style={{
                     color:'#fff',
                     fontSize:23,
                     fontFamily:'outfit-medium'
-                }}>{headerItems.Text}</Text>
+                }}>{mainText}</Text>
             </View>
         </View>
 
         {/* search bar */}
-        <View style={{
-            display:'flex',
-            flexDirection:'row',
-            gap:10,
-            alignItems:'center',
-            backgroundColor:'#fff',
-            padding:8,
-            marginVertical:2,
-            marginTop:12,
-            borderRadius:8
-        }}>
-            <Ionicons name="search" size={24} color={Colors.SECOND} />
-            <TextInput placeholder={headerItems.Placeholder}
-                style={{
-                    fontFamily:'outfit',
-                    fontSize:16
-                }}
-            />
-        </View>
+
 
     </View>
   )

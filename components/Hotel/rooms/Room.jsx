@@ -1,12 +1,11 @@
-import { View, Text, ImageBackground, TouchableOpacity, StyleSheet, Image , Modal , Pressable } from 'react-native';
-import React , {useState} from 'react';
+import { View, Text, ImageBackground, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
-import { Colors } from '../../constants/Colors';
-import ItemDetails from "./ItemDetails"
-import EditItem from "./EditItem"
+import { Colors } from '../../../constants/Colors';
 
-export default function GuidesListItem({ prefernce }) {
-  
+export default function Room({ room }) {
+    const subColor = room.checkIn ? "red" : "green";
+
     return (
         <View style={styles.container}>
             <TouchableOpacity style={styles.touchable}>
@@ -26,79 +25,52 @@ export default function GuidesListItem({ prefernce }) {
                         gap: 20,
                         backgroundColor:'white'
                     }}>
-                        <Image source={prefernce.img}
+                        {room.img && <Image source={{uri: room.img}}
                             style={{
                                 width:100,
                                 height:100,
                             }}
-                        />
+                        />}
                         <View>
                         <Text style={{
                                 color:'black',
                                 fontSize:19,
                                 fontWeight: 'bold'
-                            }}>{prefernce.name}</Text>
-                        <Text style={{
-                                color:'black',
-                                fontSize:15,
-                            }}>{prefernce.price}</Text>
+                            }}>Room {room.roomNumber}</Text>
+                              <Text style={styles.roomType}>Type: {room.roomType}</Text>
+                                <Text style={styles.price}>Price: ${room.price} per night</Text>
+                                {room.description && <Text style={styles.description}>{room.description}</Text>}
                             {/* <Image source={require("../../../assets/images/Book/4star.png")}
                             style={{
                                 width:70,
                                 height:20,
                             }} /> */}
-              <Text style={styles.subText}>In-Stock</Text>
-            </View>
-          </View>
-          <Ionicons
-            name="ellipsis-vertical-outline"
-            size={24}
-            color={"black"}
-          />
-        </View>
-      </TouchableOpacity>
-
-            
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          setModalVisible(!modalVisible);
-        }}
-      >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <View style={{
-                display: 'flex',
-                flexDirection: 'row',
-                alignItems: 'center'
-            }}>
-
-            
-            <TouchableOpacity
-              style={[styles.button, styles.backButton]}
-              onPress={handleBack}
-            >
-              <Ionicons name="arrow-back-outline" size={26} color={'black'} /> 
+                            <Text style={{...styles.subText, color: subColor}}>{room.checkIn ? "Checked In": "Available" }</Text>
+                            
+                        </View>
+                        
+                    </View>
+                    <View style={{
+                        backgroundColor: Colors.PRIMARY,
+                        height: 50,
+                        width: 90,
+                        justifyContent: 'center', // Center the text vertically
+                        alignItems: 'center', // Center the text horizontally
+                        borderRadius: 10
+                    }}>
+                        <Text style={{ color: 'white' }}>Details</Text>
+                        {/* <Button title="Shop Now" disabled={true}>Shop Now</Button> */}
+                    </View>
+                </View>
             </TouchableOpacity>
-            <Text style={styles.itemName}>  Item Details</Text>
-
-            </View>
-            {displayDetails && <ItemDetails prefernce={prefernce} openEdit={handleOpenEdit}/>}
-            {displayEdit && <EditItem prefernce={prefernce} savedPressed={handleSaved}/>}
-            {/* <ItemDetails prefernce={prefernce}/> */}
-            {/* <EditItem prefernce={prefernce} closeEdit={handleEdited}/> */}
             
-          </View>
         </View>
-      </Modal>
-    </View>
-  );
+    );
 }
 
 const styles = StyleSheet.create({
     container: {
+        width: "100%",
         alignItems: 'center',
         justifyContent: 'center',
         margin: 10,
@@ -134,7 +106,24 @@ const styles = StyleSheet.create({
     },
     subText: {
         marginTop: 5,
-        color: 'green',
         fontSize: 12
     },
+
+    roomType: {
+          fontSize: 14,
+          color: '#555',
+        },
+        price: {
+          fontSize: 14,
+          color: '#555',
+        },
+        description: {
+          fontSize: 12,
+          color: '#777',
+        },
+        roomImage: {
+          width: 100,
+          height: 100,
+          marginTop: 10,
+        }
 });

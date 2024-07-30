@@ -1,20 +1,20 @@
 import { View, Text, FlatList , Image, StyleSheet , ScrollView} from 'react-native'
 import React from 'react'
 import { Colors } from '../../constants/Colors'
-import GuidesListItem from './item';
+import ListItems from './item';
 
 
 
 export default function itemList() {
     const preferencesList = [
-        { name: 'Batik Shirt', price: 'Rs 500', where:'Nugegoda' , icon: '🔔', img:require('./../../assets/images/Shop/batikshirt.jpg')  },
-        { name: 'Batik Sarong',price: 'Rs 400', where:'Hokanda' , icon: '👤', img:require('./../../assets/images/Shop/batiksarong.jpg')  },
-        { name: 'Batik Trouser',price: 'Rs 1200', where:'Moratuwa' , icon: '🔔', img:require('./../../assets/images/Shop/batikshort.png')  },
-        { name: 'Walpaper', price: 'Rs 700',where:'Pannipitiya' , icon: '⚙️', img:require('./../../assets/images/Shop/walpaper.jpg')  },
-        { name: 'Rug', price: 'Rs 550',where:'Nugegoda' , icon: '🔔', img:require('./../../assets/images/Shop/walpaper.jpg')  },
-        { name: 'Keytag', price: 'Rs 500',where:'Hokanda', icon: '👤', img:require('./../../assets/images/Shop/keytag.jpg')  },
-        { name: 'Rug', price: 'Rs 300',where:'Moratuwa', icon: '🔔', img:require('./../../assets/images/Shop/shop.png')  },
-        { name: 'Walpaper', price: 'Rs 200',where:'Pannipitiya', icon: '⚙️', img:require('./../../assets/images/Shop/shop.png')  },
+        { name: 'Batik Shirt', price: '500', where:'Nugegoda' , icon: '🔔', img:require('./../../assets/images/Shop/batikshirt.jpg')  },
+        { name: 'Batik Sarong',price: '400', where:'Hokanda' , icon: '👤', img:require('./../../assets/images/Shop/batiksarong.jpg')  },
+        { name: 'Batik Trouser',price: '1200', where:'Moratuwa' , icon: '🔔', img:require('./../../assets/images/Shop/batikshort.png')  },
+        { name: 'Walpaper', price: '700',where:'Pannipitiya' , icon: '⚙️', img:require('./../../assets/images/Shop/walpaper.jpg')  },
+        { name: 'Rug', price: '550',where:'Nugegoda' , icon: '🔔', img:require('./../../assets/images/Shop/walpaper.jpg')  },
+        { name: 'Keytag', price: '500',where:'Hokanda', icon: '👤', img:require('./../../assets/images/Shop/keytag.jpg')  },
+        { name: 'Rug', price: '300',where:'Moratuwa', icon: '🔔', img:require('./../../assets/images/Shop/shop.png')  },
+        { name: 'Walpaper', price: '200',where:'Pannipitiya', icon: '⚙️', img:require('./../../assets/images/Shop/shop.png')  },
         // { name: 'Kayaking', icon: '🔔', img:require('../../assets/images/Home/Prefernces/kayak.png') },
       ];
 
@@ -43,7 +43,7 @@ export default function itemList() {
             }}>View all</Text> */}
         </View>
         {preferencesList.map((item, index) => (
-                <GuidesListItem prefernce={item} key={index}/>
+                <ListItems prefernce={item} key={index}/>
             ))}
         {/* <FlatList 
             showsHorizontalScrollIndicator={false}
