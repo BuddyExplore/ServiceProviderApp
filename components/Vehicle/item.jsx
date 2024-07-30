@@ -58,7 +58,21 @@ export default function GuidesListItem({ preference }) {
                 {preference.price}
               </Text>
 
-              <Text style={styles.subText}>Upcoming</Text>
+              <Text
+                style={[
+                  styles.subText,
+                  {
+                    color:
+                      preference.status === "Upcoming"
+                        ? "blue"
+                        : preference.status === "Ongoing"
+                        ? "yellow"
+                        : "green",
+                  },
+                ]}
+              >
+                {preference.status}
+              </Text>
             </View>
           </View>
           <Ionicons name="arrow-forward" size={24} color={Colors.PRIMARY} />

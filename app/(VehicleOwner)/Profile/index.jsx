@@ -75,7 +75,6 @@ const handleSignout = (navigation) => {
       },
       {
         text: "Yes",
-        style: "default",
         onPress: () => {
           navigation.popToTop();
         },
@@ -93,12 +92,12 @@ const ProfileView = () => {
         height: Dimensions.get("screen").height / 2.5,
         alignItems: "center",
         justifyContent: "flex-end",
-        paddingBottom: 20,
       }}
     >
       <View style={{ paddingHorizontal: 20 }}>
         <Image
           source={require("../../../assets/images/Shop/shop.png")}
+          n
           style={{
             width: 100,
             height: 100,
@@ -120,13 +119,33 @@ const ProfileView = () => {
 };
 
 export default function Index() {
-    const navigation = useNavigation();
-    return (
+  const navigation = useNavigation();
+
+  return (
+    <SafeAreaView>
       <View>
-        <Button title="Save" onPress={()=>navigation.navigate("ProfileDetails")}/>
-        <Button title="Save" onPress={()=>navigation.navigate("Payment")}/>
+        <ProfileView />
+
+        <SelectButton
+          title="Profile"
+          color={"#ddd"}
+          onPress={() => navigation.navigate("ProfileDetails")}
+        />
+        <SelectButton
+          title="Payment"
+          color={"#ddd"}
+          onPress={() => navigation.navigate("Payment")}
+        />
+        <SelectButton
+          title="Signout"
+          color={"#ddd"}
+          onPress={() => {
+            handleSignout(navigation);
+          }}
+        />
       </View>
-    )
+    </SafeAreaView>
+  );
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});
