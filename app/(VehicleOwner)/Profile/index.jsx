@@ -75,6 +75,7 @@ const handleSignout = (navigation) => {
       },
       {
         text: "Yes",
+        style: "default",
         onPress: () => {
           navigation.popToTop();
         },
@@ -92,12 +93,12 @@ const ProfileView = () => {
         height: Dimensions.get("screen").height / 2.5,
         alignItems: "center",
         justifyContent: "flex-end",
+        paddingBottom: 20,
       }}
     >
       <View style={{ paddingHorizontal: 20 }}>
         <Image
           source={require("../../../assets/images/Shop/shop.png")}
-          n
           style={{
             width: 100,
             height: 100,
