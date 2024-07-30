@@ -16,14 +16,12 @@ export default function Header(props) {
             display:'flex',
             flexDirection: 'row',
             alignItems: 'center',
-            
             gap: 20
         }}>
             <Image source={require("./../../assets/images/Shop/shop.png")}
                 style={{
                     width:45,
                     height:45,
-                    backgroundColor:"white",
                     borderRadius:99
                 }}
             />

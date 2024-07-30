@@ -2,7 +2,7 @@ import { View, Text, ImageBackground, TouchableOpacity, StyleSheet, Image } from
 import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { Colors } from '../../constants/Colors';
-export default function GuidesListItem({ preference }) {
+export default function GuidesListItem({ prefernce }) {
     return (
         <View style={styles.container}>
             <TouchableOpacity style={styles.touchable}>
@@ -22,7 +22,7 @@ export default function GuidesListItem({ preference }) {
                         gap: 20,
                        
                     }}>
-                        <Image source={preference.img}
+                        <Image source={prefernce.img}
                             style={{
                                 width:100,
                                 height:100,
@@ -33,13 +33,13 @@ export default function GuidesListItem({ preference }) {
                                 color:'black',
                                 fontSize:19,
                                 fontWeight: 'bold'
-                            }}>{preference.name}</Text>
+                            }}>{prefernce.name}</Text>
                         <Text style={{
                                 color:'black',
                                 fontSize:15,
-                            }}>{preference.price}</Text>
+                            }}>{prefernce.price}</Text>
                             
-                            <Text style={[styles.subText,{color: preference.status==="Upcoming"?'blue':preference.status==="Ongoing"?'yellow':'green'}]}>{preference.status}</Text>
+                            <Text style={styles.subText}>Upcoming</Text>
                             
                         </View>
                         
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     },
     subText: {
         marginTop: 5,
-        fontWeight:700,
-        fontSize: 15
+        color: 'green',
+        fontSize: 12
     },
 });

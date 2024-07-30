@@ -120,33 +120,13 @@ const ProfileView = () => {
 };
 
 export default function Index() {
-  const navigation = useNavigation();
-
-  return (
-    <SafeAreaView>
+    const navigation = useNavigation();
+    return (
       <View>
-        <ProfileView />
-
-        <SelectButton
-          title="Profile"
-          color={"#ddd"}
-          onPress={() => navigation.navigate("ProfileDetails")}
-        />
-        <SelectButton
-          title="Payment"
-          color={"#ddd"}
-          onPress={() => navigation.navigate("Payment")}
-        />
-        <SelectButton
-          title="Signout"
-          color={"#ddd"}
-          onPress={() => {
-            handleSignout(navigation);
-          }}
-        />
+        <Button title="Save" onPress={()=>navigation.navigate("ProfileDetails")}/>
+        <Button title="Save" onPress={()=>navigation.navigate("Payment")}/>
       </View>
-    </SafeAreaView>
-  );
+    )
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({})
