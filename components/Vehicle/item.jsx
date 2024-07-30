@@ -9,7 +9,10 @@ import {
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { Colors } from "../../constants/Colors";
+import { useNavigation } from "expo-router";
 export default function GuidesListItem({ preference }) {
+  const navigaton = useNavigation();
+  console.log(navigaton);
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.touchable}>
@@ -75,7 +78,14 @@ export default function GuidesListItem({ preference }) {
               </Text>
             </View>
           </View>
-          <Ionicons name="arrow-forward" size={24} color={Colors.PRIMARY} />
+          <Ionicons
+            name="arrow-forward"
+            size={24}
+            color={Colors.PRIMARY}
+            onPress={() => {
+              navigaton.navigate("TripDetails");
+            }}
+          />
         </View>
       </TouchableOpacity>
     </View>

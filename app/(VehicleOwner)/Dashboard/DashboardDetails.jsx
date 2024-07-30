@@ -16,12 +16,7 @@ export default function DashboardScreen() {
       }}
     >
       <Header content="Dashboard" />
-      <Button
-        title="navigate to stack"
-        onPress={() => {
-          navigation.navigate("TripDetails");
-        }}
-      />
+
       <DashboardComponent earning="25000" Trips="15" />
     </SafeAreaView>
   );
