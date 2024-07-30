@@ -7,11 +7,11 @@ export default function VehicleLayout() {
       screenOptions={{
         headerShown: true,
         headerBackButtonMenuEnabled: true,
-        // headerShown: false,
+        headerShown: false,
       }}
     >
       <Stack.Screen name="DashboardDetails" options={{}} />
-      <Stack.Screen name="TripDetails" options={{}} />
+      <Stack.Screen name="TripDetails" options={{ headerShown: true }} />
     </Stack>
   );
 }
