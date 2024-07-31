@@ -115,5 +115,5 @@ const styles = StyleSheet.create({
     },
 });
 
-export default ConfirmEmail
+export default ConfirmEmail;
 

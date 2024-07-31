@@ -44,16 +44,16 @@ const Signup = () => {
     if (result.ok) {
       switch(result.role) {
         case "VEHICLE_OWNER":
-          router.replace("../(VehicleOwner)/Dashboard/DashboardDetails");
+          router.replace("../Dashboard/DashboardDetails");
           break;
         case "TOUR_GUIDE":
-          router.replace("../(TourGuide)/dashboard");
+          router.replace("../dashboard");
           break;
         case "HOTEL_MANAGER":
-          router.replace("../(HotelManager)/home/Dashboard");
+          router.replace("../home/Dashboard");
           break;
         case "SHOP_MANAGER":
-          router.replace("../(ShopManager)/manage");
+          router.replace("../manage");
           break;
         /*case "ACTIVITY_HOST":
           router.replace("../(ActivityHost)/home/Dashboard");
