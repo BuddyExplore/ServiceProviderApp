@@ -33,7 +33,7 @@ export default function Login() {
 
         
         <TouchableOpacity style={styles.button}
-            onPress={() => router.push('(TourGuide)/manage')}
+            onPress={() => router.push('(TourGuide)/dashboard')}
         >
             <Text style={{
                 color:Colors.WHITE,
@@ -51,7 +51,18 @@ export default function Login() {
                 
                 fontFamily:'outfit',
                 fontSize:17,
-            }}>Goto Shop Manager's dashboard</Text>
+            }}>Go to Shop Manager's dashboard</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button}
+            onPress={() => router.push('(VehicleOwner)/Dashboard')}
+        >
+            <Text style={{
+                color:Colors.WHITE,
+                textAlign:'center',
+                
+                fontFamily:'outfit',
+                fontSize:17,
+            }}>Go to Vehicle Owner's dashboard</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button}
             onPress={() => router.push('(HotelManager)/home/Dashboard')}
@@ -63,7 +74,6 @@ export default function Login() {
                 fontSize:17,
             }}>Goto Hotel Manager's dashboard</Text>
         </TouchableOpacity>
-
       </View>
     </View>
   )

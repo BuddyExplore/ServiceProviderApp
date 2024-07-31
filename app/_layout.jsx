@@ -81,6 +81,7 @@ export default function RootLayout() {
               name="(TourGuide)"
               options={{ title: "Tour Guide Dashboard" }}
             />
+            <Stack.Screen name="(VehicleOwner)" options={{title:  'Vehcile Owner Dashboard'}} />
           </Stack>
           <ModalPortal />
         </ClerkProvider>

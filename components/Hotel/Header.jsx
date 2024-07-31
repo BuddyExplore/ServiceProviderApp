@@ -25,9 +25,9 @@ export default function Header({subText, mainText}) {
                 }}
             />
             <View>
-                <Text style={{
+                {subText && <Text style={{
                     color:'#fff'
-                }}>{subText}</Text>
+                }}>{subText}</Text>}
                 <Text style={{
                     color:'#fff',
                     fontSize:23,
