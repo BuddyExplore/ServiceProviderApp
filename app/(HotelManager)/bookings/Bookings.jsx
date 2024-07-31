@@ -44,45 +44,34 @@ const Bookings = () => {
         <FlatList
           data={bookingData}
           keyExtractor={item => item.bookingId}
-          renderItem={({ item }) => <BookingCard booking={item}  onPress={() => setModalVisible(!modalVisible)} />}
+          renderItem={({ item }) => <BookingCard booking={item}  />}
         />
       </View>
 
-      <Modal
-        animationType="slide"
-        transparent={true}
+      
+      {/* <Modal
         visible={modalVisible}
-        // onRequestClose={() => {
-        //   setModalVisible(!modalVisible);
-        // }}
+        transparent={true}
+        animationType="slide"
+        onRequestClose={closeModal}
       >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <View style={{
-                display: 'flex',
-                flexDirection: 'row',
-                alignItems: 'center'
-            }}>
-
-            
-            <TouchableOpacity
-              style={[styles.button, styles.backButton]}
-              // onPress={handleBack}
-              onPress={() => setModalVisible(false)}
-            >
-              <Ionicons name="arrow-back-outline" size={26} color={'black'} /> 
-            </TouchableOpacity>
-            <Text style={styles.itemName}>  Item Details</Text>
-
-            </View>
-            {/* {displayDetails && <ItemDetails prefernce={prefernce} openEdit={handleOpenEdit}/>}
-            {displayEdit && <EditItem prefernce={prefernce} savedPressed={handleSaved}/>}  */}
-            {/* <ItemDetails prefernce={prefernce}/> */}
-            {/* <EditItem prefernce={prefernce} closeEdit={handleEdited}/> */}
-            
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalContent}>
+            {selectedBooking && (
+              <>
+                <Text style={styles.modalTitle}>Booking Details</Text>
+                <Text>Guest Name: {selectedBooking.guestName}</Text>
+                <Text>Booking ID: {selectedBooking.bookingId}</Text>
+                <Text>Room Number: {selectedBooking.roomNumber}</Text>
+                <Text>Check-in: {selectedBooking.checkInDate}</Text>
+                <Text>Check-out: {selectedBooking.checkOutDate}</Text>
+                <Text style={{ color: getStatusColor(selectedBooking.status) }}>Status: {selectedBooking.status}</Text>
+                <Button title="Close" onPress={closeModal} />
+              </>
+            )}
           </View>
         </View>
-      </Modal>
+      </Modal> */}
     </View>
   )
 }
