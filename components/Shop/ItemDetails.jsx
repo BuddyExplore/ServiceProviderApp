@@ -2,9 +2,9 @@ import { View, Text, ImageBackground, TouchableOpacity, StyleSheet, Image , Moda
 import React , {useState} from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { Colors } from '../../constants/Colors';
+import axios from "axios";
 
-
-export default function ItemDetails({ prefernce, openEdit }) {
+export default function ItemDetails({ prefernce, openEdit , nameOfItem, priceOfItem , deletedItem}) {
 
     const handleEdit = (itemName) => {
         openEdit(1);
@@ -14,6 +14,16 @@ export default function ItemDetails({ prefernce, openEdit }) {
         //Delete function
       };
 
+      const handleDeleteItem = async () => {
+
+        const data = prefernce.id;
+        const response = await axios.delete(
+          `http://localhost:5001/api/travel/item/deleteItem/${data}`,
+        );
+        
+        console.log(response);
+        deletedItem(1);
+      }
       
     return(
         <View>
@@ -33,13 +43,13 @@ export default function ItemDetails({ prefernce, openEdit }) {
                 justifyContent : 'space-between',
                 flexDirection: 'row'
             }}>
-                <Text style={styles.itemData}>{prefernce.name}</Text>
-                <Text style={styles.itemData}>LKR {prefernce.price}.00</Text>
+                <Text style={styles.itemData}>{nameOfItem}</Text>
+                <Text style={styles.itemData}>LKR {priceOfItem}.00</Text>
             </View>
             
             <Text style={styles.itemAvailability}>In-Stock</Text>
 
-            <Text style={styles.label}>Experience unparalleled comfort and style with our premium shirt, crafted from high-quality fabrics for a perfect fit, breathability, and durability. Elevate your wardrobe with timeless elegance.</Text>
+            <Text style={styles.label}>{prefernce.description}</Text>
 
             
 
@@ -59,7 +69,7 @@ export default function ItemDetails({ prefernce, openEdit }) {
 
             <TouchableOpacity
             style={[styles.deleteButton]}
-            onPress = {handleDelete}
+            onPress = {handleDeleteItem}
             // onPress={() => setModalVisible(!modalVisible)}
             >
             <Text style={styles.buttonTxt}>Delete</Text>

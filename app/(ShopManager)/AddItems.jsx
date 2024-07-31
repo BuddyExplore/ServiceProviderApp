@@ -61,8 +61,12 @@ const AddItems = () => {
         data,
       );
 
-      if (response.data.code === "00") {
+      console.log(response);
+
+      if (response.data.code === "00" || response.data.code === "10") {
         Alert.alert("Success", "Created Item");
+        router.replace('./manage');
+
       } else {
         Alert.alert("Error", response.data.message || "Failed to create item");
       }

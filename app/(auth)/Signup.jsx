@@ -7,6 +7,7 @@ import {
   Image,
   SafeAreaView,
   TextInput,
+  ScrollView
 } from "react-native";
 import { Colors } from "../../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
@@ -41,8 +42,10 @@ const Signup = () => {
       password
     );
 
+
     if (result.ok) {
-      switch(result.role) {
+      console.log(result.role);
+      switch(role) {
         case "VEHICLE_OWNER":
           router.replace("../Dashboard/DashboardDetails");
           break;
@@ -87,6 +90,7 @@ const Signup = () => {
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
+      <ScrollView>
       <View style={{ flex: 1, marginHorizontal: 22, marginVertical: 5 }}>
         {/*<View style={{
                     justifyContent: 'center',
@@ -354,6 +358,7 @@ const Signup = () => {
           </View>
         </View>
       </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
