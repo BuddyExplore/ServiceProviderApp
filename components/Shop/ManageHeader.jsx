@@ -3,7 +3,7 @@ import React from 'react'
 import { Colors } from '../../constants/Colors'
 import { Ionicons } from '@expo/vector-icons';
 
-export default function Header() {
+export default function Header({headerItems}) {
   return (
     <View style={{
         padding:20,
@@ -28,12 +28,12 @@ export default function Header() {
             <View>
                 <Text style={{
                     color:'#fff'
-                }}>Royal Batiks,</Text>
+                }}>{headerItems.Name},</Text>
                 <Text style={{
                     color:'#fff',
                     fontSize:23,
                     fontFamily:'outfit-medium'
-                }}>Manage your shop</Text>
+                }}>{headerItems.Text}</Text>
             </View>
         </View>
 
@@ -50,7 +50,7 @@ export default function Header() {
             borderRadius:8
         }}>
             <Ionicons name="search" size={24} color={Colors.SECOND} />
-            <TextInput placeholder='Search for items in your shop...'  
+            <TextInput placeholder={headerItems.Placeholder}
                 style={{
                     fontFamily:'outfit',
                     fontSize:16

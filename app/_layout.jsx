@@ -72,15 +72,10 @@ export default function RootLayout() {
             }}
           >
             <Stack.Screen name="index" />
-            <Stack.Screen name="(auth)" />
-            <Stack.Screen
-              name="(ShopManager)"
-              options={{ title: "Shop Manager Dashboard" }}
-            />
-            <Stack.Screen
-              name="(TourGuide)"
-              options={{ title: "Tour Guide Dashboard" }}
-            />
+            <Stack.Screen name="(ShopManager)" options={{ title: 'Shop Manager Dashboard' }} />
+            <Stack.Screen name="(TourGuide)" options={{ title: 'Tour Guide Dashboard' }} />
+            <Stack.Screen name="(VehicleOwner)" options={{title:  'Vehcile Owner Dashboard'}} />
+
           </Stack>
           <ModalPortal />
         </ClerkProvider>
