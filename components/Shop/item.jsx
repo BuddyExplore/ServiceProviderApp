@@ -15,6 +15,10 @@ export default function GuidesListItem({ prefernce , deletedItem}) {
     const [displayDetails, setDisplayDetails] = useState(true);
     const [displayEdit, setDisplayEdit] = useState(false);
 
+    if(!prefernce.img){
+      prefernce.img = require('./../../assets/images/Shop/product.png');
+    }
+
     const handleOpenEdit = (itemName) => {
         if(itemName === 1){
             setDisplayDetails(false);
