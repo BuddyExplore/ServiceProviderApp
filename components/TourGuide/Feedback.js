@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 
-const FeedbackForm = () => {
+export default FeedbackForm = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [rating, setRating] = useState(0);
@@ -101,4 +101,3 @@ const styles = StyleSheet.create({
  
 });
 
-export default FeedbackForm;

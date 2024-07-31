@@ -1,8 +1,10 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from 'expo-router';
 
-export default function Header({ title, navigation }) {
+export default function Header({ title }) {
+  const navigation = useNavigation();
   return (
     <View style={styles.header}>
       <TouchableOpacity onPress={() => navigation.toggleDrawer()}>

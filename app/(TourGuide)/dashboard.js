@@ -9,8 +9,11 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Header from "../../components/TourGuide/header";
+import { useRouter } from "expo-router";
 
 const DashboardScreen = ({ navigation }) => {
+  const router = useRouter();
+
   return (
     <SafeAreaView>
       <Header title="Dashboard" navigation={navigation} />
@@ -26,6 +29,7 @@ const DashboardScreen = ({ navigation }) => {
             <TouchableOpacity
               style={styles.card}
               // onPress={() => navigation.navigate("UpcomingTrips")}
+              onPress={() => router.push("UpcomingTrips")}
             >
               <Text style={{ fontWeight: "bold" }}>Upcoming Trips</Text>
               <Text style={{ fontSize: 24, fontWeight: "bold" }}>50</Text>
@@ -34,7 +38,8 @@ const DashboardScreen = ({ navigation }) => {
           <View>
             <TouchableOpacity
               style={styles.card}
-              onPress={() => navigation.navigate("OngoingTrips")}
+              // onPress={() => navigation.navigate("OngoingTrips")}
+              onPress={() => router.push("OngoingTrips")}
             >
               <Text style={{ fontWeight: "bold" }}>Ongoing Trips</Text>
               <Text style={{ fontSize: 24, fontWeight: "bold" }}>50</Text>
@@ -43,7 +48,8 @@ const DashboardScreen = ({ navigation }) => {
           <View>
             <TouchableOpacity
               style={styles.card}
-              onPress={() => navigation.navigate("CompletedTrips")}
+              // onPress={() => navigation.navigate("CompletedTrips")}
+              onPress={() => router.push("CompletedTrips")}
             >
               <Text style={{ fontWeight: "bold" }}>Completed Trips</Text>
               <Text style={{ fontSize: 24, fontWeight: "bold" }}>25</Text>

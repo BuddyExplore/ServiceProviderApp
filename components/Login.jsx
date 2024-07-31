@@ -33,7 +33,7 @@ export default function Login() {
 
         
         <TouchableOpacity style={styles.button}
-            onPress={() => router.push('(TourGuide)/manage')}
+            onPress={() => router.push('(TourGuide)/dashboard')}
         >
             <Text style={{
                 color:Colors.WHITE,
