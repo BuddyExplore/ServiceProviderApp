@@ -25,7 +25,7 @@ const DashboardScreen = ({ navigation }) => {
           <View>
             <TouchableOpacity
               style={styles.card}
-              // onPress={() => navigation.navigate("UpcomingTrips")}
+              onPress={() => navigation.navigate("UpcomingTrips")}
             >
               <Text style={{ fontWeight: "bold" }}>Upcoming Trips</Text>
               <Text style={{ fontSize: 24, fontWeight: "bold" }}>50</Text>

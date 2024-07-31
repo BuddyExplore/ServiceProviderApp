@@ -9,7 +9,7 @@ export default function Header({ title, navigation }) {
         <Ionicons name="menu" size={32} color="black" />
       </TouchableOpacity>
       <Text style={styles.title}>{title}</Text>
-      <TouchableOpacity onPress={() => navigation.navigate('Notifications')}>
+      <TouchableOpacity>
         <Ionicons name="notifications" size={32} color="black" />
       </TouchableOpacity>
     </View>
@@ -32,5 +32,3 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
-
-
