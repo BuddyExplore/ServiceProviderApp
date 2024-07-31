@@ -1,24 +1,27 @@
 import React from 'react';
 import { View, Text, StyleSheet, FlatList, ScrollView, Image } from 'react-native';
+import buddy from '../../../assets/images/TourGuide/buddy.jpg';
+import Header from '../../../components/TourGuide/header';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-const ongoingTrips = [
-  { id: '1', title: 'T003', details: 'Trip to Ella' },
-  { id: '2', title: 'T004', details: 'Trip to Nuwara eliya' },
+const completedtrips = [
+  { id: '1', title: 'T005', details: 'Trip to Galle' },
+  { id: '2', title: 'T006', details: 'Trip to Jaffna' },
 ];
 
-const OngoingTrips = () => {
+const CompletedTrips = ({navigation}) => {
   return (
     <ScrollView contentContainerStyle={styles.scrollView}>
         <Image
-          source={require("../../assets/images/TourGuide/buddy.jpg")}
-          style={{ height: 270, width: "100%" }}
+          source={buddy}
+          style={{ height: 270, width: "100%", marginBottom: 16 }}
           resizeMethod="resize"
           blurRadius={1}
         />
         <View style={styles.container}>
-      <Text style={styles.title}>Ongoing Trips</Text>
+      <Text style={styles.title}>Completed Trips</Text>
       <FlatList
-        data={ongoingTrips}
+        data={completedtrips}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <View style={styles.assignment}>
@@ -29,7 +32,6 @@ const OngoingTrips = () => {
       />
     </View>
       </ScrollView>
-    
   );
 };
 
@@ -38,7 +40,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   title: {
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 8,
     textAlign: 'center',
@@ -56,4 +58,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default OngoingTrips;
+export default CompletedTrips;

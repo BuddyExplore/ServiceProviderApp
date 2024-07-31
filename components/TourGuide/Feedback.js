@@ -16,18 +16,7 @@ export default FeedbackForm = () => {
     
     <View style={styles.container}>
       <Text style={styles.title}>Feedback</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Name"
-        value={name}
-        onChangeText={setName}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        value={email}
-        onChangeText={setEmail}
-      />
+     
       <Text style={styles.label}>Rating</Text>
       <View style={styles.ratingContainer}>
         {[1, 2, 3, 4, 5].map((star) => (

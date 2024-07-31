@@ -2,11 +2,12 @@ import React from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Header from "../../components/TourGuide/header";
-const TripDetailsScreen = ({ route, navigation }) => {
+import { router } from "expo-router";
+const TripDetailsScreen = ({  navigation }) => {
   const trip = {
     name: "Trip to Ella",
     destination: "Ella, Sri Lanka",
-    image: "https://Ella.jpg",
+    
     startDate: "2022-10-01",
     endDate: "2022-10-10",
     description: "A trip to explore the beautiful city of Ella.",
@@ -20,6 +21,7 @@ const TripDetailsScreen = ({ route, navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <Header title="Trip Details" navigation={navigation} />
+      <View style={styles.page}>
       <View style={styles.card}>
         <Text style={styles.title}>Trip Details</Text>
         <View style={styles.detailsContainer}>
@@ -30,10 +32,7 @@ const TripDetailsScreen = ({ route, navigation }) => {
           <Text style={styles.label}>Destination:</Text>
           <Text style={styles.value}>{trip?.destination}</Text>
         </View>
-        <View style={styles.detailsContainer}>
-          <Text style={styles.label}>Image:</Text>
-          <Text style={styles.value}>{trip?.image}</Text>
-        </View>
+        
         <View style={styles.detailsContainer}>
           <Text style={styles.label}>Start Date:</Text>
           <Text style={styles.value}>{trip?.startDate}</Text>
@@ -63,7 +62,8 @@ const TripDetailsScreen = ({ route, navigation }) => {
           <Text style={styles.value}>{trip?.notes}</Text>
         </View>
         <View style={styles.button}>
-        <Button title="Go Back" onPress={() => navigation.goBack()} />
+        <Button title="Go Back" onPress={() => router.push("dashboard")} />
+        </View>
         </View>
       </View>
 
@@ -75,7 +75,6 @@ const TripDetailsScreen = ({ route, navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
   },
   card: {
     padding: 16,
@@ -107,6 +106,9 @@ const styles = StyleSheet.create({
   button: {
     marginTop: 28,
     marginBottom: 12,
+  },
+  page: {
+    padding: 16,
   },
 
 });

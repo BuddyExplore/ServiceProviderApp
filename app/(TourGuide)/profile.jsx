@@ -36,7 +36,8 @@ const ProfileScreen = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Header title="Profile" navigation={navigation} /> 
+      <Header title="Profile" navigation={navigation} />
+      <View style={styles.page}> 
       <View style={styles.card}>
       <View style={styles.header}>
         
@@ -78,6 +79,7 @@ const ProfileScreen = ({navigation}) => {
       </View>
       <Button title="Save" onPress={handleSave} />
       </View>
+      </View>
     </SafeAreaView>
   );
 };
@@ -86,7 +88,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    padding: 16,
   },
   header: {
     alignItems: 'center',
@@ -136,6 +137,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#f9f9f9',
     borderRadius: 8,
     elevation: 1,
+  },
+  page: {
+    padding: 16,
   },
 });
 
