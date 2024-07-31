@@ -1,27 +1,25 @@
 import React from 'react';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity, ScrollView, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import BackButton from './../../components/TourGuide/Backbutton';
+import BackButton from '../../../components/TourGuide/Backbutton';
 import { router } from 'expo-router';
+import buddy from '../../../assets/images/TourGuide/buddy.jpg';
+import Header from '../../../components/TourGuide/header';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
 
 const upcomingTrips = [
   { id: '1', title: 'T001', details: 'Trip to Sigiriya' },
   { id: '2', title: 'T002', details: 'Trip to hatton' },
 ];
 
-const UpcomingTrips= () => {
-  const navigation = useNavigation();
-
-  // const handlePress = (item) => {
-  //   navigation.navigate('AssignmentDetails', { assignment: item });
-  // };
+const UpcomingTrips= ({navigation}) => {
 
   return (
-    
-    <ScrollView contentContainerStyle={styles.scrollView}>
+    <ScrollView >
     <Image
-      source={require("../../assets/images/TourGuide/buddy.jpg")}
-      style={{ height: 270, width: "100%" }}
+      source={buddy}
+      style={{ height: 270, width: "100%", marginBottom: 16 }}
       resizeMethod="resize"
       blurRadius={1}
     />
@@ -47,6 +45,7 @@ const UpcomingTrips= () => {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     marginBottom: 16,
   },
   title: {

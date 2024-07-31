@@ -18,39 +18,12 @@ const SupportScreen = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
       <Header title="Support" navigation={navigation} />
+      <View style={styles.page}>
       <View style={styles.Card}>
       <View style={styles.header}>
         <Text style={styles.title}>Support</Text>
       </View>
-      <View style={styles.inputContainer}>
-        <Text style={styles.label}>Name</Text>
-        <TextInput
-          style={styles.input}
-          value={name}
-          onChangeText={setName}
-          placeholder="Enter your name"
-        />
-      </View>
-      <View style={styles.inputContainer}>
-        <Text style={styles.label}>Email</Text>
-        <TextInput
-          style={styles.input}
-          value={email}
-          onChangeText={setEmail}
-          placeholder="Enter your email"
-          keyboardType="email-address"
-        />
-      </View>
-      <View style={styles.inputContainer}>
-        <Text style={styles.label}>Contact No</Text>
-        <TextInput
-          style={styles.input}
-          value={contactno}
-          onChangeText={setContactno}
-          placeholder="Enter your Phone Number"
-          keyboardType="number-pad"
-        />
-      </View>
+     
       <View style={styles.inputContainer}>
         <Text style={styles.label}>Message</Text>
         <TextInput
@@ -63,6 +36,7 @@ const SupportScreen = ({navigation}) => {
       </View>
       <Button title="Submit" onPress={handleSubmit} />
       </View>
+      </View> 
     </SafeAreaView>
   );
 };
@@ -71,7 +45,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    padding: 16,
   },
   header: {
     
@@ -106,6 +79,9 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     elevation: 1,
     justifyContent: "center",
+  },
+  page: {
+    padding: 16,
   },
 });
 

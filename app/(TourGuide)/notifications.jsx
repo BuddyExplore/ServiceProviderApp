@@ -14,8 +14,9 @@ const NotificationsScreen = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
         <Header title="Notifications"  navigation={navigation}/>
-      <Text style={styles.title}>Notifications</Text>
       
+      <View style={styles.page}>
+      <Text style={styles.title}>Notifications</Text>
       <FlatList
         data={notifications}
         keyExtractor={item => item.id}
@@ -26,6 +27,7 @@ const NotificationsScreen = ({navigation}) => {
           </View>
         )}
       />
+      </View>
     </SafeAreaView>
   );
 };
@@ -34,7 +36,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    padding: 20,
   },
   title: {
     fontSize: 24,
@@ -55,6 +56,9 @@ const styles = StyleSheet.create({
     fontSize: 14,
     marginTop: 5,
   },
+  page: {
+    padding: 20,
+  }
 });
 
 export default NotificationsScreen;
