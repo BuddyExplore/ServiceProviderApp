@@ -17,7 +17,7 @@ export default function DashboardScreen() {
     >
       <Header content="Dashboard" />
 
-      <DashboardComponent earning="25000" Trips="15" />
+      <DashboardComponent earning="25000" Trips="8" />
     </SafeAreaView>
   );
 }

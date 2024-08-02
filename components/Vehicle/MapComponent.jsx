@@ -1,7 +1,9 @@
 import { StyleSheet } from "react-native";
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import MapViewDirections from "react-native-maps-directions";
-import { googleapi } from "../../environment";
+//import { googleapi } from "../../environment";
+
+
 import { Dimensions } from "react-native";
 import { useState, useEffect } from "react";
 import * as Location from "expo-location";
