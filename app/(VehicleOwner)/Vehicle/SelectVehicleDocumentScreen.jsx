@@ -41,7 +41,7 @@ const SelectVehicleDocumentScreen = ({ goToNextStep }) => {
           width: 300,
         }}
       >
-        Upload your Vehicle RC book
+        Upload your Vehicle Revenue License.
       </Text>
       {/* <FileUploadItem label="RC Book (PDF)" onFileSelect={handleRcBookSelect} /> */}
       <FileUploadItem
