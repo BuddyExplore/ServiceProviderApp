@@ -14,15 +14,6 @@ export default function TabLayout() {
       })}
     >
       <Tabs.Screen
-        name="Assignment"
-        options={{
-          tabBarLabel: "ongoing",
-          tabBarIcon: ({ color }) => (
-            <Ionicons name="map-outline" size={24} color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
         name="Dashboard"
         options={{
           tabBarLabel: "Dashboard",
@@ -31,6 +22,17 @@ export default function TabLayout() {
           ),
         }}
       />
+
+      <Tabs.Screen
+        name="Assignment"
+        options={{
+          tabBarLabel: "Book",
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="calendar-clear-outline" size={20} color={color} />
+          ),
+        }}
+      />
+
       <Tabs.Screen
         name="Vehicle"
         options={{

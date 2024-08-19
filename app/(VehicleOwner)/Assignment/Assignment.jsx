@@ -1,6 +1,6 @@
 import { SafeAreaView } from "react-native-safe-area-context";
-import BottomContainer from "../../components/Vehicle/BottomContainer";
-import MapComponent from "../../components/Vehicle/MapComponent";
+import BottomContainer from "../../../components/Vehicle/BottomContainer";
+import MapComponent from "../../../components/Vehicle/MapComponent";
 import { View,Text, Dimensions } from "react-native";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 

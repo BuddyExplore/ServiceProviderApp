@@ -37,11 +37,9 @@ const ProfileDetails = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.card}>
+      <View>
       <View style={styles.profilePictureContainer}>
-        
-      <Image source={require("../../../assets/images/Shop/shop.png")} style={styles.profilePicture} />
-          
+      <Image source={require("../../../assets/images/Shop/shop.png")} style={styles.profilePicture} />       
       </View>
       <View style={styles.inputContainer}>
         <Text style={styles.label}>Name</Text>
@@ -93,7 +91,7 @@ const ProfileDetails = () => {
       <LinearGradient colors={[Colors.PRIMARY, Colors.PRIMARY+"AA"]}
           start={{x:1, y:0}}
           end={{x:0, y:0}} 
-          style={{borderRadius:10}}>
+          style={{borderRadius:10, marginHorizontal:20, marginVertical:30}}>
       <Text style={{fontSize:20,padding:10,textAlign:"center",color:"white"}}  onPress={handleSave} >Edit</Text>
       </LinearGradient>
       </View>
@@ -104,7 +102,7 @@ const ProfileDetails = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor:Colors.PRIMARY+"AA",
+    backgroundColor:"white",
     padding: 16,
   },
   header: {
@@ -140,6 +138,7 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     marginBottom: 16,
+    marginHorizontal:20
   },
   label: {
     fontSize: 16,
@@ -151,13 +150,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 4,
     paddingHorizontal: 8,
-  },
-  card: {
-    padding: 16,
-    backgroundColor: "#f9f9f9",
-    borderRadius: 2,
-    elevation: 3,
-    
   },
 });
 

@@ -1,72 +1,103 @@
 import React, { useState } from "react";
-import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
+import { Text, View, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
+import CheckBoxItem from "../../../components/Vehicle/CheckBox";
 
-const ApproveDocumentUseScreen = ({ rcBook, revenueLicense, goToNextStep }) => {
-  const [agreed, setAgreed] = useState(false);
+const ApproveDocumentUseScreen = ({
+  setAmenities,
+  selectedAmenities,
+  goToNextStep,
+}) => {
+  const Amenities = [
+    "Wifi",
+    "A/C",
+    "Radio System",
+    "Sun Roof",
+  ];
 
-  const handleAgree = () => {
-    setAgreed(true);
-    goToNextStep();
+  const handleCheckBoxPress = (amenity) => {
+    if (selectedAmenities.includes(amenity)) {
+      setAmenities(selectedAmenities.filter(item => item !== amenity));
+    } else {
+      setAmenities([...selectedAmenities, amenity]);
+    }
   };
 
   return (
     <View style={{ gap: 20 }}>
-      <Text style={styles.header}>Approve Document Use</Text>
-      <Text style={styles.subHeader}>Uploaded Documents:</Text>
-      <Text style={styles.documentText}>
-        RC Book: {rcBook ? rcBook.name : "Not uploaded"}
-      </Text>
-      <Text style={styles.documentText}>
-        Revenue License: {revenueLicense ? revenueLicense.name : "Not uploaded"}
-      </Text>
-      <Text style={styles.agreementText}>
-        Do you agree to use these documents for verification purposes?
-      </Text>
-      <TouchableOpacity
-        onPress={handleAgree}
-        style={[styles.agreeButton, agreed && styles.disabledButton]}
-        disabled={agreed}
+      <Text
+        style={{
+          fontWeight: "800",
+          fontSize: 20,
+          textAlign: "left",
+          marginTop: 30,
+        }}
       >
-        <Text style={styles.agreeButtonText}>
-          {agreed ? "Agreed" : "Agree"}
+        Vehicle Amenities
+      </Text>
+      <Text
+        style={{
+          textAlign: "left",
+          fontSize: 18,
+          flexWrap: "wrap",
+        }}
+      >
+        Discover the vehicle amenities
+      </Text>
+      <View>
+        <Text style={{ fontSize: 16, textAlign: "center", marginTop: 10 }}>
+          Preference Amenities
         </Text>
-      </TouchableOpacity>
+
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          style={{
+            backgroundColor: "#FAFAFA",
+            paddingHorizontal: 30,
+            paddingVertical: 10,
+            gap: 25,
+            borderRadius: 10,
+            height: 300,
+            shadowColor: "black",
+            elevation: 10,
+            margin: 20,
+          }}
+        >
+          {Amenities.map((amenity, index) => (
+            <View key={index} style={{ flexDirection: "row", alignItems: "center" }}>
+              <Text style={{ fontSize: 20, margin: 15, width: 154 }}>
+                {amenity}
+              </Text>
+              <CheckBoxItem
+                step={amenity}
+                checked={selectedAmenities.includes(amenity)}
+                onPress={() => handleCheckBoxPress(amenity)}
+              />
+            </View>
+          ))}
+        </ScrollView>
+        
+        <TouchableOpacity onPress={goToNextStep} style={styles.nextButton}>
+          <Text style={styles.nextButtonText}>Next</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  header: {
-    fontWeight: "800",
-    fontSize: 18,
-    textAlign: "left",
-  },
-  subHeader: {
-    fontSize: 16,
-    marginTop: 10,
-  },
-  documentText: {
-    fontSize: 16,
-    marginVertical: 5,
-  },
-  agreementText: {
-    fontSize: 16,
-    marginTop: 20,
-    marginBottom: 20,
-  },
-  agreeButton: {
-    backgroundColor: "#70D6E3",
+  nextButton: {
+    backgroundColor: "#0078A1",
     paddingVertical: 14,
     paddingHorizontal: 20,
-    borderRadius: 5,
+    borderRadius: 20,
     alignItems: "center",
+    justifyContent: "center",
+    width: 150,
+    marginTop: 30,
   },
-  agreeButtonText: {
+  nextButtonText: {
     color: "#FFF",
     fontWeight: "700",
-  },
-  disabledButton: {
-    backgroundColor: "#A0A0A0",
   },
 });
 

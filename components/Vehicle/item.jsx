@@ -15,7 +15,12 @@ export default function GuidesListItem({ preference }) {
   console.log(navigaton);
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.touchable}>
+      <TouchableOpacity
+        style={styles.touchable}
+        onPress={() => {
+          navigaton.navigate("TripDetails");
+        }}
+      >
         <View
           style={{
             display: "flex",
@@ -24,7 +29,8 @@ export default function GuidesListItem({ preference }) {
             alignItems: "center",
             gap: 20,
             backgroundColor: "white",
-            paddingRight: 20,
+            padding: 10,
+            borderRadius: 10,
           }}
         >
           <View
@@ -38,8 +44,9 @@ export default function GuidesListItem({ preference }) {
             <Image
               source={preference.img}
               style={{
-                width: 100,
-                height: 100,
+                width: 60,
+                height: 60,
+                borderRadius: 15,
               }}
             />
             <View>
@@ -47,18 +54,10 @@ export default function GuidesListItem({ preference }) {
                 style={{
                   color: "black",
                   fontSize: 19,
-                  fontWeight: "bold",
+                  //fontWeight: "bold",
                 }}
               >
                 {preference.name}
-              </Text>
-              <Text
-                style={{
-                  color: "black",
-                  fontSize: 15,
-                }}
-              >
-                {preference.price}
               </Text>
 
               <Text
@@ -67,10 +66,10 @@ export default function GuidesListItem({ preference }) {
                   {
                     color:
                       preference.status === "Upcoming"
-                        ? "blue"
+                        ? "green"
                         : preference.status === "Ongoing"
-                        ? "yellow"
-                        : "green",
+                        ? "blue"
+                        : "orange",
                   },
                 ]}
               >
@@ -78,14 +77,15 @@ export default function GuidesListItem({ preference }) {
               </Text>
             </View>
           </View>
-          <Ionicons
-            name="arrow-forward"
-            size={24}
-            color={Colors.PRIMARY}
-            onPress={() => {
-              navigaton.navigate("TripDetails");
+          <Text
+            style={{
+              color: "black",
+              fontSize: 15,
+              fontWeight: "bold",
             }}
-          />
+          >
+            {preference.price}
+          </Text>
         </View>
       </TouchableOpacity>
     </View>
@@ -96,23 +96,24 @@ const styles = StyleSheet.create({
   container: {
     alignItems: "center",
     justifyContent: "center",
-    margin: 10,
+    marginLeft: 10,
+    marginRight: 10,
   },
   touchable: {
     width: "100%",
     height: 100,
     borderRadius: 10,
-    overflow: "hidden", // Ensures rounded corners are applied to the image ''
+    overflow: "hidden", 
     backgroundColor: "rgba(0, 0, 0, 0.02)",
   },
   image: {
     width: 100,
     height: "100%",
-    justifyContent: "flex-end", // Positions text at the bottom
+    justifyContent: "flex-end", 
   },
   textContainer: {
     padding: 10,
-    backgroundColor: "rgba(0, 0, 0, 0.3)", // Semi-transparent background for text visibility
+    backgroundColor: "rgba(0, 0, 0, 0.3)", 
     borderBottomLeftRadius: 10,
     justifyContent: "center",
   },

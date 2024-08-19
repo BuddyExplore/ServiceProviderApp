@@ -55,7 +55,19 @@ const FilterTrips = () => {
   };
 
   return (
-    <View>
+    <View style={{marginTop:30}}>
+      <View>
+        <Text
+          style={{
+            paddingHorizontal: 20,
+            fontSize: 20,
+            fontFamily: "outfit-bold",
+          }}
+        >
+          Trip Frequency
+        </Text>
+      </View>
+
       <View style={styles.FilterAssignment}>
         <FilterButton
           onPress={() => handleFilterPress("All")}

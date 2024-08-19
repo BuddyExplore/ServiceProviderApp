@@ -10,7 +10,7 @@ const CheckBoxItem = ({ step, checked, onPress }) => {
         checkedIcon="checkbox-marked"
         uncheckedIcon="checkbox-blank-outline"
         checked={checked}
-        checkedColor="#70D6E3"
+        checkedColor="#0078A1"
         onPress={onPress}
       />
     </View>

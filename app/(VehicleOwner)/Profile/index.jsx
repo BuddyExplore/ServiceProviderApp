@@ -15,7 +15,7 @@ import { Redirect, useNavigation } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Header from "../../../components/Vehicle/ManageHeader";
 import { Colors } from "../../../constants/Colors";
-import { EvilIcons, Ionicons, MaterialIcons } from "@expo/vector-icons";
+import { Ionicons} from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native";
 
 let userdetail = { name: "Shaf", rating: 4.6 };
@@ -29,23 +29,29 @@ const SelectButton = (props) => {
         alignItems: "center",
         justifyContent: "center",
         flexDirection: "row",
-        gap: 5,
+        gap: 20,
         elevation: 5,
-        marginBottom: 3,
+        marginBottom: 20,
       }}
       onPress={props.onPress}
     >
       {props.title == "Profile" ? (
-        <EvilIcons
-          color={props.title != "Signout" ? "black" : "red"}
-          size={40}
-          name="user"
-        />
-      ) : props.title == "Payment" ? (
-        <MaterialIcons
+        <Ionicons
           color={props.title != "Signout" ? "black" : "red"}
           size={30}
-          name="payment"
+          name="person-circle-outline"
+        />
+      ) : props.title == "Payment" ? (
+        <Ionicons
+          color={props.title != "Signout" ? "black" : "red"}
+          size={30}
+          name="card-outline"
+        />
+      ) : props.title == "Support" ? (
+        <Ionicons
+          color={props.title != "Signout" ? "black" : "red"}
+          size={30}
+          name="settings-outline"
         />
       ) : (
         <Ionicons
@@ -90,32 +96,30 @@ const ProfileView = () => {
   return (
     <View
       style={{
-        backgroundColor: Colors.PRIMARY + "AA",
+        backgroundColor: Colors.PRIMARY ,
         width: Dimensions.get("screen").width,
         height: Dimensions.get("screen").height / 2.5,
         alignItems: "center",
-        justifyContent: "flex-end",
+        justifyContent: "center",
       }}
     >
       <View style={{ paddingHorizontal: 20 }}>
         <Image
           source={require("../../../assets/images/Shop/shop.png")}
-          n
           style={{
-            width: 100,
-            height: 100,
+            width: 90,
+            height: 90,
             backgroundColor: "white",
             borderRadius: 120,
           }}
         />
       </View>
       <Text style={{ color: "white", fontSize: 30 }}>{userdetail.name}</Text>
-      <View style={{ alignItems: "center" }}>
+      <View style={{ alignItems: "center", marginTop:20 }}>
         <Text style={{ fontSize: 20, color: "white" }}>
           {userdetail.rating}
-          <Ionicons size={18} name="star" />
+          <Ionicons size={20} name="star" color="yellow"/>
         </Text>
-        <Text style={{ color: "white" }}>Rating</Text>
       </View>
     </View>
   );
@@ -132,17 +136,22 @@ export default function Index() {
 
         <SelectButton
           title="Profile"
-          color={"#ddd"}
+          color={"#fff"}
           onPress={() => navigation.navigate("ProfileDetails")}
         />
         <SelectButton
           title="Payment"
-          color={"#ddd"}
+          color={"#fff"}
           onPress={() => navigation.navigate("Payment")}
         />
         <SelectButton
+        title="Support"
+        color={"#fff"}
+        onPress={() => navigation.navigate("Support")}
+      />
+        <SelectButton
           title="Signout"
-          color={"#ddd"}
+          color={"#fff"}
           onPress={() => {
             handleSignout(navigation, logout, router);
           }}
