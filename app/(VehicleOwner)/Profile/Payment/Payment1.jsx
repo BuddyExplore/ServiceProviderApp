@@ -77,7 +77,7 @@ const Payment1 = () => {
             colors={[Colors.PRIMARY, Colors.PRIMARY + "AA"]}
             start={{ x: 1, y: 0 }}
             end={{ x: 0, y: 0 }}
-            style={{ borderRadius: 10 }}
+            style={{ borderRadius: 10, marginTop:30 }}
           >
             <Text
               style={{
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: Colors.PRIMARY + "AA",
+    backgroundColor: "white"
   },
   title: {
     fontSize: 24,
@@ -122,6 +122,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginBottom: 16,
     paddingHorizontal: 8,
+    borderRadius: 10,
   },
 });
 

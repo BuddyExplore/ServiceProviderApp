@@ -1,4 +1,4 @@
-import { Text, StyleSheet, View, ScrollView } from "react-native";
+import { Text, StyleSheet, View, ScrollView, TouchableOpacity } from "react-native";
 import React from "react";
 import CheckBoxItem from "../../../components/Vehicle/CheckBox";
 
@@ -19,29 +19,39 @@ const SelectProvinceScreen = ({
     "Western",
   ];
 
+  const handleCheckBoxPress = (province) => {
+    if (selectedProvince.includes(province)) {
+      setProvince(selectedProvince.filter((item) => item !== province));
+    } else {
+      setProvince([...selectedProvince, province]);
+    }
+  };
+
   return (
     <View style={{ gap: 20 }}>
       <Text
         style={{
           fontWeight: "800",
-          fontSize: 18,
+          fontSize: 20,
           textAlign: "left",
+          marginTop: 60,
         }}
       >
-        Select Province
+        Vehicle Oasis
       </Text>
       <Text
         style={{
           textAlign: "left",
           fontSize: 18,
           flexWrap: "wrap",
-          width: 280,
         }}
       >
-        Pick your Province for tailored driving opportunities.
+        Discover the vehicle oasis
       </Text>
       <View>
-        <Text style={{ fontSize: 16 }}>Preference Province</Text>
+        <Text style={{ fontSize: 16, textAlign: "center", marginTop: 10 }}>
+          Preference Provinces
+        </Text>
         {/* <SearchBarComponent /> */}
         <ScrollView
           showsVerticalScrollIndicator={false}
@@ -51,7 +61,7 @@ const SelectProvinceScreen = ({
             paddingVertical: 10,
             gap: 25,
             borderRadius: 10,
-            height: 256,
+            height: 150,
             shadowColor: "black",
             elevation: 10,
             margin: 20,
@@ -64,20 +74,38 @@ const SelectProvinceScreen = ({
               </Text>
               <CheckBoxItem
                 step={province}
-                checked={selectedProvince === province}
-                onPress={() => {
-                  setProvince(province);
-                  goToNextStep();
-                }}
+                checked={selectedProvince.includes(province)}
+                onPress={() => handleCheckBoxPress(province)}
               />
             </View>
           ))}
         </ScrollView>
+
+        <TouchableOpacity onPress={goToNextStep} style={styles.nextButton}>
+          <Text style={styles.nextButtonText}>Next</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
 };
 
-export default SelectProvinceScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  nextButton: {
+    backgroundColor: "#0078A1",
+    paddingVertical: 14,
+    paddingHorizontal: 20,
+    borderRadius: 20,
+    alignItems: "center",
+    justifyContent: "center",
+    width: 150,
+    marginTop: 30,
+  },
+  nextButtonText: {
+    color: "#FFF",
+    fontWeight: "700",
+  },
+});
+
+
+export default SelectProvinceScreen;

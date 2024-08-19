@@ -16,36 +16,40 @@ import Header from "../../../components/Vehicle/ManageHeader";
 import { LinearGradient } from "expo-linear-gradient";
 import { Colors } from "../../../constants/Colors";
 import { useNavigation } from "expo-router";
+import { Ionicons } from "@expo/vector-icons";
 
 const Vehicles = (data) => {
   return (
     <View
       style={{
-        padding: 0,
         backgroundColor: "white",
         borderRadius: 10,
-        opacity: 0.75,
-        padding: 10,
-        margin: 10,
+        margin: 5,
+        marginLeft: 20,
+        marginRight: 20,
         flexDirection: "row",
         flexWrap: "wrap",
+        alignItems: "center",
       }}
     >
-      <View style={{ paddingBottom: 20 }}>
+      <View style={{ justifyContent: "center", alignItems: "center" }}>
         <Image
-          source={require("../../../assets/images/Vehicle/bike.png.png")}
+          source={require("../../../assets/images/Vehicle/van1.png")}
           style={{
-            width: 110,
+            width: 100,
             height: 80,
-            borderColor: "black",
           }}
         />
       </View>
-      <View style={{ paddingVertical: 20 }}>
-        <Text>VehicleModel: {data.VehicleModel || "ZR"}</Text>
-        <Text>Seats: {data.Seats || "2"}</Text>
-        <Text>Speed: {data.Speed || "80Kmph"}</Text>
-        <Text>Price (Average): {data.AvgPrice || "200"}</Text>
+      <View style={{ paddingVertical: 20, paddingHorizontal: 40 }}>
+        <Text style={{ fontWeight: "bold" }}>
+          {data.VehicleModel || "Toyota Coach"}
+        </Text>
+        <Text>{data.Review || "2"}</Text>
+        <Text>{data.Area || "Piliyandala"}</Text>
+      </View>
+      <View style={{ flex: 1, alignItems: "flex-end", marginRight:10}}>
+        <Ionicons name="chevron-forward-outline" size={24} color="black" />
       </View>
     </View>
   );
@@ -144,10 +148,11 @@ const styles = StyleSheet.create({
   VehicleCardContainer: {
     display: "flex",
     flexDirection: "row",
-    alignItems: "stretch",
-    gap: 18,
-    marginHorizontal: 16,
+    alignItems: "center",
+    gap: 20,
+    marginHorizontal: 32,
     marginVertical: 18,
+    height: 90,
     width: Dimensions.get("window").width,
   },
 });
