@@ -70,7 +70,7 @@ const Payment1 = () => {
       <LinearGradient colors={[Colors.PRIMARY, Colors.PRIMARY+"AA"]}
           start={{x:1, y:0}}
           end={{x:0, y:0}} 
-          style={{borderRadius:10,marginBottom:20}}>
+          style={{borderRadius:10,marginVertical:20}}>
       <Text style={{fontSize:20,padding:10,textAlign:"center",color:"white"}}  onPress={handleSubmit} >Submit</Text>
       </LinearGradient>
       <Text style={{fontSize:20,padding:8,textAlign:"center",color:Colors.PRIMARY,borderColor:Colors.PRIMARY,borderWidth:2,borderRadius:10}}  onPress={()=>{navigation.navigate("Payment1")}} >Back</Text>
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
   container: {
     height:Dimensions.get("screen").height,
     padding: 20,
-    backgroundColor:Colors.PRIMARY+"AA",
+    backgroundColor:"white",
   },
   title: {
     fontSize: 24,
@@ -104,6 +104,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginBottom: 16,
     paddingHorizontal: 8,
+    borderRadius: 10,
   },
 });
 

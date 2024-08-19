@@ -32,7 +32,7 @@ const DashboardComponent = (data) => {
             ? "Earnings"
             : data.estimated
             ? "Earnings Due"
-            : "Earnings"
+            : "Income"
         }
         data={data.earning}
       />
@@ -62,7 +62,7 @@ const DashboardComponent = (data) => {
   return (
     <GestureHandlerRootView>
       <View style={styles.TotalContainer}>
-        <TotalEarnings />
+        <TotalEarnings/>
         <TotalTrips />
       </View>
       <FilterTrips />
@@ -82,11 +82,14 @@ const styles = StyleSheet.create({
   TotalContainer: {
     width: Dimensions.get("screen").width,
     marginTop: 20,
-    marginHorizontal: 10,
+    //marginHorizontal: 11, 
+    alignItems:"center",
+    justifyContent:"center",
+    display: "flex",
     flexDirection: "row",
-    height: Dimensions.get("screen").height / 7.5,
+    height: Dimensions.get("screen").height / 10.5,
     gap: 12,
-  },
+  }
 });
 
 export default DashboardComponent;

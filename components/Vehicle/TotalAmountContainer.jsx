@@ -20,11 +20,11 @@ const TotalAmountContainer = (props) => {
             <MaterialIcons
               name="assignment"
               color={props.backgroundColor[1]}
-              size={20}
+              size={30}
               style={{
                 backgroundColor: "white",
-                padding: 16,
-                borderRadius: 16,
+                padding: 5,
+                borderRadius: 10,
               }}
             />
           ) : (
@@ -34,17 +34,17 @@ const TotalAmountContainer = (props) => {
               size={30}
               style={{
                 backgroundColor: "white",
-                padding: 11,
-                borderRadius: 16,
+                padding: 5,
+                borderRadius: 10,
               }}
             />
           )}
         </View>
         <View style={{ alignItems: "center", width: 100 }}>
-          <Text style={{ color: `${props.textColor}`, fontSize: 16 }}>
+          <Text style={{ color: `${props.textColor}`, fontSize: 16}}>
             {props.content}
           </Text>
-          <Text style={{ fontSize: 30, color: `${props.textColor}` }}>
+          <Text style={{ fontSize: 24, fontWeight:"bold", color: `${props.textColor}` }}>
             {props.data}
           </Text>
         </View>
@@ -58,9 +58,9 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    paddingVertical: 28,
+    paddingVertical: 18,
     paddingHorizontal: 15,
-    gap: 6,
+    gap: 18,
   },
 });
 export default TotalAmountContainer;

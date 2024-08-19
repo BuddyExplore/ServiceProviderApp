@@ -21,8 +21,8 @@ export default function AssignmentList(props) {
         {
           name: "John",
           price: "Rs 2000",
-          where: "Nugegoda",
-          icon: "🔔",
+          //where: "Nugegoda",
+          //icon: "🔔",
           img: require("./../../assets/images/Vehicle/ella.jpeg"),
           status: "Upcoming",
         },
@@ -110,24 +110,13 @@ export default function AssignmentList(props) {
 
   return (
     <View>
-      <Text
-        style={{
-          paddingHorizontal: 20,
-          fontSize: 20,
-          fontFamily: "outfit-bold",
-        }}
-      >
-        Trips
-      </Text>
+
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View
           style={{
-            padding: 20,
-            paddingBottom: 0,
             display: "flex",
             flexDirection: "row",
             justifyContent: "space-between",
-            marginTop: 1,
             alignItems: "center",
           }}
         ></View>
