@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Text, View, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
 import CheckBoxItem from "../../../components/Vehicle/CheckBox";
 
-const ApproveDocumentUseScreen = ({
+const SelectAmenities = ({
   setAmenities,
   selectedAmenities,
   goToNextStep,
@@ -101,4 +101,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ApproveDocumentUseScreen;
+export default SelectAmenities;
