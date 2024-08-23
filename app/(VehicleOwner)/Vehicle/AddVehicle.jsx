@@ -5,7 +5,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons'; // Import Ionicons
 import SelectVehicleScreen from "./SelectVehicleScreen";
 import SelectProvinceScreen from "./SelectProvinceScreen";
 import SelectVehicleDocumentScreen from "./SelectVehicleDocumentScreen";
-import ApproveDocumentUseScreen from "./ApproveDocumentUseScreen";
+import ApproveDocumentUseScreen from "./SelectAmenities";
 
 const AddVehicle = () => {
   const [currentStep, setCurrentStep] = useState(0);

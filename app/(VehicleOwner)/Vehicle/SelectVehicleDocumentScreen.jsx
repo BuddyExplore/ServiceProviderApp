@@ -44,9 +44,9 @@ const SelectVehicleDocumentScreen = ({ goToNextStep }) => {
         </Text>
       </View>
 
-        <TouchableOpacity onPress={handleNextStep} style={styles.nextButton}>
+        {/*<TouchableOpacity onPress={handleNextStep} style={styles.nextButton}>
           <Text style={styles.nextButtonText}>Submit</Text>
-        </TouchableOpacity>
+        </TouchableOpacity>*/}
       </View>     
     </View>
   );
