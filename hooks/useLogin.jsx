@@ -15,7 +15,7 @@ export const useLogin = () => {
     setError(null);
 
     try {
-      const response = await axios.post("http://localhost:5001/login", {
+      const response = await axios.post("http://10.22.162.81:5001/login", {
         email,
         password,
       });
@@ -25,12 +25,18 @@ export const useLogin = () => {
 
         // Save content in AsyncStorage
         await AsyncStorage.setItem("token", response.data.content.jwtToken);
-        await AsyncStorage.setItem("user", JSON.stringify(response.data.content.user));
+        await AsyncStorage.setItem(
+          "user",
+          JSON.stringify(response.data.content.user)
+        );
 
         // Update the auth context
         dispatch({
           type: "LOGIN",
-          payload: { user: response.data.content.user, token: response.data.content.jwtToken },
+          payload: {
+            user: response.data.content.user,
+            token: response.data.content.jwtToken,
+          },
         });
 
         // Return the user's role

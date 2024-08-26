@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useAuthContext } from "./useAuthContext";
 import axios from "axios";
 import { useRouter } from "expo-router";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const useSignup = () => {
   const [error, setError] = useState(null);
@@ -10,12 +10,19 @@ export const useSignup = () => {
   const { dispatch } = useAuthContext();
   const router = useRouter();
 
-  const handleSignup = async (first_name, last_name, mobile_no, role , email, password) => {
+  const handleSignup = async (
+    first_name,
+    last_name,
+    mobile_no,
+    role,
+    email,
+    password
+  ) => {
     setLoading(true);
     setError(null);
 
     try {
-      const response = await axios.post("http://localhost:5001/signup", {
+      const response = await axios.post("http://10.22.162.81:5001/signup", {
         first_name,
         last_name,
         mobile_no,
@@ -29,12 +36,18 @@ export const useSignup = () => {
 
         // Save content in AsyncStorage
         await AsyncStorage.setItem("token", response.data.content.jwtToken);
-        await AsyncStorage.setItem("user", JSON.stringify(response.data.content.user));
+        await AsyncStorage.setItem(
+          "user",
+          JSON.stringify(response.data.content.user)
+        );
 
         // Update the auth context
         dispatch({
           type: "SIGNUP",
-          payload: { user: response.data.content.user, token: response.data.content.jwtToken },
+          payload: {
+            user: response.data.content.user,
+            token: response.data.content.jwtToken,
+          },
         });
 
         // Redirect to Login page
