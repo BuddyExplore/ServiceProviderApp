@@ -26,31 +26,32 @@ const Login = () => {
 
   const onLoginPressed = async (e) => {
     e.preventDefault();
-    const result = await handleLogin(email, password);
-    
-    if (result.ok) {
-      switch(result.role) {
-        case "VEHICLE_OWNER":
-          router.replace("../Dashboard/DashboardDetails");
-          break;
-        case "TOUR_GUIDE":
-          router.replace("../dashboard");
-          break;
-        case "HOTEL_MANAGER":
-          router.replace("../home/Dashboard");
-          break;
-        case "SHOP_MANAGER":
-          router.replace("../manage");
-          break;
-        /*case "ACTIVITY_HOST":
-          router.replace("../(ActivityHost)/home/Dashboard");
-          break;*/
-        //default:
-          //router.replace("/DefaultDashboard");
-      }
-    } else {
-      console.error(result.message);
-    }
+    router.replace("../Dashboard/DashboardDetails");
+    // const result = await handleLogin(email, password);
+
+    // if (result.ok) {
+    //   switch (result.role) {
+    //     case "VEHICLE_OWNER":
+    //       router.replace("../Dashboard/DashboardDetails");
+    //       break;
+    //     case "TOUR_GUIDE":
+    //       router.replace("../dashboard");
+    //       break;
+    //     case "HOTEL_MANAGER":
+    //       router.replace("../home/Dashboard");
+    //       break;
+    //     case "SHOP_MANAGER":
+    //       router.replace("../manage");
+    //       break;
+    //     /*case "ACTIVITY_HOST":
+    //       router.replace("../(ActivityHost)/home/Dashboard");
+    //       break;*/
+    //     //default:
+    //     //router.replace("/DefaultDashboard");
+    //   }
+    // } else {
+    //   console.error(result.message);
+    // }
   };
 
   const [isPasswordShown, setIsPasswordShown] = useState(true);
@@ -66,10 +67,11 @@ const Login = () => {
           }}
         >
           <Image
+            // tintColor={"black"}
             source={require("../../assets/images/logo.png")}
             style={{
-              width: 160,
-              height: 150,
+              width: 120,
+              height: 110,
             }}
           />
         </View>
@@ -153,10 +155,10 @@ const Login = () => {
               onPress={() => router.replace("/ForgotPassword")}
               style={{
                 fontSize: 16,
-                color: Colors.PRIMARY,
+                color: "black",
               }}
             >
-             <Text>Forgot Password?</Text> 
+              <Text>Forgot Password?</Text>
             </TouchableOpacity>
           </View>
 
@@ -164,6 +166,8 @@ const Login = () => {
             title="Log in"
             filled
             style={{
+              backgroundColor: "black",
+              borderColor: "black",
               marginTop: 18,
               marginBottom: 4,
             }}
@@ -208,6 +212,7 @@ const Login = () => {
               marginVertical: 22,
             }}
           >
+            <Text>Dont have an account?</Text>
             <TouchableOpacity
               onPress={() => router.replace("/Signup")}
               style={{
@@ -215,7 +220,7 @@ const Login = () => {
                 color: "gray",
               }}
             >
-              <Text>Dont have an account? Create one</Text>
+              <Text>Create one</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -227,7 +232,7 @@ const Login = () => {
 const styles = StyleSheet.create({
   inputTextTop: {
     fontSize: 16,
-    //fontWeight: 400,    
+    //fontWeight: 400,
     marginVertical: 8,
   },
   link: {

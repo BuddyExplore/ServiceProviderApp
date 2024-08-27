@@ -5,10 +5,11 @@ import {
   Text,
   TouchableOpacity,
   Image,
-  SafeAreaView,
   TextInput,
-  ScrollView
+  ScrollView,
+  Platform,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { Colors } from "../../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import CustomInput from "./Custom/CustomInput";
@@ -18,6 +19,7 @@ import { useSignup } from "../../hooks/useSignup";
 import Checkbox from "expo-checkbox";
 import { useRouter, useNavigation } from "expo-router";
 import RNPickerSelect from "react-native-picker-select";
+import { color } from "react-native-elements/dist/helpers";
 
 const Signup = () => {
   const navigation = useNavigation();
@@ -42,10 +44,9 @@ const Signup = () => {
       password
     );
 
-
     if (result.ok) {
       console.log(result.role);
-      switch(role) {
+      switch (role) {
         case "VEHICLE_OWNER":
           router.replace("../Dashboard/DashboardDetails");
           break;
@@ -62,7 +63,7 @@ const Signup = () => {
           router.replace("../(ActivityHost)/home/Dashboard");
           break;*/
         //default:
-          //router.replace("/DefaultDashboard");
+        //router.replace("/DefaultDashboard");
       }
     } else {
       console.error(result.message);
@@ -91,273 +92,262 @@ const Signup = () => {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
       <ScrollView>
-      <View style={{ flex: 1, marginHorizontal: 22, marginVertical: 5 }}>
-        {/*<View style={{
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    marginVertical:20,
-                }}>
-
-                    <Image
-                        source={require("../../assets/images/logo.png")}
-                        style={{
-                            width: 200,
-                            height: 200,
-                        }}
-                    />
-                </View>*/}
-
-        <View>
-          <Text
-            style={{
-              fontSize: 24,
-              //fontWeight: "bold",
-              color: "black",
-              marginVertical: 12,
-            }}
-          >
-            Create Account
-          </Text>
-
-          <Text
-            style={{ fontSize: 16, color: Colors.SECOND, marginBottom: 10 }}
-          >
-            Plan your next adventure with friends today!
-          </Text>
-
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
-            }}
-          >
-            <View style={{ marginBottom: 12 }}>
-              <Text style={styles.inputTextTop}>First Name</Text>
-
-              <CustomInput
-                placeholder="Enter your first name"
-                placeholderTextColor="black"
-                keyboardType="text"
-                style={{
-                  width: "100%",
-                }}
-                setValue={setFirstname}
-              />
-            </View>
-
-            <View style={{ marginBottom: 12 }}>
-              <Text style={styles.inputTextTop}>Last Name</Text>
-
-              <CustomInput
-                placeholder="Enter your last name"
-                placeholderTextColor="black"
-                keyboardType="text-input"
-                style={{
-                  width: "100%",
-                }}
-                setValue={setLastname}
-              />
-            </View>
-          </View>
-
-          <View style={{ marginBottom: 12 }}>
-            <Text style={styles.inputTextTop}>Email Address</Text>
-
-            <CustomInput
-              placeholder="Enter your email address"
-              placeholderTextColor="black"
-              keyboardType="email-address"
+        <View style={{ flex: 1, marginHorizontal: 22, marginVertical: 5 }}>
+          <View>
+            <Text
               style={{
-                width: "100%",
-              }}
-              setValue={setEmail}
-            />
-          </View>
-
-          <View style={{ marginBottom: 12 }}>
-            <Text style={styles.inputTextTop}>MobileNumber </Text>
-
-            <View
-              style={{
-                width: "100%",
-                height: 48,
-                borderColor: "gray",
-                borderWidth: 1,
-                borderRadius: 8,
-                alignItems: "center",
-                flexDirection: "row",
-                justifyContent: "space-between",
-                paddingLeft: 22,
-              }}
-            >
-              <TextInput
-                placeholder="+94"
-                placeholderTextColor="black"
-                keyboardType="numeric"
-                style={{
-                  width: "12%",
-                  borderRightWidth: 1,
-                  borderLeftColor: "gray",
-                  height: "100%",
-                }}
-              />
-
-              <TextInput
-                placeholder="Enter your phone number"
-                placeholderTextColor="black"
-                keyboardType="numeric"
-                style={{
-                  width: "80%",
-                }}
-                setValue={setMobile_no}
-              />
-            </View>
-          </View>
-
-          <View style={{ marginBottom: 12 }}>
-            <Text style={styles.inputTextTop}>Role</Text>
-
-            <RNPickerSelect
-              onValueChange={(value) => setRole(value)}
-              items={roles}
-              style={{
-                inputIOS: styles.inputIOS,
-                inputAndroid: styles.inputAndroid,
-              }}
-              placeholder={{
-                label: "Select your user role",
-                value: {roles},
+                fontSize: 24,
                 color: "black",
+                marginVertical: 12,
               }}
-            />
-          </View>
+            >
+              Create Account
+            </Text>
 
-          <View style={{ marginBottom: 12 }}>
-            <Text style={styles.inputTextTop}>Password</Text>
+            <Text
+              style={{ fontSize: 16, color: Colors.SECOND, marginBottom: 10 }}
+            >
+              Plan your next adventure with friends today!
+            </Text>
 
             <View
               style={{
-                width: "100%",
-                height: 48,
-                borderColor: "gray",
-                borderWidth: 1,
-                borderRadius: 8,
-                alignItems: "center",
-                justifyContent: "center",
-                paddingLeft: 22,
+                flexDirection: Platform.OS == "web" ? "row" : "column",
+                justifyContent: "space-between",
               }}
             >
-              <TextInput
-                placeholder="Enter your password"
+              <View style={{ marginVertical: 6 }}>
+                <Text style={styles.inputTextTop}>First Name</Text>
+
+                <CustomInput
+                  placeholder="Enter your first name"
+                  placeholderTextColor="black"
+                  keyboardType="text"
+                  style={{
+                    width: "100%",
+                  }}
+                  setValue={setFirstname}
+                />
+              </View>
+
+              <View style={{ marginVertical: 6 }}>
+                <Text style={styles.inputTextTop}>Last Name</Text>
+
+                <CustomInput
+                  placeholder="Enter your last name"
+                  placeholderTextColor="black"
+                  keyboardType="text-input"
+                  style={{
+                    width: "100%",
+                  }}
+                  setValue={setLastname}
+                />
+              </View>
+            </View>
+
+            <View style={{ marginVertical: 6 }}>
+              <Text style={styles.inputTextTop}>Email Address</Text>
+
+              <CustomInput
+                placeholder="Enter your email address"
                 placeholderTextColor="black"
-                secureTextEntry={isPasswordShown}
+                keyboardType="email-address"
                 style={{
                   width: "100%",
                 }}
-                setValue={setPassword}
+                setValue={setEmail}
               />
+            </View>
 
-              <TouchableOpacity
-                onPress={() => setIsPasswordShown(!isPasswordShown)}
+            <View style={{ marginVertical: 6 }}>
+              <Text style={styles.inputTextTop}>MobileNumber </Text>
+
+              <View
                 style={{
-                  position: "absolute",
-                  right: 12,
+                  width: "100%",
+                  height: 48,
+                  borderColor: "gray",
+                  borderWidth: 1,
+                  borderRadius: 8,
+                  alignItems: "center",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  paddingLeft: 22,
                 }}
               >
-                {isPasswordShown == true ? (
-                  <Ionicons name="eye" size={24} color="black" />
-                ) : (
-                  <Ionicons name="eye-off" size={24} color="black" />
-                )}
+                <TextInput
+                  placeholder="+94"
+                  placeholderTextColor="black"
+                  keyboardType="numeric"
+                  style={{
+                    width: "12%",
+                    borderRightWidth: 1,
+                    borderLeftColor: "gray",
+                    height: "100%",
+                  }}
+                />
+
+                <TextInput
+                  placeholder="Enter your phone number"
+                  placeholderTextColor="black"
+                  keyboardType="numeric"
+                  style={{
+                    width: "80%",
+                  }}
+                  setValue={setMobile_no}
+                />
+              </View>
+            </View>
+
+            <View style={{ marginVertical: 6 }}>
+              <Text style={styles.inputTextTop}>Role</Text>
+
+              <RNPickerSelect
+                onValueChange={(value) => setRole(value)}
+                items={roles}
+                style={[
+                  {
+                    inputIOS: styles.inputIOS,
+                    inputAndroid: styles.inputAndroid,
+                  },
+                ]}
+                placeholder={{
+                  label: "Select your user role",
+                  value: { roles },
+                  color: "black",
+                }}
+              />
+            </View>
+
+            <View style={{ marginVertical: 6 }}>
+              <Text style={styles.inputTextTop}>Password</Text>
+
+              <View
+                style={{
+                  width: "100%",
+                  height: 48,
+                  borderColor: "gray",
+                  borderWidth: 1,
+                  borderRadius: 8,
+                  alignItems: "center",
+                  justifyContent: "center",
+                  paddingLeft: 22,
+                }}
+              >
+                <TextInput
+                  placeholder="Enter your password"
+                  placeholderTextColor="black"
+                  secureTextEntry={isPasswordShown}
+                  style={{
+                    width: "100%",
+                  }}
+                  setValue={setPassword}
+                />
+
+                <TouchableOpacity
+                  onPress={() => setIsPasswordShown(!isPasswordShown)}
+                  style={{
+                    position: "absolute",
+                    right: 12,
+                  }}
+                >
+                  {isPasswordShown == true ? (
+                    <Ionicons name="eye" size={24} color="black" />
+                  ) : (
+                    <Ionicons name="eye-off" size={24} color="black" />
+                  )}
+                </TouchableOpacity>
+              </View>
+            </View>
+
+            <View
+              style={{
+                flexDirection: "row",
+                marginVertical: 20,
+              }}
+            >
+              <Checkbox
+                style={{ marginRight: 8 }}
+                value={isChecked}
+                onValueChange={setIsChecked}
+                color={isChecked ? "black" : undefined}
+              />
+
+              <Text>
+                I agree to the{" "}
+                <Text style={styles.link} onPress={onTermsOfUsePressed}>
+                  Terms
+                </Text>{" "}
+                and{" "}
+                <Text style={styles.link} onPress={onPrivacyPressed}>
+                  Conditions
+                </Text>
+              </Text>
+            </View>
+
+            <CustomButton
+              title="Sign up"
+              filled
+              style={{
+                backgroundColor: "black",
+                borderColor: "black",
+                marginTop: 18,
+                marginBottom: 4,
+              }}
+              onPress={onSignupPressed}
+            />
+
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                marginVertical: 12,
+              }}
+            >
+              <View
+                style={{
+                  flex: 1,
+                  height: 1,
+                  backgroundColor: "gray",
+                  marginHorizontal: 10,
+                  marginVertical: 20,
+                }}
+              />
+
+              <Text style={{ fontSize: 14 }}>or Sign up with</Text>
+
+              <View
+                style={{
+                  flex: 1,
+                  height: 1,
+                  backgroundColor: "gray",
+                  marginHorizontal: 10,
+                }}
+              />
+            </View>
+
+            <SocialButtons />
+
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "center",
+                marginVertical: 22,
+              }}
+            >
+              <Text>Already have an account?</Text>
+              <TouchableOpacity
+                onPress={() => router.replace("/Login")}
+                style={{
+                  fontSize: 16,
+                  color: "gray",
+                }}
+              >
+                <Text>Login</Text>
               </TouchableOpacity>
             </View>
           </View>
-
-          <View
-            style={{
-              flexDirection: "row",
-              marginVertical: 20,
-            }}
-          >
-            <Checkbox
-              style={{ marginRight: 8 }}
-              value={isChecked}
-              onValueChange={setIsChecked}
-              color={isChecked ? Colors.PRIMARY : undefined}
-            />
-
-            <Text>
-              I agree to the{" "}
-              <Text style={styles.link} onPress={onTermsOfUsePressed}>
-                Terms
-              </Text>{" "}
-              and{" "}
-              <Text style={styles.link} onPress={onPrivacyPressed}>
-                Conditions
-              </Text>
-            </Text>
-          </View>
-
-          <CustomButton
-            title="Sign up"
-            filled
-            style={{
-              marginTop: 18,
-              marginBottom: 4,
-            }}
-            onPress={onSignupPressed}
-          />
-
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-              marginVertical: 12,
-            }}
-          >
-            <View
-              style={{
-                flex: 1,
-                height: 1,
-                backgroundColor: "gray",
-                marginHorizontal: 10,
-                marginVertical: 20,
-              }}
-            />
-
-            <Text style={{ fontSize: 14 }}>or Sign up with</Text>
-
-            <View
-              style={{
-                flex: 1,
-                height: 1,
-                backgroundColor: "gray",
-                marginHorizontal: 10,
-              }}
-            />
-          </View>
-
-          <SocialButtons />
-
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "center",
-              marginVertical: 22,
-            }}
-          >
-            <TouchableOpacity
-              onPress={() => router.replace("/Login")}
-              style={{
-                fontSize: 16,
-                color: "gray",
-              }}
-            >
-              <Text>Already have an account? Login</Text>
-            </TouchableOpacity>
-          </View>
         </View>
-      </View>
       </ScrollView>
     </SafeAreaView>
   );
