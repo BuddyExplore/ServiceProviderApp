@@ -31,8 +31,17 @@ export default function EditItem({ prefernce , savedPressed}) {
     const [selectedId, setSelectedId] = useState('1');
 
 
-    const handleSaveBtn = (itemName) => {
-      savedPressed(1);
+    const handleSaveBtn = () => {
+      // Create an item object with the current input values
+      const newItem = {
+        name: itemName,
+        price: itemPrice,
+        description: itemDescription,
+      };
+  
+      // Set the single item variable
+      // Optionally, clear the input fields after adding the item
+      savedPressed(newItem);
     };
 
     return(

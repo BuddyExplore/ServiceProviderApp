@@ -8,6 +8,8 @@ import {
   Text,
   Alert,
 } from "react-native";
+import { useRouter } from "expo-router";
+import { useLogout } from "../../../hooks/useLogout";
 import React, { Component } from "react";
 import { Redirect, useNavigation } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -64,7 +66,7 @@ const SelectButton = (props) => {
     </TouchableOpacity>
   );
 };
-const handleSignout = (navigation) => {
+const handleSignout = (navigation, logout, router) => {
   Alert.alert(
     "Sign out",
     "Are you sure?",
@@ -76,7 +78,8 @@ const handleSignout = (navigation) => {
       {
         text: "Yes",
         onPress: () => {
-          navigation.popToTop();
+          logout;
+          router.replace("../Login");
         },
       },
     ],
@@ -119,8 +122,9 @@ const ProfileView = () => {
 };
 
 export default function Index() {
+  const router = useRouter();
   const navigation = useNavigation();
-
+  const logout = useLogout();
   return (
     <SafeAreaView>
       <View>
@@ -140,7 +144,7 @@ export default function Index() {
           title="Signout"
           color={"#ddd"}
           onPress={() => {
-            handleSignout(navigation);
+            handleSignout(navigation, logout, router);
           }}
         />
       </View>
