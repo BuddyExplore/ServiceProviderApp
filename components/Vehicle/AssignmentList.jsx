@@ -196,7 +196,7 @@ export default function AssignmentList(props) {
 
   return (
     <View>
-      <Text
+      {/* <Text
         style={{
           paddingHorizontal: 20,
           fontSize: 20,
@@ -204,7 +204,7 @@ export default function AssignmentList(props) {
         }}
       >
         Trips
-      </Text>
+      </Text> */}
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View
           style={{
