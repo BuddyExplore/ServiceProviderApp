@@ -1,7 +1,7 @@
 import { View, Text } from "react-native";
 import React from "react";
 import { Tabs } from "expo-router";
-import { Ionicons, MaterialIcons } from "@expo/vector-icons";
+import { Ionicons, MaterialIcons, Feather } from "@expo/vector-icons";
 import { Colors } from "../../constants/Colors";
 
 export default function TabLayout() {
@@ -13,7 +13,7 @@ export default function TabLayout() {
         // tabBarStyle: route.name === 'Assignment' ? { display: 'none' } : {},
       })}
     >
-      <Tabs.Screen
+      {/* <Tabs.Screen
         name="Assignment"
         options={{
           tabBarLabel: "ongoing",
@@ -21,13 +21,23 @@ export default function TabLayout() {
             <Ionicons name="map-outline" size={24} color={color} />
           ),
         }}
-      />
+      /> */}
       <Tabs.Screen
         name="Dashboard"
         options={{
           tabBarLabel: "Dashboard",
           tabBarIcon: ({ color }) => (
             <Ionicons name="compass-outline" size={24} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="Assignment"
+        options={{
+          tabBarLabel: "booking",
+          tabBarIcon: ({ color }) => (
+            <Feather name="calendar" size={24} />
+            // <Ionicons name="map-outline" size={24} color={color} />
           ),
         }}
       />
