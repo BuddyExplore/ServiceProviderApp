@@ -9,45 +9,46 @@ import {
   GestureHandlerRootView,
   TouchableOpacity,
 } from "react-native-gesture-handler";
+import { router } from "expo-router";
 
-const GoButton = (props) => {
-  const color =
-    props.content == "Go"
-      ? "blue"
-      : props.content == "Emergency"
-      ? "red"
-      : "white";
-  return (
-    <View
-      style={{
-        position: "absolute",
-        top: Dimensions.get("screen").height * props.position[0],
-        left: Dimensions.get("screen").width * props.position[1],
-        padding: 20,
-        borderRadius: 30,
-        backgroundColor: color,
-        elevation: 4,
-      }}
-    >
-      {props.content == "Go" ? (
-        <Text
-          style={{
-            fontSize: 20,
-            fontFamily: "outfit",
-            fontWeight: 700,
-            color: "white",
-          }}
-        >
-          {props.content}
-        </Text>
-      ) : props.content == "Emergency" ? (
-        <MaterialIcons name="emergency-share" size={20} color={"white"} />
-      ) : (
-        ""
-      )}
-    </View>
-  );
-};
+// const GoButton = (props) => {
+//   const color =
+//     props.content == "Go"
+//       ? "blue"
+//       : props.content == "Emergency"
+//       ? "red"
+//       : "white";
+//   return (
+//     <View
+//       style={{
+//         position: "absolute",
+//         top: Dimensions.get("screen").height * props.position[0],
+//         left: Dimensions.get("screen").width * props.position[1],
+//         padding: 20,
+//         borderRadius: 30,
+//         backgroundColor: color,
+//         elevation: 4,
+//       }}
+//     >
+//       {props.content == "Go" ? (
+//         <Text
+//           style={{
+//             fontSize: 20,
+//             fontFamily: "outfit",
+//             fontWeight: 700,
+//             color: "white",
+//           }}
+//         >
+//           {props.content}
+//         </Text>
+//       ) : props.content == "Emergency" ? (
+//         <MaterialIcons name="emergency-share" size={20} color={"white"} />
+//       ) : (
+//         ""
+//       )}
+//     </View>
+//   );
+// };
 export default function AssignmentScreen() {
   let x = 5;
   return (
@@ -57,7 +58,7 @@ export default function AssignmentScreen() {
       <GoButton position={[0.77,0.45]} content="Go"/>
       <GoButton position={[0.77,0.01]} content="Emergency"/>
       <BottomContainer /> */}
-        <View
+        <TouchableOpacity
           style={{
             backgroundColor: "#F9F9F9",
             borderRadius: 32,
@@ -72,6 +73,7 @@ export default function AssignmentScreen() {
             paddingHorizontal: 20,
             paddingVertical: 10,
           }}
+          onPress={() => router.push('(VehicleOwner)/Assignment/incoming')}
         >
           <Image
             source={require("../../../assets/images/Vehicle/calendar.png")}
@@ -87,7 +89,7 @@ export default function AssignmentScreen() {
           >
             <Text>Incoming Requests</Text>
           </View>
-          <TouchableOpacity>
+          <View>
             <Text
               style={{
                 backgroundColor: "#0A89FF",
@@ -99,8 +101,8 @@ export default function AssignmentScreen() {
             >
               {x}
             </Text>
-          </TouchableOpacity>
-        </View>
+          </View>
+        </TouchableOpacity>
         <FilterTrips />
       </SafeAreaView>
     </GestureHandlerRootView>
