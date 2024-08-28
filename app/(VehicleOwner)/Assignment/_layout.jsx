@@ -11,8 +11,9 @@ export default function ProfileLayout() {
         headerShown: false,
       }}
     >
-      <Stack.Screen name="index" options={{}} />
-      {/* <Stack.Screen name="Payment2" options={{}} /> */}
+      <Stack.Screen name="index" options={{headerBackButtonMenuEnabled: true,  headerShown: true}} />
+      <Stack.Screen name="incoming" options={{headerBackButtonMenuEnabled: true,  headerShown: true}} />
     </Stack>
+    
   );
 }
