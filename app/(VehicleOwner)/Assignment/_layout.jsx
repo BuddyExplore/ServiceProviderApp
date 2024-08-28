@@ -4,7 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 export default function ProfileLayout() {
   return (
     <Stack
-      initialRouteName="Payment1"
+      initialRouteName="index"
       screenOptions={{
         headerShown: true,
         headerBackButtonMenuEnabled: true,
@@ -13,15 +13,22 @@ export default function ProfileLayout() {
     >
       <Stack.Screen name="index" options={{}} />
       <Stack.Screen
-        name="RequestDetail"
+        name="requestdetails"
         options={{
           headerShown: true,
           headerShadowVisible: false,
           headerTitleAlign: "center",
         }}
       />
-       <Stack.Screen name="incoming" options={{headerBackButtonMenuEnabled: true,  headerShown: true}} />
+      <Stack.Screen
+        name="incoming"
+        options={{
+          title: "Incoming Requests",
+          headerShown: true,
+          headerShadowVisible: false,
+          headerTitleAlign: "center",
+        }}
+      />
     </Stack>
-    
   );
 }

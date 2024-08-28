@@ -9,13 +9,18 @@ import {
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { Colors } from "../../constants/Colors";
-import { useNavigation } from "expo-router";
+import { router, useNavigation } from "expo-router";
 export default function GuidesListItem({ preference }) {
   const navigaton = useNavigation();
   console.log(navigaton);
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.touchable}>
+      <TouchableOpacity
+        style={styles.touchable}
+        onPress={() =>
+          router.push("(VehicleOwner)/Assignment/requestdetails?accepted=true")
+        }
+      >
         <View>
           <View
             style={{

@@ -8,8 +8,10 @@ import {
   ScrollView,
 } from "react-native";
 import photo1 from "../../../assets/images/Vehicle/photo1.png";
-import { router } from "expo-router";
-const RequestDetails = () => {
+import { router, useGlobalSearchParams } from "expo-router";
+const RequestDetails = (props) => {
+  const { accepted } = useGlobalSearchParams() ?? true;
+
   return (
     <View style={styles.container}>
       {/* Header */}
@@ -78,15 +80,20 @@ const RequestDetails = () => {
           <Text style={styles.valueText}>15 passengers</Text>
         </View>
 
-        {/* Reject & Accept Buttons */}
-        <View style={styles.buttonsContainer}>
-          <TouchableOpacity style={styles.rejectButton}>
-            <Text style={styles.rejectButtonText}>Reject</Text>
+        {accepted == "true" ? (
+          <TouchableOpacity style={styles.button}>
+            <Text style={{ color: "white", fontWeight: 700 }}>Dispatch</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.acceptButton}>
-            <Text style={styles.acceptButtonText}>Accept</Text>
-          </TouchableOpacity>
-        </View>
+        ) : (
+          <View style={styles.buttonsContainer}>
+            <TouchableOpacity style={styles.rejectButton}>
+              <Text style={styles.rejectButtonText}>Reject</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.acceptButton}>
+              <Text style={styles.acceptButtonText}>Accept</Text>
+            </TouchableOpacity>
+          </View>
+        )}
       </ScrollView>
     </View>
   );
@@ -195,6 +202,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     borderRadius: 5,
     flex: 1,
+  },
+  button: {
+    color: "white",
+    backgroundColor: "#42A5F5",
+    paddingVertical: 15,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
   acceptButtonText: {
     color: "#fff",

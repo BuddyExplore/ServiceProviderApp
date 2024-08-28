@@ -8,15 +8,12 @@ import {
   ScrollView,
 } from "react-native";
 import photo1 from "../../../assets/images/Vehicle/photo1.png";
-import arrow from "../../../assets/images/Vehicle/arrow.png";
 import photo2 from "../../../assets/images/Vehicle/photo2.png";
 import { MaterialIcons } from "@expo/vector-icons";
 import { router } from "expo-router";
 const IncomingRequests = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.headerText}>Incoming Requests</Text>
-
       <ScrollView contentContainerStyle={styles.requestsContainer}>
         {/* Request Card 1 */}
         <View style={styles.requestCard}>
@@ -30,11 +27,12 @@ const IncomingRequests = () => {
             <TouchableOpacity
               style={styles.moreOptions}
               onPress={() =>
-                router.push("(VehicleOwner)/Assignment/requestdetails")
+                router.push(
+                  "(VehicleOwner)/Assignment/requestdetails?accepted=false"
+                )
               }
             >
               <MaterialIcons name="keyboard-arrow-right" size={25} />
-              {/* <Image source={arrow} style={styles.arrow} /> */}
             </TouchableOpacity>
           </View>
 
@@ -69,7 +67,7 @@ const IncomingRequests = () => {
               <Text style={styles.dateText}>Aug 30 - Sep 01</Text>
             </View>
             <TouchableOpacity style={styles.moreOptions}>
-              <Image source={arrow} style={styles.arrow} />
+              <MaterialIcons name="keyboard-arrow-right" size={25} />
             </TouchableOpacity>
           </View>
 
