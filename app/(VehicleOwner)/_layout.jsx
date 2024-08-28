@@ -36,7 +36,7 @@ export default function TabLayout() {
         options={{
           tabBarLabel: "booking",
           tabBarIcon: ({ color }) => (
-            <Feather name="calendar" size={24} />
+            <Feather name="calendar" size={24} color={color} />
             // <Ionicons name="map-outline" size={24} color={color} />
           ),
         }}

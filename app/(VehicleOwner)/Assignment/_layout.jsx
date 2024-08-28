@@ -12,7 +12,14 @@ export default function ProfileLayout() {
       }}
     >
       <Stack.Screen name="index" options={{}} />
-      {/* <Stack.Screen name="Payment2" options={{}} /> */}
+      <Stack.Screen
+        name="RequestDetail"
+        options={{
+          headerShown: true,
+          headerShadowVisible: false,
+          headerTitleAlign: "center",
+        }}
+      />
     </Stack>
   );
 }
