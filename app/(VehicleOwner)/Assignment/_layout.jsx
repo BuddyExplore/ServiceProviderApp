@@ -29,6 +29,24 @@ export default function ProfileLayout() {
           headerTitleAlign: "center",
         }}
       />
+      <Stack.Screen
+        name="StartRide"
+        options={{
+          title: "Dipatching",
+          headerShown: true,
+          headerShadowVisible: false,
+          headerTitleAlign: "center",
+        }}
+      />
+      <Stack.Screen
+        name="TripDetail"
+        options={{
+          title: "Dipatching",
+          headerShown: true,
+          headerShadowVisible: false,
+          headerTitleAlign: "center",
+        }}
+      />
     </Stack>
   );
 }

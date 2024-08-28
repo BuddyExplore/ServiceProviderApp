@@ -8,14 +8,15 @@ import {
   ScrollView,
 } from "react-native";
 import photo1 from "../../../assets/images/Vehicle/photo1.png";
-import { router, useGlobalSearchParams } from "expo-router";
+import { router, useGlobalSearchParams, useNavigation } from "expo-router";
+
 const RequestDetails = (props) => {
   const { accepted } = useGlobalSearchParams() ?? true;
-
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       {/* Header */}
-      <Text style={styles.headerText}>Request Details</Text>
+      {/* <Text style={styles.headerText}>Request Details</Text> */}
 
       <ScrollView contentContainerStyle={styles.detailsContainer}>
         {/* User Information */}
@@ -81,7 +82,10 @@ const RequestDetails = (props) => {
         </View>
 
         {accepted == "true" ? (
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => navigation.navigate("StartRide")}
+          >
             <Text style={{ color: "white", fontWeight: 700 }}>Dispatch</Text>
           </TouchableOpacity>
         ) : (

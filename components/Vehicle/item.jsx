@@ -79,7 +79,7 @@ export default function GuidesListItem({ preference }) {
               //   {
               //     color:
               //       preference.status === "Upcoming"
-              //         ? "blue"
+              //         ? "#0A89FF"
               //         : preference.status === "Ongoing"
               //         ? "yellow"
               //         : "green",

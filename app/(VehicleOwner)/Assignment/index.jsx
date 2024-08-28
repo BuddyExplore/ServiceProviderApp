@@ -14,7 +14,7 @@ import { router } from "expo-router";
 // const GoButton = (props) => {
 //   const color =
 //     props.content == "Go"
-//       ? "blue"
+//       ? "#0A89FF"
 //       : props.content == "Emergency"
 //       ? "red"
 //       : "white";
@@ -73,7 +73,7 @@ export default function AssignmentScreen() {
             paddingHorizontal: 20,
             paddingVertical: 10,
           }}
-          onPress={() => router.push('(VehicleOwner)/Assignment/incoming')}
+          onPress={() => router.push("(VehicleOwner)/Assignment/incoming")}
         >
           <Image
             source={require("../../../assets/images/Vehicle/calendar.png")}
