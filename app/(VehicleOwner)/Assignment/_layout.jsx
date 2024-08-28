@@ -20,6 +20,8 @@ export default function ProfileLayout() {
           headerTitleAlign: "center",
         }}
       />
+       <Stack.Screen name="incoming" options={{headerBackButtonMenuEnabled: true,  headerShown: true}} />
     </Stack>
+    
   );
 }
