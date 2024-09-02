@@ -26,7 +26,7 @@ const Login = () => {
 
   const onLoginPressed = async (e) => {
     e.preventDefault();
-    router.replace("../Dashboard/DashboardDetails");
+    router.replace("../dashboard");
     // const result = await handleLogin(email, password);
 
     // if (result.ok) {
