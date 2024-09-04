@@ -33,13 +33,14 @@ export default function TabLayout() {
       />
       <Tabs.Screen
         name="Assignment"
-        options={{
+        options={({ route }) => ({
+          tabBarStyle: getTabBarStyle(route),
           tabBarLabel: "booking",
           tabBarIcon: ({ color }) => (
-            <Feather name="calendar" size={24} />
+            <Feather name="calendar" size={24} color={color} />
             // <Ionicons name="map-outline" size={24} color={color} />
-          ),
-        }}
+          ), // Dynamic tab bar visibility based on route
+        })}
       />
       <Tabs.Screen
         name="Vehicle"
@@ -61,4 +62,18 @@ export default function TabLayout() {
       />
     </Tabs>
   );
+}
+
+function getTabBarStyle(route) {
+  // Get the current route name
+  const routeName = route.state
+    ? route.state.routes[route.state.index].name
+    : route.params?.screen || "Home";
+
+  // Hide tab bar on any screen that is not the index screen ('Home')
+  if (routeName !== "Home") {
+    return { display: "none" }; // Hide tab bar
+  }
+
+  return { display: "flex" }; // Show tab bar
 }

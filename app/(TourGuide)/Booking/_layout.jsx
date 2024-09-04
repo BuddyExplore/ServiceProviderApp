@@ -4,12 +4,12 @@ import { SafeAreaView } from "react-native-safe-area-context";
 export default function ProfileLayout() {
   return (
     <Stack
-      initialRouteName="Index"
+      initialRouteName="TourGuideIndex"
       screenOptions={{
         headerBackButtonMenuEnabled: true,
       }}
     >
-      <Stack.Screen name="Index" options={{ headerShown: false }} />
+      <Stack.Screen name="TourGuideIndex" options={{ headerShown: false }} />
       <Stack.Screen
         name="requestdetails"
         options={{

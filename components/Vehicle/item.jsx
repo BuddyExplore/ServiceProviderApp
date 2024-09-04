@@ -9,13 +9,18 @@ import {
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { Colors } from "../../constants/Colors";
-import { useNavigation } from "expo-router";
+import { router, useNavigation } from "expo-router";
 export default function GuidesListItem({ preference }) {
   const navigaton = useNavigation();
-  console.log(navigaton);
+  console.log(navigaton.getState().routeNames[0]);
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.touchable}>
+      <TouchableOpacity
+        style={styles.touchable}
+        onPress={() =>
+          router.push("(VehicleOwner)/Assignment/requestdetails?accepted=true")
+        }
+      >
         <View>
           <View
             style={{
@@ -63,7 +68,9 @@ export default function GuidesListItem({ preference }) {
                     fontSize: 15,
                   }}
                 >
-                  {preference.startDate} - {preference.endDate}
+                  {navigaton.getState().routeNames[0] !== "TourGuideIndex"
+                    ? preference.startDate - preference.endDate
+                    : preference.startDate}
                 </Text>
                 <View></View>
               </View>
@@ -74,23 +81,31 @@ export default function GuidesListItem({ preference }) {
               //   {
               //     color:
               //       preference.status === "Upcoming"
-              //         ? "blue"
+              //         ? "#0A89FF"
               //         : preference.status === "Ongoing"
               //         ? "yellow"
               //         : "green",
               //   },
               // ]}
               style={{
-                backgroundColor: "#E2F8FF",
+                backgroundColor:
+                  navigaton.getState().routeNames[0] !== "TourGuideIndex"
+                    ? "#E2F8FF"
+                    : "#fff",
                 borderRadius: 5,
                 padding: 5,
                 justifyContent: "center",
                 alignContent: "center",
                 width: 90,
-                color: "#0A89FF",
+                color:
+                  navigaton.getState().routeNames[0] !== "TourGuideIndex"
+                    ? "#0A89FF"
+                    : "black",
               }}
             >
-              {preference.progress}
+              {navigaton.getState().routeNames[0] !== "TourGuideIndex"
+                ? preference.progress
+                : preference.price}
             </Text>
             {/* <Ionicons
             name="arrow-forward"
@@ -111,20 +126,51 @@ export default function GuidesListItem({ preference }) {
             }}
           >
             <View style={{ flexDirection: "column" }}>
-              <Text
-                style={{ color: "#969696", fontSize: 12, textAlign: "left" }}
+              <View
+                style={{
+                  color: "#969696",
+                  fontSize: 12,
+                  // justifyContent: "space-evenly",
+                  flexDirection: "row",
+                }}
               >
-                Pickup:
-              </Text>
-              <Text style={{ color: "#000", fontSize: 12, textAlign: "right" }}>
-                {preference.pickup}
-              </Text>
+                <Text style={{ width: "50%", color: "#969696" }}>Pickup</Text>
+                <Text style={{ width: "50%", textAlign: "right" }}>
+                  {preference.pickup}
+                </Text>
+              </View>
             </View>
-
-            <Text style={{ fontSize: 12 }}>
-              Destination:{preference.destination}
-            </Text>
-            <Text style={{ fontSize: 12 }}>Vehicle:{preference.vehicle}</Text>
+            <View style={{ flexDirection: "column" }}>
+              <View
+                style={{
+                  color: "#969696",
+                  fontSize: 12,
+                  // justifyContent: "space-evenly",
+                  flexDirection: "row",
+                }}
+              >
+                <Text style={{ width: "50%", color: "#969696" }}>
+                  Destination
+                </Text>
+                <Text style={{ width: "50%", textAlign: "right" }}>
+                  {preference.destination}
+                </Text>
+              </View>
+            </View>
+            <View style={{ flexDirection: "column" }}>
+              <View
+                style={{
+                  fontSize: 12,
+                  // justifyContent: "space-evenly",
+                  flexDirection: "row",
+                }}
+              >
+                <Text style={{ width: "50%", color: "#969696" }}>Vehicle</Text>
+                <Text style={{ width: "50%", textAlign: "right" }}>
+                  {preference.vehicle}
+                </Text>
+              </View>
+            </View>
           </View>
         </View>
       </TouchableOpacity>
