@@ -10,9 +10,10 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import Header from "../../../components/TourGuide/header";
 import { useRouter } from "expo-router";
-import buddy from '../../../assets/images/TourGuide/buddy.jpg';
+import buddy from "../../../assets/images/TourGuide/buddy.jpg";
+import Graph from "../../../components/TourGuide/graph";
 
-const DashboardScreen = ({navigation}) => {
+const DashboardScreen = ({ navigation }) => {
   const router = useRouter();
 
   return (
@@ -29,7 +30,9 @@ const DashboardScreen = ({navigation}) => {
           <View>
             <TouchableOpacity
               style={styles.card}
-              onPress={() => router.push("../(TourGuide)/dashboard/upcomingtrips")}
+              onPress={() =>
+                router.push("../(TourGuide)/dashboard/upcomingtrips")
+              }
             >
               <Text style={{ fontWeight: "bold" }}>Upcoming Trips</Text>
               <Text style={{ fontSize: 24, fontWeight: "bold" }}>50</Text>
@@ -38,7 +41,9 @@ const DashboardScreen = ({navigation}) => {
           <View>
             <TouchableOpacity
               style={styles.card}
-              onPress={() => router.push("../(TourGuide)/dashboard/ongoingtrips")}
+              onPress={() =>
+                router.push("../(TourGuide)/dashboard/ongoingtrips")
+              }
             >
               <Text style={{ fontWeight: "bold" }}>Ongoing Trips</Text>
               <Text style={{ fontSize: 24, fontWeight: "bold" }}>50</Text>
@@ -47,13 +52,16 @@ const DashboardScreen = ({navigation}) => {
           <View>
             <TouchableOpacity
               style={styles.card}
-              onPress={() => router.push("../(TourGuide)/dashboard/completedtrips")}
+              onPress={() =>
+                router.push("../(TourGuide)/dashboard/completedtrips")
+              }
             >
               <Text style={{ fontWeight: "bold" }}>Completed Trips</Text>
               <Text style={{ fontSize: 24, fontWeight: "bold" }}>25</Text>
             </TouchableOpacity>
           </View>
         </View>
+        <Graph />
       </ScrollView>
     </SafeAreaView>
   );
@@ -65,6 +73,7 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     padding: 10,
+    paddingBottom: 85,
   },
   card: {
     padding: 25,
