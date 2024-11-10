@@ -74,6 +74,16 @@ export default function Login() {
                 fontSize:17,
             }}>Goto Hotel Manager's dashboard</Text>
         </TouchableOpacity>
+        <TouchableOpacity style={styles.button}
+            onPress={() => router.push('ShopManager')}
+        >
+            <Text style={{
+                color:Colors.WHITE,
+                textAlign:'center',
+                fontFamily:'outfit',
+                fontSize:17,
+            }}>Goto Siraj Shop's dashboard</Text>
+        </TouchableOpacity>
       </View>
     </View>
   )

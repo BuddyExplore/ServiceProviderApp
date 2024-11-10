@@ -1,0 +1,3 @@
+I have commented the whole MapComponent in the Component/Vehicle folder
+Root _layout add SirajShop
+Login component Add SirajShop
