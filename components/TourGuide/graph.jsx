@@ -19,7 +19,7 @@ const chartConfig = {
   backgroundGradientFrom: "#fff",
   backgroundGradientTo: "#fff",
   color: (opacity = 1) => `rgba(0, 123, 255, ${opacity})`,
-  strokeWidth: 2, // optional
+  strokeWidth: 1, // optional
   fillShadowGradient: "#82C4FA",
   fillShadowGradientOpacity: 1,
 };
