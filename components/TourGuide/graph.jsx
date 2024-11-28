@@ -16,8 +16,8 @@ const data = {
 };
 
 const chartConfig = {
-  backgroundGradientFrom: "#fff",
-  backgroundGradientTo: "#fff",
+  backgroundGradientFrom: "rgb(242, 242, 242)",
+  backgroundGradientTo: "rgb(242, 242, 242)",
   color: (opacity = 1) => `rgba(0, 123, 255, ${opacity})`,
   strokeWidth: 1, // optional
   fillShadowGradient: "#82C4FA",
@@ -34,6 +34,7 @@ export default function Graph() {
         chartConfig={chartConfig}
         bezier
         style={{
+          marginTop: 20,
           borderRadius: 16,
         }}
       />

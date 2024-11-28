@@ -14,8 +14,9 @@ import { ScrollView } from "react-native-gesture-handler";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import VehicleCard from "./VehicleCard";
 import TotalAmountContainer from "./TotalAmountContainer";
-
+import Graph from "../TourGuide/graph";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+
 const DashboardComponent = (data) => {
   const TotalEarnings = () => {
     const angle = 45;
@@ -65,6 +66,7 @@ const DashboardComponent = (data) => {
         <TotalEarnings />
         <TotalTrips />
       </View>
+      <Graph />
       <FilterTrips />
     </GestureHandlerRootView>
   );

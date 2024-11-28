@@ -13,6 +13,7 @@ export default function ProfileLayout() {
     >
       <Stack.Screen name="index" options={{ headerShown: false }} />
       <Stack.Screen name="Payment" options={{}} />
+      <Stack.Screen name="availability" options={{}} />
       <Stack.Screen name="ProfileDetails" options={{ title: "Profile" }} />
     </Stack>
   );

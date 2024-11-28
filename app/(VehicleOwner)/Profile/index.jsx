@@ -141,6 +141,11 @@ export default function Index() {
           onPress={() => navigation.navigate("Payment")}
         />
         <SelectButton
+          title="Availability"
+          color={"#ddd"}
+          onPress={() => navigation.navigate("availability")}
+        />
+        <SelectButton
           title="Signout"
           color={"#ddd"}
           onPress={() => {
