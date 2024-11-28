@@ -1,7 +1,7 @@
 import { View, Text } from "react-native";
 import React from "react";
 import { Tabs } from "expo-router";
-import { Ionicons, MaterialIcons } from "@expo/vector-icons";
+import { Ionicons, MaterialIcons, Feather } from "@expo/vector-icons";
 import { Colors } from "../../constants/Colors";
 
 export default function TabLayout() {
@@ -13,7 +13,7 @@ export default function TabLayout() {
         // tabBarStyle: route.name === 'Assignment' ? { display: 'none' } : {},
       })}
     >
-      <Tabs.Screen
+      {/* <Tabs.Screen
         name="Assignment"
         options={{
           tabBarLabel: "ongoing",
@@ -21,7 +21,7 @@ export default function TabLayout() {
             <Ionicons name="map-outline" size={24} color={color} />
           ),
         }}
-      />
+      /> */}
       <Tabs.Screen
         name="Dashboard"
         options={{
@@ -30,6 +30,17 @@ export default function TabLayout() {
             <Ionicons name="compass-outline" size={24} color={color} />
           ),
         }}
+      />
+      <Tabs.Screen
+        name="Assignment"
+        options={({ route }) => ({
+          tabBarStyle: getTabBarStyle(route),
+          tabBarLabel: "booking",
+          tabBarIcon: ({ color }) => (
+            <Feather name="calendar" size={24} color={color} />
+            // <Ionicons name="map-outline" size={24} color={color} />
+          ), // Dynamic tab bar visibility based on route
+        })}
       />
       <Tabs.Screen
         name="Vehicle"
@@ -51,4 +62,18 @@ export default function TabLayout() {
       />
     </Tabs>
   );
+}
+
+function getTabBarStyle(route) {
+  // Get the current route name
+  const routeName = route.state
+    ? route.state.routes[route.state.index].name
+    : route.params?.screen || "Home";
+
+  // Hide tab bar on any screen that is not the index screen ('Home')
+  if (routeName !== "Home") {
+    return { display: "none" }; // Hide tab bar
+  }
+
+  return { display: "flex" }; // Show tab bar
 }

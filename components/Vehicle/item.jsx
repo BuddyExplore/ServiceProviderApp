@@ -9,83 +9,169 @@ import {
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { Colors } from "../../constants/Colors";
-import { useNavigation } from "expo-router";
+import { router, useNavigation } from "expo-router";
 export default function GuidesListItem({ preference }) {
   const navigaton = useNavigation();
-  console.log(navigaton);
+  console.log(navigaton.getState().routeNames[0]);
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.touchable}>
-        <View
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "center",
-            gap: 20,
-            backgroundColor: "white",
-            paddingRight: 20,
-          }}
-        >
+      <TouchableOpacity
+        style={styles.touchable}
+        onPress={() =>
+          router.push("(VehicleOwner)/Assignment/requestdetails?accepted=true")
+        }
+      >
+        <View>
           <View
             style={{
               display: "flex",
               flexDirection: "row",
+              justifyContent: "space-between",
               alignItems: "center",
               gap: 20,
+              backgroundColor: "white",
+              paddingRight: 20,
+              borderBottomColor: "black",
+              borderBottomWidth: StyleSheet.hairlineWidth,
             }}
           >
-            <Image
-              source={preference.img}
+            <View
               style={{
-                width: 100,
-                height: 100,
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                gap: 20,
+                padding: 20,
               }}
-            />
-            <View>
-              <Text
+            >
+              <Image
+                source={preference.img}
                 style={{
-                  color: "black",
-                  fontSize: 19,
-                  fontWeight: "bold",
+                  width: 34,
+                  height: 34,
+                  borderRadius: 34,
                 }}
-              >
-                {preference.name}
-              </Text>
-              <Text
-                style={{
-                  color: "black",
-                  fontSize: 15,
-                }}
-              >
-                {preference.price}
-              </Text>
-
-              <Text
-                style={[
-                  styles.subText,
-                  {
-                    color:
-                      preference.status === "Upcoming"
-                        ? "blue"
-                        : preference.status === "Ongoing"
-                        ? "yellow"
-                        : "green",
-                  },
-                ]}
-              >
-                {preference.status}
-              </Text>
+              />
+              <View>
+                <Text
+                  style={{
+                    color: "black",
+                    fontSize: 19,
+                    fontWeight: "bold",
+                  }}
+                >
+                  {preference.name}
+                </Text>
+                <Text
+                  style={{
+                    color: "black",
+                    fontSize: 15,
+                  }}
+                >
+                  {navigaton.getState().routeNames[0] !== "TourGuideIndex"
+                    ? preference.startDate - preference.endDate
+                    : preference.startDate}
+                </Text>
+                <View></View>
+              </View>
             </View>
-          </View>
-          <Ionicons
+            <Text
+              // style={[
+              //   styles.subText,
+              //   {
+              //     color:
+              //       preference.status === "Upcoming"
+              //         ? "#0A89FF"
+              //         : preference.status === "Ongoing"
+              //         ? "yellow"
+              //         : "green",
+              //   },
+              // ]}
+              style={{
+                backgroundColor:
+                  navigaton.getState().routeNames[0] !== "TourGuideIndex"
+                    ? "#E2F8FF"
+                    : "#fff",
+                borderRadius: 5,
+                padding: 5,
+                justifyContent: "center",
+                alignContent: "center",
+                width: 90,
+                color:
+                  navigaton.getState().routeNames[0] !== "TourGuideIndex"
+                    ? "#0A89FF"
+                    : "black",
+              }}
+            >
+              {navigaton.getState().routeNames[0] !== "TourGuideIndex"
+                ? preference.progress
+                : preference.price}
+            </Text>
+            {/* <Ionicons
             name="arrow-forward"
             size={24}
             color={Colors.PRIMARY}
             onPress={() => {
               navigaton.navigate("TripDetails");
             }}
-          />
+          /> */}
+          </View>
+          <View
+            style={{
+              borderBottomLeftRadius: 10,
+              borderBottomRightRadius: 10,
+              backgroundColor: "white",
+              paddingHorizontal: 24,
+              paddingVertical: 20,
+            }}
+          >
+            <View style={{ flexDirection: "column" }}>
+              <View
+                style={{
+                  color: "#969696",
+                  fontSize: 12,
+                  // justifyContent: "space-evenly",
+                  flexDirection: "row",
+                }}
+              >
+                <Text style={{ width: "50%", color: "#969696" }}>Pickup</Text>
+                <Text style={{ width: "50%", textAlign: "right" }}>
+                  {preference.pickup}
+                </Text>
+              </View>
+            </View>
+            <View style={{ flexDirection: "column" }}>
+              <View
+                style={{
+                  color: "#969696",
+                  fontSize: 12,
+                  // justifyContent: "space-evenly",
+                  flexDirection: "row",
+                }}
+              >
+                <Text style={{ width: "50%", color: "#969696" }}>
+                  Destination
+                </Text>
+                <Text style={{ width: "50%", textAlign: "right" }}>
+                  {preference.destination}
+                </Text>
+              </View>
+            </View>
+            <View style={{ flexDirection: "column" }}>
+              <View
+                style={{
+                  fontSize: 12,
+                  // justifyContent: "space-evenly",
+                  flexDirection: "row",
+                }}
+              >
+                <Text style={{ width: "50%", color: "#969696" }}>Vehicle</Text>
+                <Text style={{ width: "50%", textAlign: "right" }}>
+                  {preference.vehicle}
+                </Text>
+              </View>
+            </View>
+          </View>
         </View>
       </TouchableOpacity>
     </View>
@@ -100,10 +186,10 @@ const styles = StyleSheet.create({
   },
   touchable: {
     width: "100%",
-    height: 100,
+    height: 200,
     borderRadius: 10,
     overflow: "hidden", // Ensures rounded corners are applied to the image ''
-    backgroundColor: "rgba(0, 0, 0, 0.02)",
+    // backgroundColor: "rgba(0, 0, 0, 0.02)",
   },
   image: {
     width: 100,

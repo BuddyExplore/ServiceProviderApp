@@ -32,71 +32,26 @@ const PaymentForm = () => {
       />
       <TextInput
         style={styles.input}
-        placeholder="Email"
+        placeholder="Bank"
         value={email}
         onChangeText={setEmail}
       />
       <TextInput
         style={styles.input}
-        placeholder="Card Number"
+        placeholder="Branch"
         value={cardNumber}
         onChangeText={setCardNumber}
-        keyboardType="numeric"
+        
       />
       <TextInput
         style={styles.input}
-        placeholder="Expiry Date (MM/YY)"
+        placeholder="Account Number"
         value={expiryDate}
         onChangeText={setExpiryDate}
         keyboardType="numeric"
       />
-      <TextInput
-        style={styles.input}
-        placeholder="CVV"
-        value={cvv}
-        onChangeText={setCvv}
-        keyboardType="numeric"
-        secureTextEntry
-      />
-      <Text style={styles.subtitle}>Billing Address</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Address Line 1"
-        value={address1}
-        onChangeText={setAddress1}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Address Line 2"
-        value={address2}
-        onChangeText={setAddress2}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="City"
-        value={city}
-        onChangeText={setCity}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="State/Province"
-        value={state}
-        onChangeText={setState}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Postal Code"
-        value={postalCode}
-        onChangeText={setPostalCode}
-        keyboardType="numeric"
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Country"
-        value={country}
-        onChangeText={setCountry}
-      />
-      <Button title="Make Payment" onPress={handleSubmit} />
+      
+      <Button title="Submit" onPress={handleSubmit} />
     </View>
     </ScrollView>
   );

@@ -4,12 +4,20 @@ import { Ionicons } from '@expo/vector-icons';
 import { Colors } from '../../constants/Colors';
 import ItemDetails from "./ItemDetails"
 import EditItem from "./EditItem"
+import { SemicolonPreference } from 'typescript';
 
-export default function GuidesListItem({ prefernce }) {
+export default function GuidesListItem({ prefernce , deletedItem}) {
+
+  const [nameOfItem, setNameOfItem] = useState(prefernce.name)
+  const [priceOfItem, setPriceOfItem] = useState(prefernce.price)
 
     const [modalVisible, setModalVisible] = useState(false);
     const [displayDetails, setDisplayDetails] = useState(true);
     const [displayEdit, setDisplayEdit] = useState(false);
+
+    if(!prefernce.img){
+      prefernce.img = require('./../../assets/images/Shop/product.png');
+    }
 
     const handleOpenEdit = (itemName) => {
         if(itemName === 1){
@@ -19,10 +27,11 @@ export default function GuidesListItem({ prefernce }) {
       };
 
     const handleSaved = (itemName) => {
-        if(itemName === 1){
             setDisplayDetails(true);
             setDisplayEdit(false);
-        }
+            setNameOfItem(itemName.name);
+            setPriceOfItem(itemName.price);
+            
       };
 
       const handleBack = (itemName) => {
@@ -31,6 +40,10 @@ export default function GuidesListItem({ prefernce }) {
             setModalVisible(!modalVisible)
       };
       
+      const handleItemDelete = (itemName) => {
+        deletedItem(1);
+        setModalVisible(!modalVisible)
+      }
 
 
       
@@ -64,11 +77,11 @@ export default function GuidesListItem({ prefernce }) {
                                 color:'black',
                                 fontSize:19,
                                 fontWeight: 'bold'
-                            }}>{prefernce.name}</Text>
+                            }}>{nameOfItem}</Text>
                         <Text style={{
                                 color:'black',
                                 fontSize:15,
-                            }}>Rs {prefernce.price}</Text>
+                            }}>Rs {priceOfItem}</Text>
                             {/* <Image source={require("../../../assets/images/Book/4star.png")}
                             style={{
                                 width:70,
@@ -110,7 +123,7 @@ export default function GuidesListItem({ prefernce }) {
             <Text style={styles.itemName}>  Item Details</Text>
 
             </View>
-            {displayDetails && <ItemDetails prefernce={prefernce} openEdit={handleOpenEdit}/>}
+            {displayDetails && <ItemDetails prefernce={prefernce} openEdit={handleOpenEdit} nameOfItem={nameOfItem} priceOfItem={priceOfItem} deletedItem={handleItemDelete}/>}
             {displayEdit && <EditItem prefernce={prefernce} savedPressed={handleSaved}/>}
             {/* <ItemDetails prefernce={prefernce}/> */}
             {/* <EditItem prefernce={prefernce} closeEdit={handleEdited}/> */}

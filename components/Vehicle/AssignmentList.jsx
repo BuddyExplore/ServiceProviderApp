@@ -7,7 +7,7 @@ import {
   ScrollView,
 } from "react-native";
 import React, { useState, useEffect } from "react";
-import { Colors } from "../../constants/Colors";
+import { ColoLKR } from "../../constants/Colors";
 import GuidesListItem from "./item";
 
 export default function AssignmentList(props) {
@@ -17,10 +17,10 @@ export default function AssignmentList(props) {
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      const preferencesList = [
+      const preferencesLists = [
         {
           name: "John",
-          price: "Rs 2000",
+          price: "LKR 2000",
           where: "Nugegoda",
           icon: "🔔",
           img: require("./../../assets/images/Vehicle/ella.jpeg"),
@@ -28,7 +28,7 @@ export default function AssignmentList(props) {
         },
         {
           name: "Karan",
-          price: "Rs 2400",
+          price: "LKR 2400",
           where: "Hokanda",
           icon: "👤",
           img: require("./../../assets/images/Vehicle/Dunhinda_Falls.jpg"),
@@ -36,7 +36,7 @@ export default function AssignmentList(props) {
         },
         {
           name: "Doe",
-          price: "Rs 1200",
+          price: "LKR 1200",
           where: "Moratuwa",
           icon: "🔔",
           img: require("./../../assets/images/Vehicle/ella.jpeg"),
@@ -44,7 +44,7 @@ export default function AssignmentList(props) {
         },
         {
           name: "Adams",
-          price: "Rs 700",
+          price: "LKR 700",
           where: "Pannipitiya",
           icon: "⚙️",
           img: require("./../../assets/images/Vehicle/Dunhinda_Falls.jpg"),
@@ -52,7 +52,7 @@ export default function AssignmentList(props) {
         },
         {
           name: "Peter",
-          price: "Rs 550",
+          price: "LKR 550",
           where: "Nugegoda",
           icon: "🔔",
           img: require("./../../assets/images/Vehicle/ella.jpeg"),
@@ -60,7 +60,7 @@ export default function AssignmentList(props) {
         },
         {
           name: "Smith",
-          price: "Rs 500",
+          price: "LKR 500",
           where: "Hokanda",
           icon: "👤",
           img: require("./../../assets/images/Vehicle/ella.jpeg"),
@@ -68,7 +68,7 @@ export default function AssignmentList(props) {
         },
         {
           name: "David",
-          price: "Rs 300",
+          price: "LKR 300",
           where: "Moratuwa",
           icon: "🔔",
           img: require("./../../assets/images/Vehicle/Dunhinda_Falls.jpg"),
@@ -76,11 +76,102 @@ export default function AssignmentList(props) {
         },
         {
           name: "Walpaper",
-          price: "Rs 200",
+          price: "LKR 200",
           where: "Pannipitiya",
           icon: "⚙️",
           img: require("./../../assets/images/Vehicle/Dunhinda_Falls.jpg"),
           status: "Completed",
+        },
+      ];
+      const preferencesList = [
+        {
+          name: "David Williams",
+          price: "LKR 2000",
+          where: "Nugegoda",
+          icon: "🔔",
+          img: require("./../../assets/images/Vehicle/ella.jpeg"),
+          status: "Upcoming",
+          progress: "Trip Started",
+          pickup: "Piliyandala Clock Tower",
+          destination: "3",
+          vehicle: "Toyota Coach",
+          startDate: "Aug 09",
+          endDate: "Aug 11",
+        },
+        {
+          name: "David Williams",
+          price: "LKR 2000",
+          where: "Nugegoda",
+          icon: "🔔",
+          img: require("./../../assets/images/Vehicle/ella.jpeg"),
+          status: "Upcoming",
+          progress: "Trip Started",
+          pickup: "Piliyandala Clock Tower",
+          destination: "3",
+          vehicle: "Toyota Coach",
+          startDate: "Aug 09",
+          endDate: "Aug 11",
+          Time: "4.30",
+        },
+        {
+          name: "David Williams",
+          price: "LKR 2000",
+          where: "Nugegoda",
+          icon: "🔔",
+          img: require("./../../assets/images/Vehicle/ella.jpeg"),
+          status: "Upcoming",
+          progress: "Trip Started",
+          pickup: "Piliyandala Clock Tower",
+          destination: "3",
+          vehicle: "Toyota Coach",
+          startDate: "Aug 09",
+          endDate: "Aug 11",
+          Time: "5.30",
+        },
+        {
+          name: "David Williams",
+          price: "LKR 2000",
+          where: "Nugegoda",
+          icon: "🔔",
+          img: require("./../../assets/images/Vehicle/ella.jpeg"),
+          status: "Upcoming",
+          progress: "Trip Started",
+          pickup: "Piliyandala Clock Tower",
+          destination: "3",
+          vehicle: "Toyota Coach",
+          startDate: "Aug 09",
+          endDate: "Aug 11",
+          Time: "6.00",
+        },
+        {
+          name: "David Williams",
+          price: "LKR 2000",
+          where: "Nugegoda",
+          icon: "🔔",
+          img: require("./../../assets/images/Vehicle/ella.jpeg"),
+          status: "Upcoming",
+          progress: "Trip Started",
+          pickup: "Piliyandala Clock Tower",
+          destination: "3",
+          vehicle: "Toyota Coach",
+          startDate: "Aug 09",
+          endDate: "Aug 11",
+          Time: "6.30",
+        },
+        {
+          name: "David Williams",
+          price: "LKR 2000",
+          where: "Nugegoda",
+          icon: "🔔",
+          img: require("./../../assets/images/Vehicle/ella.jpeg"),
+          status: "Upcoming",
+          progress: "Trip Started",
+          pickup: "Piliyandala Clock Tower",
+          destination: "3",
+          vehicle: "Toyota Coach",
+          startDate: "Aug 09",
+          endDate: "Aug 11",
+          Time: "7.30",
         },
       ];
 
@@ -110,7 +201,7 @@ export default function AssignmentList(props) {
 
   return (
     <View>
-      <Text
+      {/* <Text
         style={{
           paddingHorizontal: 20,
           fontSize: 20,
@@ -118,7 +209,7 @@ export default function AssignmentList(props) {
         }}
       >
         Trips
-      </Text>
+      </Text> */}
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View
           style={{

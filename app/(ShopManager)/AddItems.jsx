@@ -24,7 +24,7 @@ const AddItems = () => {
   const [count, setCount] = useState(0);
   const [category, setCategory] = useState("");
   const [isAvailable, setIsAvailable] = useState("true");
-  
+
   const router = useRouter();
 
   const handleAddItem = async () => {
@@ -52,17 +52,20 @@ const AddItems = () => {
         item_count: count,
         item_category: category,
         is_available: isAvailable,
-        shop_id :1,
-      }
+        shop_id: 1,
+      };
 
       console.log(data);
       const response = await axios.post(
-        "http://localhost:5001/api/travel/item/addItem",
-        data,
+        "http://10.22.162.81:5001/api/travel/item/addItem",
+        data
       );
 
-      if (response.data.code === "00") {
+      console.log(response);
+
+      if (response.data.code === "00" || response.data.code === "10") {
         Alert.alert("Success", "Created Item");
+        router.replace("./manage");
       } else {
         Alert.alert("Error", response.data.message || "Failed to create item");
       }

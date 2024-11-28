@@ -1,7 +1,8 @@
 import { StyleSheet } from "react-native";
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import MapViewDirections from "react-native-maps-directions";
-import { googleapi } from "../../environment";
+//import { googleapi } from "../../environment";
+
 import { Dimensions } from "react-native";
 import { useState, useEffect } from "react";
 import * as Location from "expo-location";
@@ -69,7 +70,7 @@ export default function MapComponent(backbutton) {
             longitude: LONGITUDE,
           }}
           apikey={googleapi}
-          strokeColor="blue"
+          strokeColor="#0A89FF"
           strokeWidth={3}
         />
       ) : (
@@ -83,7 +84,7 @@ export default function MapComponent(backbutton) {
 const styles = StyleSheet.create({
   map: {
     width: "100%",
-    height: "90%",
+    height: "60%",
   },
 });
 
