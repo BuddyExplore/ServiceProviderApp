@@ -35,6 +35,7 @@ const Signup = () => {
 
   const onSignupPressed = async (e) => {
     e.preventDefault();
+
     const result = await handleSignup(
       first_name,
       last_name,
@@ -45,7 +46,6 @@ const Signup = () => {
     );
 
     if (result.ok) {
-      console.log(result.role);
       switch (role) {
         case "VEHICLE_OWNER":
           router.replace("../Dashboard/DashboardDetails");

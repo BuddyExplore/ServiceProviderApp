@@ -26,32 +26,33 @@ const Login = () => {
 
   const onLoginPressed = async (e) => {
     e.preventDefault();
-    router.replace("../dashboard");
-    // const result = await handleLogin(email, password);
+    // router.replace("../dashboard");
+    // router.replace("../manage");
+    const result = await handleLogin(email, password);
 
-    // if (result.ok) {
-    //   switch (result.role) {
-    //     case "VEHICLE_OWNER":
-    //       router.replace("../Dashboard/DashboardDetails");
-    //       break;
-    //     case "TOUR_GUIDE":
-    //       router.replace("../dashboard");
-    //       break;
-    //     case "HOTEL_MANAGER":
-    //       router.replace("../home/Dashboard");
-    //       break;
-    //     case "SHOP_MANAGER":
-    //       router.replace("../manage");
-    //       break;
-    //     /*case "ACTIVITY_HOST":
-    //       router.replace("../(ActivityHost)/home/Dashboard");
-    //       break;*/
-    //     //default:
-    //     //router.replace("/DefaultDashboard");
-    //   }
-    // } else {
-    //   console.error(result.message);
-    // }
+    if (result.ok) {
+      switch (result.role) {
+        case "VEHICLE_OWNER":
+          router.replace("../Dashboard/DashboardDetails");
+          break;
+        case "TOUR_GUIDE":
+          router.replace("../dashboard");
+          break;
+        case "HOTEL_MANAGER":
+          router.replace("../home/Dashboard");
+          break;
+        case "SHOP_MANAGER":
+          router.replace("../manage");
+          break;
+        /*case "ACTIVITY_HOST":
+          router.replace("../(ActivityHost)/home/Dashboard");
+          break;*/
+        //default:
+        //router.replace("/DefaultDashboard");
+      }
+    } else {
+      console.error(result.message);
+    }
   };
 
   const [isPasswordShown, setIsPasswordShown] = useState(true);

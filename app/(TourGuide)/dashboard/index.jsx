@@ -61,7 +61,6 @@ const DashboardScreen = ({ navigation }) => {
             </TouchableOpacity>
           </View>
         </View>
-        <Graph />
       </ScrollView>
     </SafeAreaView>
   );
