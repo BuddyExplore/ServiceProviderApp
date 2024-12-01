@@ -1,10 +1,12 @@
 import { SafeAreaView } from "react-native-safe-area-context";
 import BottomContainer from "../../../components/Vehicle/BottomContainer";
 import MapComponent from "../../../components/Vehicle/MapComponent";
-import { Image, View, Text, Dimensions } from "react-native";
+import { Image, View, Text, StyleSheet } from "react-native";
+import {useState , useEffect} from "react";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { Colors } from "../../../constants/Colors";
 import FilterTrips from "../../../components/Vehicle/FilterTrips";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   GestureHandlerRootView,
   TouchableOpacity,
@@ -49,62 +51,109 @@ import { router } from "expo-router";
 //     </View>
 //   );
 // };
+
+
+
 export default function AssignmentScreen() {
+
+  useEffect(() => {
+    const loadUserData = async () => {
+      try {
+        const user = await AsyncStorage.getItem("user");
+        const token = await AsyncStorage.getItem("token");
+        if (user && token) {
+          console.log(user)
+        }
+      } catch (error) {
+        console.error("Failed to load user data:", error);
+      }
+    };
+
+    loadUserData();
+  }, []);
+
+  Text.defaultProps = {fontFamily: 'poppins-semibold'}
+
   let x = 5;
   return (
     <GestureHandlerRootView>
       <SafeAreaView>
+        <View style={styles.container}>
         {/* <MapComponent />
       <GoButton position={[0.77,0.45]} content="Go"/>
       <GoButton position={[0.77,0.01]} content="Emergency"/>
       <BottomContainer /> */}
-        <TouchableOpacity
-          style={{
-            backgroundColor: "#F9F9F9",
-            borderRadius: 32,
-            marginHorizontal: 50,
-            marginTop: 50,
-            // alignContent: "center",
-            justifyContent: "center",
-            display: "flex",
-
-            flexDirection: "row",
-            gap: 20,
-            paddingHorizontal: 20,
-            paddingVertical: 10,
-          }}
-          onPress={() => router.push("(VehicleOwner)/Assignment/incoming")}
-        >
-          <Image
-            source={require("../../../assets/images/Vehicle/calendar.png")}
-            contentFit="cover"
-            transition={1000}
-          />
-          <View
-            style={{
-              marginVertical: 10,
-              flexDirection: "row",
-              gap: 20,
-            }}
-          >
-            <Text>Incoming Requests</Text>
-          </View>
-          <View>
-            <Text
+            <View style={styles.header}>
+              <Text style={styles.headertxt}>Bookings</Text>
+            </View>
+            <TouchableOpacity
               style={{
-                backgroundColor: "#0A89FF",
+                backgroundColor: "#F9F9F9",
+                borderRadius: 28,
+                margin: 'auto',
+                marginTop: 5,
+                width:'90%',
+                height: 80,
+                justifyContent: 'space-around',
+                alignItems: 'center',
+                display: "flex",
+                flexDirection: "row",
+                paddingHorizontal: 20,
                 paddingVertical: 10,
-                paddingHorizontal: 16,
-                borderRadius: 20,
-                color: "white",
               }}
+              onPress={() => router.push("(VehicleOwner)/Assignment/incoming")}
             >
-              {x}
-            </Text>
-          </View>
-        </TouchableOpacity>
-        <FilterTrips />
+              <Image
+                source={require("../../../assets/images/Vehicle/calendar.png")}
+                contentFit="cover"
+                transition={1000}
+              />
+              <View
+                style={{
+                  marginVertical: 10,
+                  flexDirection: "row",
+                  gap: 20,
+                }}
+              >
+                <Text style={styles.incomingtxt}>Incoming Requests</Text>
+              </View>
+              <View>
+                <Text
+                  style={{
+                    backgroundColor: "#0A89FF",
+                    paddingVertical: 10,
+                    paddingHorizontal: 16,
+                    borderRadius: 20,
+                    color: "white",
+                  }}
+                >
+                  {x}
+                </Text>
+              </View>
+            </TouchableOpacity>
+            <FilterTrips />
+        </View>
       </SafeAreaView>
     </GestureHandlerRootView>
   );
 }
+
+const styles = StyleSheet.create({
+  container:{
+    fontFamily: 'poppins-semibold'
+  },
+  header:{
+    width: '100%' ,
+    height: 100,
+    display:'float',
+  },
+  headertxt:{
+    margin: 'auto',
+    fontSize: 25,
+    fontFamily: 'poppins-semibold'
+  },
+  incomingtxt:{
+    fontSize: 17,
+    fontFamily: 'poppins-semibold'
+  }
+})

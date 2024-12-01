@@ -1,8 +1,11 @@
 import { Text, StyleSheet, View, TouchableOpacity } from "react-native";
 import React from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { useNavigation } from "expo-router";
 
 export default function EndTrip() {
+  const navigation = useNavigation();
+  
   return (
     <GestureHandlerRootView>
       <View
@@ -47,6 +50,7 @@ export default function EndTrip() {
             height: 51,
             fontSize: 15,
           }}
+          onPress={() => navigation.navigate("TripDetail")}
         >
           <Text style={{ color: "white" }}>Back Trip</Text>
         </TouchableOpacity>

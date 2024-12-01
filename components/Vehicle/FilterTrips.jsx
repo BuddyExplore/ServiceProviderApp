@@ -13,7 +13,7 @@ const FilterButton = (props) => {
       end={{ x: 0, y: 0 }}
       colors={
         props.isSelect
-          ? [Colors.PRIMARY + "44", Colors.PRIMARY + "44"]
+          ? ['#0A89FF', '#0A89FF' ]
           : ["white", "white"]
       }
       style={{ borderRadius: 28 }}
@@ -34,8 +34,8 @@ const FilterButton = (props) => {
           {/* <Ionicons name="add-outline" size={24} color={`${props.isSelect?'white':"black"}`} /> */}
           <Text
             style={{
-              color: `${props.isSelect ? `${Colors.PRIMARY}` : "black"}`,
-              fontWeight: `${props.isSelect ? 900 : 500}`,
+              color: `${props.isSelect ? "white" : "black"}`,
+              //fontWeight: `${props.isSelect ? 900 : 500}`,
             }}
             onPress={props.onPress}
           >
@@ -47,7 +47,7 @@ const FilterButton = (props) => {
   );
 };
 
-const FilterTrips = () => {
+const FilterTrips = ({driver_id}) => {
   const [selectedFilter, setSelectedFilter] = useState("All");
 
   const handleFilterPress = (filter) => {
@@ -78,7 +78,7 @@ const FilterTrips = () => {
           onPress={() => handleFilterPress("Completed")}
         />
       </View>
-      <AssignmentList status={selectedFilter} />
+      <AssignmentList status={selectedFilter} driver_id = {driver_id}/>
     </View>
   );
 };
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     width: 150,
     height: 50,
     marginTop: 12,
-    marginBottom: 10,
+    marginBottom: 20,
     marginLeft: 10,
     padding: 10,
   },
