@@ -30,9 +30,7 @@ const DashboardScreen = ({ navigation }) => {
           <View>
             <TouchableOpacity
               style={styles.card}
-              onPress={() =>
-                router.push("../(TourGuide)/dashboard/upcomingtrips")
-              }
+              onPress={() => router.push("../dashboard/upcomingtrips")}
             >
               <Text style={{ fontWeight: "bold" }}>Upcoming Trips</Text>
               <Text style={{ fontSize: 24, fontWeight: "bold" }}>50</Text>
@@ -41,9 +39,7 @@ const DashboardScreen = ({ navigation }) => {
           <View>
             <TouchableOpacity
               style={styles.card}
-              onPress={() =>
-                router.push("../(TourGuide)/dashboard/ongoingtrips")
-              }
+              onPress={() => router.push("../dashboard/ongoingtrips")}
             >
               <Text style={{ fontWeight: "bold" }}>Ongoing Trips</Text>
               <Text style={{ fontSize: 24, fontWeight: "bold" }}>50</Text>
@@ -52,9 +48,7 @@ const DashboardScreen = ({ navigation }) => {
           <View>
             <TouchableOpacity
               style={styles.card}
-              onPress={() =>
-                router.push("../(TourGuide)/dashboard/completedtrips")
-              }
+              onPress={() => router.push("../dashboard/completedtrips")}
             >
               <Text style={{ fontWeight: "bold" }}>Completed Trips</Text>
               <Text style={{ fontSize: 24, fontWeight: "bold" }}>25</Text>

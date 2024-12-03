@@ -21,7 +21,7 @@ export const useLogin = () => {
       });
 
       if (response.status === 200 && response.data.code === "00") {
-        console.log("Login response:", response);
+        // console.log("Login response:", response);
 
         // Save content in AsyncStorage
         await AsyncStorage.setItem("token", response.data.content.jwtToken);

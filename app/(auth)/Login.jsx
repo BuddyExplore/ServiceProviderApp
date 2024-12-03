@@ -26,6 +26,9 @@ const Login = () => {
 
   const onLoginPressed = async (e) => {
     e.preventDefault();
+    if (e) {
+      console.log(email + "" + password);
+    }
     // router.replace("../dashboard");
     // router.replace("../manage");
     const result = await handleLogin(email, password);
@@ -51,7 +54,7 @@ const Login = () => {
         //router.replace("/DefaultDashboard");
       }
     } else {
-      console.error(result.message);
+      alert(result.message);
     }
   };
 

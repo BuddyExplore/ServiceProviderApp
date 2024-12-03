@@ -1,14 +1,14 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { useNavigation } from 'expo-router';
+import React from "react";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "expo-router";
 
 export default function Header({ title }) {
   const navigation = useNavigation();
   return (
     <View style={styles.header}>
-      <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
-        <Ionicons name="menu" size={32} color="black" />
+      <TouchableOpacity onPress={() => navigation.goBack()}>
+        <Ionicons name="arrow-back" size={32} color="black" />
       </TouchableOpacity>
       <Text style={styles.title}>{title}</Text>
       <TouchableOpacity>
@@ -20,17 +20,17 @@ export default function Header({ title }) {
 
 const styles = StyleSheet.create({
   header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     padding: 15,
-    backgroundColor: '#fff',
-    shadowColor: '#000',
+    backgroundColor: "#fff",
+    shadowColor: "#000",
     shadowOpacity: 0.1,
     shadowRadius: 10,
   },
   title: {
     fontSize: 24,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
 });
