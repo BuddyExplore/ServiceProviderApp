@@ -26,7 +26,11 @@ const Login = () => {
 
   const onLoginPressed = async (e) => {
     e.preventDefault();
+    if (e) {
+      console.log(email + "" + password);
+    }
     // router.replace("../dashboard");
+    // router.replace("../manage");
     const result = await handleLogin(email, password);
 
     if (result.ok) {
@@ -41,7 +45,7 @@ const Login = () => {
           router.replace("../home/Dashboard");
           break;
         case "SHOP_MANAGER":
-          router.replace("../manage");
+          router.replace("../ShopManager");
           break;
         /*case "ACTIVITY_HOST":
           router.replace("../(ActivityHost)/home/Dashboard");
@@ -50,7 +54,7 @@ const Login = () => {
         //router.replace("/DefaultDashboard");
       }
     } else {
-      console.error(result.message);
+      alert(result.message);
     }
   };
 
@@ -125,7 +129,7 @@ const Login = () => {
                   width: "100%",
                   borderWidth: 0,
                 }}
-                setValue={setPassword}
+                onChangeText={setPassword}
               />
 
               <TouchableOpacity

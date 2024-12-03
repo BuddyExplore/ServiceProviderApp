@@ -43,7 +43,7 @@ export default function Login() {
             }}>Goto TourGuides dashboard</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button}
-            onPress={() => router.push('(ShopManager)/manage')}
+            onPress={() => router.push('ShopManager')}
         >
             <Text style={{
                 color:Colors.WHITE,

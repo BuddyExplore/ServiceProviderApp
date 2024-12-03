@@ -60,7 +60,7 @@ export default function RootLayout() {
     "outfit-bold": require("./../assets/fonts/Outfit-Bold.ttf"),
   });
   return (
-    <>
+    // <>
       <AuthContextProvider>
         <ClerkProvider
           tokenCache={tokenCache}
@@ -73,10 +73,9 @@ export default function RootLayout() {
           >
             <Stack.Screen name="index" />
             <Stack.Screen name="(auth)" />
-            {/* <Stack.Screen
-              name="(ShopManager)"
-              options={{ title: "Shop Manager Dashboard" }}
-            /> */}
+            <Stack.Screen
+              name="ShopManager"
+            />
             <Stack.Screen
               name="(TourGuide)"
               options={{ title: "Tour Guide Dashboard" }}
@@ -86,9 +85,9 @@ export default function RootLayout() {
               options={{ title: "Vehicle Owner Dashboard" }}
             />
           </Stack>
-          <ModalPortal />
-        </ClerkProvider>
-      </AuthContextProvider>
-    </>
+         <ModalPortal />
+         </ClerkProvider>
+       </AuthContextProvider>
+    //  </>
   );
 }

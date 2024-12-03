@@ -3,6 +3,7 @@ import { useAuthContext } from "./useAuthContext";
 import axios from "axios";
 import { useRouter } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import BASE_URL from '../constants/globals'
 
 export const useSignup = () => {
   const [error, setError] = useState(null);
@@ -22,7 +23,7 @@ export const useSignup = () => {
     setError(null);
 
     try {
-      const response = await axios.post("http://10.22.162.81:5001/signup", {
+      const response = await axios.post(`${BASE_URL}/signup`, {
         first_name,
         last_name,
         mobile_no,
@@ -35,11 +36,17 @@ export const useSignup = () => {
         console.log("Signup response:", response);
 
         // Save content in AsyncStorage
-        await AsyncStorage.setItem("token", response.data.content.jwtToken);
-        await AsyncStorage.setItem(
-          "user",
-          JSON.stringify(response.data.content.user)
-        );
+        if (response && response.data && response.data.access_token) {
+          await AsyncStorage.setItem("token", response.data.access_token);
+          await AsyncStorage.setItem(
+            "user",
+            JSON.stringify(response.data.content.user)
+          );
+        }
+        // await AsyncStorage.setItem(
+        //   "user",
+        //   JSON.stringify(response.data.content.user)
+        // );
 
         // Update the auth context
         dispatch({
