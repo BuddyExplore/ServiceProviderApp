@@ -14,6 +14,7 @@ const AddVehicle = () => {
   const [revenueLicense, setRevenueLicense] = useState(null);
   const goToNextStep = () => {
     setCurrentStep((prevStep) => prevStep + 1);
+    console.log(selectedVehicle)
   };
   console.log(
     currentStep,

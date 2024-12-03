@@ -18,7 +18,7 @@ export default function BottomContainer(props) {
         <Feather name="user" />
         <Text>Tourist</Text>
       </View>
-      <View style={{ flexDirection: "row", gap: 20 }}>
+      <View style={{ flexDirection: "row",justifyContent: 'center', alignItems:'center', gap: 20,  }}>
         <Image
           source={require("../../assets/images/Vehicle/photo2.png")}
           style={{ width: 50, height: 50 }}

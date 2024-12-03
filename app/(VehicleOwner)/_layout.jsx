@@ -25,29 +25,38 @@ export default function TabLayout() {
       <Tabs.Screen
         name="Dashboard"
         options={{
-          tabBarLabel: "Dashboard",
+          tabBarLabel: "Overview",
           tabBarIcon: ({ color }) => (
             <Ionicons name="compass-outline" size={24} color={color} />
           ),
         }}
       />
-      <Tabs.Screen
+      {/* <Tabs.Screen
         name="Assignment"
         options={({ route }) => ({
           tabBarStyle: getTabBarStyle(route),
           tabBarLabel: "booking",
           tabBarIcon: ({ color }) => (
-            <Feather name="calendar" size={24} color={color} />
+            <Feather name="calendar" size={22} color={color} />
             // <Ionicons name="map-outline" size={24} color={color} />
           ), // Dynamic tab bar visibility based on route
         })}
+      /> */}
+      <Tabs.Screen
+        name="Assignment"
+        options={{
+          tabBarLabel: "Bookings",
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="car-outline" size={26} color={color} />
+          ),
+        }}
       />
       <Tabs.Screen
         name="Vehicle"
         options={{
           tabBarLabel: "Manage",
           tabBarIcon: ({ color }) => (
-            <Ionicons name="car-outline" size={24} color={color} />
+            <Ionicons name="car-outline" size={26} color={color} />
           ),
         }}
       />
