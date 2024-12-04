@@ -1,16 +1,17 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput, ScrollView } from 'react-native'
+import { StyleSheet, Pressable, Text, View, Image, TouchableOpacity, TextInput, ScrollView } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { Colors } from '../../../constants/Colors';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import * as ImagePicker from 'expo-image-picker';
 import RNPickerSelect from 'react-native-picker-select';
 import AntDesign from '@expo/vector-icons/AntDesign';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import BASE_URL from '../../../constants/globals';
 import axios from 'axios';
 
 const EditItem = () => {
   const router = useRouter();
-  const { id, name, price, availability, category, itemCount, description} = useLocalSearchParams();
+  const { itemID, shopID} = useLocalSearchParams();
 
   const [itemId, setItemId] = useState(null);
   const [itemName, setItemName] = useState('');
@@ -22,34 +23,35 @@ const EditItem = () => {
   const [itemCoverImage, setItemCoverImage] = useState('');
 
   useEffect(() => {
-    setItemId(id);
-    setItemName(name || '');
-    setItemPrice(price || '');
-    setItemAvailability(availability || 'In Stock');
-    setItemCategory(category || '');
-    setItemCountState(itemCount || 0);
-    setItemDescription(description || '');
-    
-    const fetchCover = async () => {
+
+    const fetchItem = async () => {
       try {
-        const response = await axios.get(`${BASE_URL}/api/travel/item/coverImage/${id}`);
-        const cover_image = response.data;
-        setItemCoverImage(cover_image || '');
-      } catch (error) {
-        console.error('Error fetching cover image:', error);
-        alert('Failed to fetch cover image. Please try again.');
+        const response = await axios.get(`${BASE_URL}/api/travel/item/itemOnly/${itemID}`)
+        const itemData = response.data;
+
+        setItemId(itemData.id);
+        setItemName(itemData.name || '');
+        setItemPrice(itemData.price.toString() || '');
+        setItemAvailability(itemData.is_available ? 'In Stock' : 'Out of Stock');
+        setItemCategory(itemData.item_category || '');
+        setItemCountState(itemData.item_count.toString() || 0);
+        setItemDescription(itemData.description || '');
+        setItemCoverImage(itemData.cover_image || '');
+
+      } catch(err) {
+        console.error(`Error fetching item `, err.message);
       }
     }
+    fetchItem();
 
-    fetchCover();
-
-  }, [id, name, price, availability, category, itemCount, description]);
+  }, [shopID, itemID]);
 
   const handleUpdateCover = () => {
     router.push({
       pathname: './UpdateCover',
       params: {
-        id: parseInt(itemId)
+        itemID,
+        shopID
       }
     })
   }
@@ -76,7 +78,11 @@ const EditItem = () => {
   
       console.log('Success:', response.data);
       alert("Item updated successfully!");
-      router.back(); 
+      router.replace(
+        `./ItemDetails?itemID=${itemID}&shopID=${shopID}`,
+        undefined,
+        { shallow: true }
+      )
     } catch (error) {
       // Handle errors from the server response
       if (error.response) {
@@ -95,8 +101,22 @@ const EditItem = () => {
     }
   };
 
+  const handleBackBtnPress = () => {
+    router.replace(
+      `./ItemDetails?itemID=${itemID}&shopID=${shopID}`,
+      undefined,
+      { shallow: true }
+    )
+  }
+
   return (
     <View style={styles.container}>
+      <View style={styles.headerTop}>
+        <Pressable style={styles.backBtn} onPress={handleBackBtnPress}>
+          <Ionicons name="arrow-back-outline" size={26} color="black" />
+        </Pressable>
+        <Text style={styles.headerText}>Update Item</Text>
+      </View>
     
     <ScrollView showsVerticalScrollIndicator={false}>
     <View style={{alignItems: 'center'}}>
@@ -168,7 +188,7 @@ const EditItem = () => {
     </ScrollView>
     
     <View style={styles.btnContainer}>
-      <TouchableOpacity onPress={() => router.back()} style={styles.cancelBtn}>
+      <TouchableOpacity onPress={handleBackBtnPress} style={styles.cancelBtn}>
         <Text style={styles.cancelBtnText}>Cancel</Text>
       </TouchableOpacity>
 
@@ -189,6 +209,28 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 20,
     backgroundColor: '#fff'
+  },
+  headerTop: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 15,
+    width: '100%',
+    height: 100,
+    position: 'relative',
+  },
+  backBtn: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    left: 0,
+    padding: 20,
+  },
+  headerText: {
+    fontSize: 22,
+    fontWeight: '700',
+    marginHorizontal: 'auto',
+    textAlign: 'center'
   },
   imageContainer: {
     width: 200,

@@ -17,10 +17,10 @@ const ManageLayout = () => {
           },
         }}>
       <Stack.Screen name="RegisterShopDetails" options={{ title: "Register Shop"}}/>
-      <Stack.Screen name="ShopDetails" />
+      <Stack.Screen name="ShopDetails" options={{headerShown: false}}/>
       <Stack.Screen name="AddItem" options={{ title: "Add Item" }}/>
-      <Stack.Screen name="ItemDetails" options={{title: "Item Details" }}/>
-      <Stack.Screen name="EditItem" options={{ title: "Update Item" }}/>
+      <Stack.Screen name="ItemDetails" options={{headerShown: false}}/>
+      <Stack.Screen name="EditItem" options={{ headerShown: false}}/>
       <Stack.Screen name="UpdateCover" options={{ title: "Update Cover" }}/>
     </Stack>
   )

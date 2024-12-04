@@ -9,7 +9,7 @@ import BASE_URL from '../../../constants/globals';
 
 const UpdateCover = () => {
   const router = useRouter();
-  const { id } = useLocalSearchParams();
+  const { itemID, shopID } = useLocalSearchParams();
 
   const [coverImage, setCoverImage] = useState('');
   const [coverImageName, setCoverImageName] = useState('');
@@ -29,7 +29,7 @@ const UpdateCover = () => {
     });
 
     try {
-      const response = await fetch(`${BASE_URL}/api/travel/item/updateCover/${id}`, {
+      const response = await fetch(`${BASE_URL}/api/travel/item/updateCover/${itemID}`, {
         method: 'PUT',
         header: {
           'Content-Type' : 'multipart/form-data'
@@ -39,7 +39,11 @@ const UpdateCover = () => {
   
       console.log('Registration Successful:');
       alert('Cover image updated successfully!');
-      router.back();
+      router.replace(
+        `./EditItem?itemID=${itemID}&shopID=${shopID}`,
+        undefined,
+        { shallow: true }
+      )
     } catch (error) {
       console.error('Error during registration:', error);
       alert('Something went wrong. Please try again.');

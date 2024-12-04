@@ -1,15 +1,16 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity, Modal, ScrollView } from 'react-native'
+import { StyleSheet, Pressable, Text, View, Image, TouchableOpacity, Modal, ScrollView } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { Colors } from '../../../constants/Colors';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import AntDesign from '@expo/vector-icons/AntDesign';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import axios from 'axios';
 import BASE_URL from '../../../constants/globals';
 
 const ItemDetails = () => {
   const router = useRouter();
 
-  const {itemID} = useLocalSearchParams();
+  const {shopID, itemID} = useLocalSearchParams();
 
   const [item, setItem] = useState({});
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -27,29 +28,51 @@ const ItemDetails = () => {
     }
 
     fetchItem();
-  }, [])
+  }, [shopID, itemID])
 
   const handleEdit = () => {
     router.push({
       pathname: "./EditItem",
       params: {
-        id: item.id,
-        name: item.name,
-        price: item.price.toString(),
-        availability: item.is_available ? 'In Stock' : 'Out of Stock',
-        category: item.item_category,
-        itemCount: item.item_count.toString(),
-        description: item.description
+        itemID,
+        shopID
       }
     })
   }
 
-  const handleDelete = () => {
-    setDeleted(true);
+  const handleDelete = async () => {
+    try {
+      const response = await axios.delete(`${BASE_URL}/api/travel/item/remove/${item.id}`);
+      setDeleted(true);
+    } catch(err) {
+      console.log('Error deleting item, ' + err);
+    } 
+  }
+
+  const handleOK = () => {
+    router.replace(
+      `./ShopDetails?shopID=${shopID}`,
+      undefined,
+      { shallow: true }
+    )
+  }
+
+  const handleBackBtnPress = () => {
+    router.replace(
+      `./ShopDetails?shopID=${shopID}`,
+      undefined,
+      { shallow: true }
+    )
   }
 
   return (
     <View style={styles.container}>
+      <View style={styles.headerTop}>
+        <Pressable style={styles.backBtn} onPress={handleBackBtnPress}>
+          <Ionicons name="arrow-back-outline" size={26} color="black" />
+        </Pressable>
+        <Text style={styles.headerText}>Item Details</Text>
+      </View>
     
     <ScrollView showsVerticalScrollIndicator={false}>
     <View style={{alignItems: 'center'}}>
@@ -116,7 +139,7 @@ const ItemDetails = () => {
           <Text style={{textAlign: 'center', fontSize: 17, fontWeight: '500'}}>Item has been deleted successfully !</Text>
         </View>
 
-        <TouchableOpacity style={{paddingVertical: 10, paddingHorizontal: 25, backgroundColor: Colors.PRIMARY, borderRadius: 20, marginTop: 20}} onPress={() => router.back()}>
+        <TouchableOpacity style={{paddingVertical: 10, paddingHorizontal: 25, backgroundColor: Colors.PRIMARY, borderRadius: 20, marginTop: 20}} onPress={handleOK}>
           <Text style={{fontSize: 15, fontWeight: '500', color: 'white'}}>Ok</Text>
         </TouchableOpacity>
         </>
@@ -139,7 +162,7 @@ const ItemDetails = () => {
           <Text style={{fontSize: 15, fontWeight: '500', color: Colors.PRIMARY}}>Cancel</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={{padding: 10, backgroundColor: Colors.DANGER, borderRadius: 20, paddingHorizontal: 15}} onPress={handleDelete}>
+        <TouchableOpacity style={{padding: 10, backgroundColor: Colors.PRIMARY, borderRadius: 20, paddingHorizontal: 15}} onPress={handleDelete}>
           <Text style={{fontSize: 15, fontWeight: '500', color: 'white'}}>Confirm</Text>
           </TouchableOpacity>
         </View>
@@ -161,6 +184,28 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 20,
     backgroundColor: '#fff'
+  },
+  headerTop: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 15,
+    width: '100%',
+    height: 100,
+    position: 'relative',
+  },
+  backBtn: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    left: 0,
+    padding: 20,
+  },
+  headerText: {
+    fontSize: 22,
+    fontWeight: '700',
+    marginHorizontal: 'auto',
+    textAlign: 'center'
   },
   imageContainer: {
     width: 200,

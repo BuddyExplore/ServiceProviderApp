@@ -66,7 +66,11 @@ const AddItem = () => {
       const result = await response.json();
       console.log('Success:', result);
       Alert.alert("Item added successfully !");
-      router.back();
+      router.replace(
+        `./ShopDetails?shopID=${shopID}`,
+        undefined,
+        { shallow: true }
+      )
     } catch (error) {
       console.error('Error:', error);
     }

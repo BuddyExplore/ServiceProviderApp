@@ -2,7 +2,7 @@ import { Pressable, StyleSheet, Text, View, TouchableOpacity, FlatList, Image } 
 import React, {useEffect, useState} from 'react'
 import Ionicons from '@expo/vector-icons/Ionicons';
 import AntDesign from '@expo/vector-icons/AntDesign';
-import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import {Colors} from '../../../constants/Colors'
 import axios from 'axios';
 import BASE_URL from '../../../constants/globals';
@@ -30,18 +30,21 @@ const ShopDetails = () => {
 
   useEffect(() => {
     fetchItems();
-  }, [])
+  }, [shopID])
 
 
   const handleBackBtnPress = () => {
-    router.push({pathname: './ManageHome'})
+    router.replace('../HomeTabs/ManageTab', undefined, { shallow: true });
   }
 
   const handlePress = (itemID) => {
     
     router.push({
       pathname: "./ItemDetails",
-      params: {itemID}
+      params: {
+        itemID,
+        shopID
+      }
     })
   }
 
@@ -74,18 +77,12 @@ const ShopDetails = () => {
 
   return (
     <View style={styles.container}>
-      <Stack.Screen
-        options={{
-          title: shopName,
-        }}
-      />
-
-      {/* <View style={styles.headerTop}>
+      <View style={styles.headerTop}>
         <Pressable style={styles.backBtn} onPress={handleBackBtnPress}>
           <Ionicons name="arrow-back-outline" size={26} color="black" />
         </Pressable>
         <Text style={styles.headerText}>{shop.name}</Text>
-      </View> */}
+      </View>
 
       <View style={styles.countContainer}>
         <View style={{gap: 10}}>
@@ -187,12 +184,14 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    position: 'absolute',
+    left: 0,
     padding: 20,
   },
   headerText: {
-    fontSize: 19,
-    fontWeight: '600',
-    marginLeft: 90,
+    fontSize: 22,
+    fontWeight: '700',
+    marginHorizontal: 'auto',
     textAlign: 'center'
   },
   countContainer: {

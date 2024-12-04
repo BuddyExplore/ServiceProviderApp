@@ -4,7 +4,6 @@ import { Colors } from '../../../constants/Colors'
 import { Tabs } from 'expo-router'
 import { Ionicons } from "@expo/vector-icons";
 import Entypo from '@expo/vector-icons/Entypo';
-import Feather from '@expo/vector-icons/Feather';
 
 const TabLayout = () => {
   return (
@@ -45,7 +44,7 @@ const TabLayout = () => {
           headerTitle: 'Manage',
           tabBarLabel: "Manage",
           tabBarIcon: ({ color }) => (
-            <Feather name="settings" size={24} color={color} />
+            <Ionicons name="settings-outline" size={24} color={color} />
           ),
         }}
       />
