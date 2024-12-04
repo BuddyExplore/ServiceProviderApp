@@ -3,21 +3,22 @@ import {
   Image,
   StyleSheet,
   View,
+  ImageBackground,
   Dimensions,
   Text,
   Alert,
-  TouchableOpacity,
 } from "react-native";
 import { useRouter } from "expo-router";
-import { useNavigation } from "expo-router";
 import { useLogout } from "../../../hooks/useLogout";
-import React from "react";
+import React, { Component } from "react";
+import { Redirect, useNavigation } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
+import Header from "../../../components/Vehicle/ManageHeader";
 import { Colors } from "../../../constants/Colors";
 import { EvilIcons, Ionicons, MaterialIcons } from "@expo/vector-icons";
+import { TouchableOpacity } from "react-native";
 
-let userdetail = { name: "was", rating: 4.6 };
-
+let userdetail = { name: "Siraj", rating: 4.6 };
 const SelectButton = (props) => {
   return (
     <TouchableOpacity
@@ -34,17 +35,29 @@ const SelectButton = (props) => {
       }}
       onPress={props.onPress}
     >
-      {/* {props.title === "Profile" ? (
-        <EvilIcons color="black" size={40} name="user" />
-      ) : props.title === "Payment" ? (
-        <MaterialIcons color="black" size={30} name="payment" />
+      {props.title == "Profile" ? (
+        <EvilIcons
+          color={props.title != "Signout" ? "black" : "red"}
+          size={40}
+          name="user"
+        />
+      ) : props.title == "Payment" ? (
+        <MaterialIcons
+          color={props.title != "Signout" ? "black" : "red"}
+          size={30}
+          name="payment"
+        />
       ) : (
-        <Ionicons color="red" size={30} name="log-out-outline" />
-      )} */}
-      {props.icon}
+        <Ionicons
+          color={props.title != "Signout" ? "black" : "red"}
+          size={30}
+          name="log-out-outline"
+        />
+      )}
+
       <Text
         style={{
-          color: props.title === "Signout" ? "red" : "black",
+          color: props.title != "Signout" ? "black" : "red",
           fontSize: 20,
         }}
       >
@@ -53,17 +66,19 @@ const SelectButton = (props) => {
     </TouchableOpacity>
   );
 };
-
 const handleSignout = (navigation, logout, router) => {
   Alert.alert(
     "Sign out",
     "Are you sure?",
     [
-      { text: "No", style: "cancel" },
+      {
+        text: "No",
+        style: "cancel",
+      },
       {
         text: "Yes",
         onPress: () => {
-          logout();
+          logout;
           router.replace("../Login");
         },
       },
@@ -71,8 +86,7 @@ const handleSignout = (navigation, logout, router) => {
     { cancelable: true }
   );
 };
-
-const ProfileView = (name) => {
+const ProfileView = () => {
   return (
     <View
       style={{
@@ -86,6 +100,7 @@ const ProfileView = (name) => {
       <View style={{ paddingHorizontal: 20 }}>
         <Image
           source={require("../../../assets/images/Shop/shop.png")}
+          n
           style={{
             width: 100,
             height: 100,
@@ -94,9 +109,7 @@ const ProfileView = (name) => {
           }}
         />
       </View>
-      <Text style={{ color: "white", fontSize: 30 }}>
-        {name.name ?? userdetail.name}
-      </Text>
+      <Text style={{ color: "white", fontSize: 30 }}>{userdetail.name}</Text>
       <View style={{ alignItems: "center" }}>
         <Text style={{ fontSize: 20, color: "white" }}>
           {userdetail.rating}
@@ -116,55 +129,28 @@ export default function Index() {
     <SafeAreaView>
       <View>
         <ProfileView />
+
         <SelectButton
           title="Profile"
-          color="#ddd"
-          icon={<EvilIcons color="black" size={40} name="user" />}
-          onPress={() => navigation.navigate("profilescreen")}
+          color={"#ddd"}
+          onPress={() => navigation.navigate("ProfileDetails")}
         />
         <SelectButton
           title="Payment"
-          color="#ddd"
-          icon={<MaterialIcons color="black" size={30} name="payment" />}
-          onPress={() => navigation.navigate("payments")}
+          color={"#ddd"}
+          onPress={() => navigation.navigate("Payment")}
         />
         <SelectButton
           title="Availability"
-          color="#ddd"
-          icon={<Ionicons color={"black"} size={30} name="calendar-outline" />}
+          color={"#ddd"}
           onPress={() => navigation.navigate("availability")}
         />
         <SelectButton
-          title="Feedbacks"
-          color="#ddd"
-          icon={<MaterialIcons color="black" size={30} name="feedback" />}
-          onPress={() => navigation.navigate("feedbacks")}
-        />
-        {/* <SelectButton
-          title="Messages"
-          color="#ddd"
-          icon={<MaterialIcons color="black" size={30} name="message" />}
-          onPress={() => navigation.navigate("messages")}
-        /> */}
-        {/* <SelectButton
-          title="Notifications"
-          color="#ddd"
-          icon={
-            <Ionicons color="black" size={30} name="notifications-outline" />
-          }
-          onPress={() => navigation.navigate("notifications")}
-        /> */}
-        {/* <SelectButton
-          title="Trip Details"
-          color="#ddd"
-          icon={<Ionicons color="black" size={30} name="car-outline" />}
-          onPress={() => navigation.navigate("TripDetails")}
-        /> */}
-        <SelectButton
           title="Signout"
-          color="#ddd"
-          icon={<Ionicons color="red" size={30} name="log-out-outline" />}
-          onPress={() => handleSignout(logout, router)}
+          color={"#ddd"}
+          onPress={() => {
+            handleSignout(navigation, logout, router);
+          }}
         />
       </View>
     </SafeAreaView>
