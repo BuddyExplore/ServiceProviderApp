@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { TextInput } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import BottomContainer from "../../../components/Vehicle/BottomContainer";
@@ -17,6 +17,10 @@ import { Colors } from "../../../constants/Colors";
 import FilterTrips from "../../../components/Vehicle/FilterTrips";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { router } from "expo-router";
+import axios from "axios";
+import {Urls} from "../../../constants/Urls"
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 const GoButton = (props) => {
   const color =
@@ -57,7 +61,7 @@ const GoButton = (props) => {
   );
 };
 
-const OTPModal = ({ isVisible, onClose, navigation }) => {
+const OTPModal = ({ isVisible, onClose, navigation, bookingId }) => {
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const inputs = useRef([]);
 
@@ -74,6 +78,24 @@ const OTPModal = ({ isVisible, onClose, navigation }) => {
       inputs.current[index - 1].focus();
     }
   };
+
+  const handleStartRide = () => {
+    const fetchItems = async () => {
+      console.log(bookingId)
+      try {
+        const response = await axios.put(
+          `${Urls.SPRING}/api/Booking/Vehicle/updateStatus/${bookingId}/3`
+        );
+        console.log("Done")
+      } catch (error) {
+        console.error("Error fetching items:", error);
+      }
+    };
+
+    fetchItems();
+    onClose();
+    navigation.navigate("TripDetail")
+  }
 
   return (
     <Modal transparent={true} visible={isVisible} animationType="slide">
@@ -107,7 +129,7 @@ const OTPModal = ({ isVisible, onClose, navigation }) => {
           <View style={styles.modalButtonContainer}>
             <TouchableOpacity
               style={styles.button}
-              onPress={() => navigation.navigate("TripDetail")}
+              onPress={handleStartRide}
             >
               <Text style={styles.buttonText}>Start Ride</Text>
             </TouchableOpacity>
@@ -124,10 +146,37 @@ const OTPModal = ({ isVisible, onClose, navigation }) => {
 export default function StartRide() {
   const navigation = useNavigation();
   const [modalVisible, setModalVisible] = useState(false);
+  const [booking,setBooking] = useState(null)
+  const [loading,setLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchUserFromStorage = async () => {
+      try {
+        const bookingData = await AsyncStorage.getItem('booking');
+        if (bookingData) {
+          setBooking(JSON.parse(bookingData)); // Parse the JSON string back to an object
+          console.log(bookingData)
+        }
+      } catch (error) {
+        console.error('Error retrieving data from AsyncStorage', error);
+      }
+    };
+
+    fetchUserFromStorage();
+    setLoading(false)
+  }, []);
+
+  if(loading){
+    return(
+      <View>
+        <Text>Loading...</Text>
+      </View>
+    )
+  }
 
   return (
     <GestureHandlerRootView>
-      <MapComponent />
+      {/* <MapComponent /> */}
       {/* <TouchableOpacity
         onPress={() => setModalVisible(true)}
         style={styles.rideButton}
@@ -140,6 +189,7 @@ export default function StartRide() {
         isVisible={modalVisible}
         onClose={() => setModalVisible(false)}
         navigation={navigation}
+        bookingId = {booking.id}
       />
     </GestureHandlerRootView>
   );

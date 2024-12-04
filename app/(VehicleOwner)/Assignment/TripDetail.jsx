@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import {
   View,
   Text,
@@ -8,9 +8,51 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "expo-router";
+import axios from "axios";
+import {Urls} from "../../../constants/Urls"
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const TripDetailsScreen = () => {
+
   const navigation = useNavigation();
+
+  const [booking,setBooking] = useState(null)
+  const [loading,setLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchUserFromStorage = async () => {
+      try {
+        const bookingData = await AsyncStorage.getItem('booking');
+        if (bookingData) {
+          setBooking(JSON.parse(bookingData)); // Parse the JSON string back to an object
+          console.log(bookingData)
+        }
+      } catch (error) {
+        console.error('Error retrieving data from AsyncStorage', error);
+      }
+    };
+
+    fetchUserFromStorage();
+    setLoading(false)
+  }, []);
+
+
+  const handleEndTrip = () => {
+    const fetchItems = async () => {
+      console.log(booking)
+      try {
+        const response = await axios.put(
+          `${Urls.SPRING}/api/Booking/Vehicle/updateStatus/${booking.id}/4`
+        );
+        console.log("Done")
+      } catch (error) {
+        console.error("Error fetching items:", error);
+      }
+    };
+
+    fetchItems();
+    navigation.navigate("EndTrip")
+  }
   return (
     <View style={styles.container}>
       <Text style={styles.subheader}>
@@ -87,7 +129,7 @@ const TripDetailsScreen = () => {
 
       <TouchableOpacity
         style={styles.endTripButton}
-        onPress={() => navigation.navigate("EndTrip")}
+        onPress={handleEndTrip}
       >
         <Text style={styles.endTripButtonText}>End Trip</Text>
       </TouchableOpacity>

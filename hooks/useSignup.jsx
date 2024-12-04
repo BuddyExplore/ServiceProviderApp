@@ -3,6 +3,8 @@ import { useAuthContext } from "./useAuthContext";
 import axios from "axios";
 import { useRouter } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import {Urls} from "../constants/Urls"
+
 
 export const useSignup = () => {
   const [error, setError] = useState(null);
@@ -22,7 +24,7 @@ export const useSignup = () => {
     setError(null);
 
     try {
-      const response = await axios.post("http://10.22.162.81:5001/signup", {
+      const response = await axios.post(`${Urls.SPRING}/signup`, {
         first_name,
         last_name,
         mobile_no,

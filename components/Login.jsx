@@ -18,7 +18,7 @@ export default function Login() {
       <View style={styles.container}>
         <Text style={{
             fontSize:25,
-            fontFamily:'outfit-bold',
+            fontFamily:'poppins-medium',
             textAlign:'center',
 
         }}>Dashboards</Text>

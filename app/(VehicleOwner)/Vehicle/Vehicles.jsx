@@ -16,8 +16,25 @@ import Header from "../../../components/Vehicle/ManageHeader";
 import { LinearGradient } from "expo-linear-gradient";
 import { Colors } from "../../../constants/Colors";
 import { useNavigation } from "expo-router";
+import axios from "axios";
+import {Urls} from "../../../constants/Urls"
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const Vehicles = (data) => {
+const Vehicles = ({data}) => {
+
+  const getVehicleImage = (vehicleType) => {
+    switch (vehicleType) {
+      case "Car":
+        return require("../../../assets/images/Vehicle/car.png");
+      case "Bus":
+        return require("../../../assets/images/Vehicle/bus.png");
+      case "Van":
+        return require("../../../assets/images/Vehicle/van.png");
+      default:
+        return require("../../../assets/images/Vehicle/car.png"); // Default image if no match
+    }
+  };
+
   return (
     <View
       style={{
@@ -29,22 +46,24 @@ const Vehicles = (data) => {
         margin: 10,
         flexDirection: "row",
         flexWrap: "wrap",
+        gap: 20,
+        alignItems: 'center'
       }}
     >
       <View style={{ paddingBottom: 20 }}>
         <Image
-          source={require("../../../assets/images/Vehicle/bike.png.png")}
+          source={getVehicleImage(data.VehicleType)}
           style={{
-            width: 110,
+            width: 80,
             height: 80,
             borderColor: "black",
           }}
         />
       </View>
       <View style={{ paddingVertical: 20 }}>
-        <Text>VehicleModel: {data.VehicleModel || "ZR"}</Text>
-        <Text>Seats: {data.Seats || "2"}</Text>
-        <Text>Speed: {data.Speed || "80Kmph"}</Text>
+        <Text>ID: {data.Id}</Text>
+        <Text>VehicleModel: {data.VehicleModel}</Text>
+        <Text>Seats: {data.Seats}</Text>
         <Text>Price (Average): {data.AvgPrice || "200"}</Text>
       </View>
     </View>
@@ -53,10 +72,37 @@ const Vehicles = (data) => {
 
 export default function Vehicle() {
   const navigation = useNavigation();
+  
+  const vehicleData = [
+    {
+      Id: 12,
+      VehicleType: "Car",
+      VehicleModel: "Toyota Corolla",
+      Seats: 4,
+      Speed: "120Kmph",
+      AvgPrice: "300"
+    },
+    {
+      Id: 101,
+      VehicleType: "Bus",
+      VehicleModel: "Mitsubishi Fuso",
+      Seats: 40,
+      Speed: "90Kmph",
+      AvgPrice: "800"
+    },
+    {
+      Id: 122,
+      VehicleType: "Van",
+      VehicleModel: "Nissan Caravan",
+      Seats: 12,
+      Speed: "100Kmph",
+      AvgPrice: "500"
+    }
+  ];
 
   return (
     <SafeAreaView>
-      <Header content="Manage Vehciles" />
+      <Header content="Vehicles" />
       <Text
         style={{
           paddingHorizontal: 20,
@@ -93,7 +139,7 @@ export default function Vehicle() {
           locations={[0, 1]}
           start={{ x: 1, y: 0 }}
           end={{ x: 0, y: 0 }}
-          colors={[Colors.PRIMARY + "44", Colors.PRIMARY + "44"]}
+          colors={["#0A89FF","#0A89FF"]}
           style={{ borderRadius: 28 }}
         >
           <TouchableOpacity>
@@ -111,8 +157,8 @@ export default function Vehicle() {
             >
               <Text
                 style={{
-                  color: `${Colors.PRIMARY}`,
-                  fontWeight: `${900}`,
+                  color: `white`,
+                  fontWeight: 'bold'
                 }}
                 onPress={() => {
                   navigation.navigate("AddVehicle");
@@ -126,13 +172,11 @@ export default function Vehicle() {
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={{ marginBottom: 400 }}>
-          <Vehicles />
-          <Vehicles />
-          <Vehicles />
-          <Vehicles />
-          <Vehicles />
-          <Vehicles />
-          <Vehicles />
+
+        {vehicleData.map((data, index) => (
+            <Vehicles data={data}/>
+          ))}
+
         </View>
       </ScrollView>
     </SafeAreaView>
