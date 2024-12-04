@@ -18,7 +18,7 @@ import { Colors } from "../../../constants/Colors";
 import { EvilIcons, Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native";
 
-let userdetail = { name: "Shaf", rating: 4.6 };
+let userdetail = { name: "Isuka", rating: 4.6 };
 const SelectButton = (props) => {
   return (
     <TouchableOpacity

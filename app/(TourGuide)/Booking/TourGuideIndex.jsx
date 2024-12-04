@@ -73,7 +73,7 @@ export default function AssignmentScreen() {
             paddingHorizontal: 20,
             paddingVertical: 10,
           }}
-          onPress={() => router.push("(VehicleOwner)/Assignment/incoming")}
+          onPress={() => router.push("(TourGuide)/Booking/incoming")}
         >
           <Image
             source={require("../../../assets/images/Vehicle/calendar.png")}

@@ -46,6 +46,7 @@ export default function TabLayout() {
             <Ionicons name="car-outline" size={24} color={color} />
           ),
         }}
+        
       />
       <Tabs.Screen
         name="Guides"
@@ -61,7 +62,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="Profile"
+        name="profile"
         options={{
           tabBarLabel: "Profile",
           tabBarIcon: ({ color }) => (

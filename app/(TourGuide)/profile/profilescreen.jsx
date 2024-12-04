@@ -45,7 +45,7 @@ const ProfileScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Header title="Profile" navigation={navigation} />
+      {/* <Header title="Profile" navigation={navigation} /> */}
       <View style={styles.page}>
         <View style={styles.card}>
           <View style={styles.header}></View>

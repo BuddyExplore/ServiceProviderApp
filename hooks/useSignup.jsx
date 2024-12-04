@@ -37,11 +37,17 @@ export const useSignup = () => {
         console.log("Signup response:", response);
 
         // Save content in AsyncStorage
-        await AsyncStorage.setItem("token", response.data.content.jwtToken);
-        await AsyncStorage.setItem(
-          "user",
-          JSON.stringify(response.data.content.user)
-        );
+        if (response && response.data && response.data.access_token) {
+          await AsyncStorage.setItem("token", response.data.access_token);
+          await AsyncStorage.setItem(
+            "user",
+            JSON.stringify(response.data.content.user)
+          );
+        }
+        // await AsyncStorage.setItem(
+        //   "user",
+        //   JSON.stringify(response.data.content.user)
+        // );
 
         // Update the auth context
         dispatch({
