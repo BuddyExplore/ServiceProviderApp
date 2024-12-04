@@ -34,13 +34,14 @@ const SelectButton = (props) => {
       }}
       onPress={props.onPress}
     >
-      {props.title === "Profile" ? (
+      {/* {props.title === "Profile" ? (
         <EvilIcons color="black" size={40} name="user" />
       ) : props.title === "Payment" ? (
         <MaterialIcons color="black" size={30} name="payment" />
       ) : (
         <Ionicons color="red" size={30} name="log-out-outline" />
-      )}
+      )} */}
+      {props.icon}
       <Text
         style={{
           color: props.title === "Signout" ? "red" : "black",
@@ -117,7 +118,7 @@ export default function Index() {
           title="Profile"
           color="#ddd"
           icon={<EvilIcons color="black" size={40} name="user" />}
-          onPress={() => navigation.navigate("ProfileScreen")}
+          onPress={() => navigation.navigate("profilescreen")}
         />
         <SelectButton
           title="Payment"
@@ -128,7 +129,7 @@ export default function Index() {
         <SelectButton
           title="Availability"
           color="#ddd"
-          icon={<Ionicons color="black" size={30} name="calendar-outline" />}
+          icon={<Ionicons color={"black"} size={30} name="calendar-outline" />}
           onPress={() => navigation.navigate("availability")}
         />
         <SelectButton
@@ -137,26 +138,26 @@ export default function Index() {
           icon={<MaterialIcons color="black" size={30} name="feedback" />}
           onPress={() => navigation.navigate("feedbacks")}
         />
-        <SelectButton
+        {/* <SelectButton
           title="Messages"
           color="#ddd"
           icon={<MaterialIcons color="black" size={30} name="message" />}
           onPress={() => navigation.navigate("messages")}
-        />
-        <SelectButton
+        /> */}
+        {/* <SelectButton
           title="Notifications"
           color="#ddd"
           icon={
             <Ionicons color="black" size={30} name="notifications-outline" />
           }
           onPress={() => navigation.navigate("notifications")}
-        />
-        <SelectButton
+        /> */}
+        {/* <SelectButton
           title="Trip Details"
           color="#ddd"
           icon={<Ionicons color="black" size={30} name="car-outline" />}
           onPress={() => navigation.navigate("TripDetails")}
-        />
+        /> */}
         <SelectButton
           title="Signout"
           color="#ddd"

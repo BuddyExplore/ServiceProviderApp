@@ -11,87 +11,55 @@ import photo1 from "../../../assets/images/Vehicle/photo1.png";
 import photo2 from "../../../assets/images/Vehicle/photo2.png";
 import { MaterialIcons } from "@expo/vector-icons";
 import { router } from "expo-router";
+
+const RequestCard = (data) => {
+  return (
+    <View style={styles.requestCard}>
+      <View style={styles.requestHeader}>
+        <Image source={data.photo ?? photo1} style={styles.avatar} />
+        <View>
+          <Text style={styles.nameText}>{data.name ?? "Laura Anne"}</Text>
+          <Text style={styles.dateText}>{data.date ?? "Aug 25 - Aug 28"}</Text>
+        </View>
+
+        <TouchableOpacity
+          style={styles.moreOptions}
+          onPress={() =>
+            router.push("(TourGuide)/Booking/requestdetails?accepted=false")
+          }
+        >
+          <MaterialIcons name="keyboard-arrow-right" size={25} />
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.requestBody}>
+        <Text style={styles.infoText}>Pick up</Text>
+        <Text style={styles.valueText}>122, Hill Street, Walla</Text>
+
+        <Text style={styles.infoText}>Destinations</Text>
+        <Text style={styles.valueText}>4</Text>
+
+        <Text style={styles.infoText}>Vehicle</Text>
+        <Text style={styles.valueText}>Toyota Coach</Text>
+      </View>
+
+      <View style={styles.buttonsContainer}>
+        <TouchableOpacity style={styles.rejectButton}>
+          <Text style={styles.rejectButtonText}>Reject</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.acceptButton}>
+          <Text style={styles.acceptButtonText}>Accept</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+};
 const IncomingRequests = () => {
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.requestsContainer}>
-        {/* Request Card 1 */}
-        <View style={styles.requestCard}>
-          <View style={styles.requestHeader}>
-            <Image source={photo1} style={styles.avatar} />
-            <View>
-              <Text style={styles.nameText}>Laura Anne</Text>
-              <Text style={styles.dateText}>Aug 25 - Aug 28</Text>
-            </View>
-
-            <TouchableOpacity
-              style={styles.moreOptions}
-              onPress={() =>
-                router.push(
-                  "(VehicleOwner)/Assignment/requestdetails?accepted=false"
-                )
-              }
-            >
-              <MaterialIcons name="keyboard-arrow-right" size={25} />
-            </TouchableOpacity>
-          </View>
-
-          <View style={styles.requestBody}>
-            <Text style={styles.infoText}>Pick up</Text>
-            <Text style={styles.valueText}>122, Hill Street, Walla</Text>
-
-            <Text style={styles.infoText}>Destinations</Text>
-            <Text style={styles.valueText}>4</Text>
-
-            <Text style={styles.infoText}>Vehicle</Text>
-            <Text style={styles.valueText}>Toyota Coach</Text>
-          </View>
-
-          <View style={styles.buttonsContainer}>
-            <TouchableOpacity style={styles.rejectButton}>
-              <Text style={styles.rejectButtonText}>Reject</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.acceptButton}>
-              <Text style={styles.acceptButtonText}>Accept</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-
-        {/* Request Card 2 */}
-        <View style={styles.requestCard}>
-          <View style={styles.requestHeader}>
-            <Image source={photo1} style={styles.avatar} />
-
-            <View>
-              <Text style={styles.nameText}>Peter Thomson</Text>
-              <Text style={styles.dateText}>Aug 30 - Sep 01</Text>
-            </View>
-            <TouchableOpacity style={styles.moreOptions}>
-              <MaterialIcons name="keyboard-arrow-right" size={25} />
-            </TouchableOpacity>
-          </View>
-
-          <View style={styles.requestBody}>
-            <Text style={styles.infoText}>Pick up</Text>
-            <Text style={styles.valueText}>Piliyandala Clock Tower</Text>
-
-            <Text style={styles.infoText}>Destinations</Text>
-            <Text style={styles.valueText}>1</Text>
-
-            <Text style={styles.infoText}>Vehicle</Text>
-            <Text style={styles.valueText}>Toyota Coach</Text>
-          </View>
-
-          <View style={styles.buttonsContainer}>
-            <TouchableOpacity style={styles.rejectButton}>
-              <Text style={styles.rejectButtonText}>Reject</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.acceptButton}>
-              <Text style={styles.acceptButtonText}>Accept</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-
+        <RequestCard />
+        <RequestCard />
         {/* Add more request cards as needed */}
       </ScrollView>
     </View>
@@ -166,7 +134,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   rejectButton: {
-    backgroundColor: "#42A5F5",
+    backgroundColor: "#e57373",
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 5,
