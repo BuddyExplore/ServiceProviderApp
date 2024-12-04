@@ -47,7 +47,7 @@ export default function TabLayout() {
         options={{
           tabBarLabel: "Bookings",
           tabBarIcon: ({ color }) => (
-            <Ionicons name="car-outline" size={26} color={color} />
+            <Ionicons name="calendar-clear-outline" size={24} color={color} />
           ),
         }}
       />
