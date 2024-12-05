@@ -1,11 +1,9 @@
 import { Redirect } from "expo-router";
 import { Text, View } from "react-native";
-// import Login from "../app/(auth)/Login";
+import Login from "../app/(auth)/Login";
 import { SafeAreaView } from "react-native-safe-area-context";
-import Login from '../components/Login'
 import React, {useState, useEffect} from "react";
 import * as Font from 'expo-font';
-import { setCustomText } from 'react-native-global-props';
 
 export default function Index() {
 
@@ -33,7 +31,8 @@ export default function Index() {
     }
   }
 
-  setCustomText(customTextProps);
+  // setCustomText(customTextProps);
+
 
 
   return <Redirect href={'/Login'} />

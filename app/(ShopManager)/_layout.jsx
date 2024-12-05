@@ -6,8 +6,6 @@ import { Colors } from '../../constants/Colors'
 
 import ManageScreen from './manage';
 import OrdersScreen from './orders';
-import ProfileScreen from './profile';
-
 export default function TabLayout() {
   return (
     <Tabs screenOptions={{

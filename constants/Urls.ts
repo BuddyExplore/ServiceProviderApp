@@ -5,6 +5,7 @@
 
 
 export const Urls = {
-  //SPRING:'http://10.22.162.81:5001',
-  SPRING:'http://localhost:5001',
+  SPRING:'http://10.22.162.81:5001',
+  // SPRING:'http://localhost:5001',
+  // SPRING:"https://buddybackend-production.up.railway.app",
 };

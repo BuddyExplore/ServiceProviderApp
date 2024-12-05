@@ -45,7 +45,7 @@ const Login = () => {
           router.replace("../home/Dashboard");
           break;
         case "SHOP_MANAGER":
-          router.replace("../manage");
+          router.replace("../ShopManager");
           break;
         /*case "ACTIVITY_HOST":
           router.replace("../(ActivityHost)/home/Dashboard");
@@ -129,7 +129,7 @@ const Login = () => {
                   width: "100%",
                   borderWidth: 0,
                 }}
-                setValue={setPassword}
+                onChangeText={setPassword}
               />
 
               <TouchableOpacity

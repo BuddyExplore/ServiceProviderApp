@@ -32,10 +32,11 @@ export const Colors = {
     tabIconDefault: '#9BA1A6',
     tabIconSelected: tintColorDark,
   },
-  PRIMARY:'#0078A1',
+  PRIMARY:'#0A89FF',
   SECOND:'#4B6D4F',
   THIRD:'#D7A93B',
   FOURTH:'#70D6E3',
   FIFTH:'#F7E4CA',
   SIXTH:'#00A86B',
+  DANGER: '#f53b31'
 };

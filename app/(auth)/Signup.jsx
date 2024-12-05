@@ -33,9 +33,29 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
 
+  const [isPasswordShown, setIsPasswordShown] = useState(true);
+  const [isChecked, setIsChecked] = useState(false);
+
   const onSignupPressed = async (e) => {
     e.preventDefault();
 
+
+    if(!isChecked) {
+      alert("Please agree to the terms and conditions !");
+      return;
+    }
+
+    if(!(first_name && last_name && mobile_no && role && email && password)) {
+      alert("Please fill all the fields !");
+      return;
+    }
+
+    if(password.length < 10) {
+      console.log(password)
+      alert("Password length should be atleast 10 !");
+      return;
+    }
+    
     const result = await handleSignup(
       first_name,
       last_name,
@@ -46,25 +66,30 @@ const Signup = () => {
     );
 
     if (result.ok) {
-      switch (role) {
-        case "VEHICLE_OWNER":
-          router.replace("../Dashboard/DashboardDetails");
-          break;
-        case "TOUR_GUIDE":
-          router.replace("../dashboard");
-          break;
-        case "HOTEL_MANAGER":
-          router.replace("../home/Dashboard");
-          break;
-        case "SHOP_MANAGER":
-          router.replace("../manage");
-          break;
-        /*case "ACTIVITY_HOST":
-          router.replace("../(ActivityHost)/home/Dashboard");
-          break;*/
-        //default:
-        //router.replace("/DefaultDashboard");
-      }
+
+      console.log(result.role);
+      alert("Sign up successful !")
+      router.replace("/Login");
+
+//       switch (role) {
+//         case "VEHICLE_OWNER":
+//           router.replace("../Dashboard/DashboardDetails");
+//           break;
+//         case "TOUR_GUIDE":
+//           router.replace("../dashboard");
+//           break;
+//         case "HOTEL_MANAGER":
+//           router.replace("../home/Dashboard");
+//           break;
+//         case "SHOP_MANAGER":
+//           router.replace("../manage");
+//           break;
+//         /*case "ACTIVITY_HOST":
+//           router.replace("../(ActivityHost)/home/Dashboard");
+//           break;*/
+//         //default:
+//         //router.replace("/DefaultDashboard");
+//       }
     } else {
       console.error(result.message);
     }
@@ -77,8 +102,7 @@ const Signup = () => {
   const onPrivacyPressed = () => {
     console.warn("onPrivacyPressed");
   };
-  const [isPasswordShown, setIsPasswordShown] = useState(true);
-  const [isChecked, setIsChecked] = useState(false);
+  
 
   //dropdown select buttons
   const roles = [
@@ -194,7 +218,8 @@ const Signup = () => {
                   style={{
                     width: "80%",
                   }}
-                  setValue={setMobile_no}
+                  value={mobile_no}
+                  onChangeText={setMobile_no}
                 />
               </View>
             </View>
@@ -241,7 +266,8 @@ const Signup = () => {
                   style={{
                     width: "100%",
                   }}
-                  setValue={setPassword}
+                  value={password}
+                  onChangeText={setPassword}
                 />
 
                 <TouchableOpacity
