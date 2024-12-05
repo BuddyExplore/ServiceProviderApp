@@ -39,6 +39,7 @@ const Signup = () => {
   const onSignupPressed = async (e) => {
     e.preventDefault();
 
+
     if(!isChecked) {
       alert("Please agree to the terms and conditions !");
       return;
@@ -65,9 +66,30 @@ const Signup = () => {
     );
 
     if (result.ok) {
+
       console.log(result.role);
       alert("Sign up successful !")
       router.replace("/Login");
+
+//       switch (role) {
+//         case "VEHICLE_OWNER":
+//           router.replace("../Dashboard/DashboardDetails");
+//           break;
+//         case "TOUR_GUIDE":
+//           router.replace("../dashboard");
+//           break;
+//         case "HOTEL_MANAGER":
+//           router.replace("../home/Dashboard");
+//           break;
+//         case "SHOP_MANAGER":
+//           router.replace("../manage");
+//           break;
+//         /*case "ACTIVITY_HOST":
+//           router.replace("../(ActivityHost)/home/Dashboard");
+//           break;*/
+//         //default:
+//         //router.replace("/DefaultDashboard");
+//       }
     } else {
       console.error(result.message);
     }

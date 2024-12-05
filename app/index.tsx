@@ -34,6 +34,7 @@ export default function Index() {
   // setCustomText(customTextProps);
 
 
+
   return <Redirect href={'/Login'} />
   // return(
   //   <div>

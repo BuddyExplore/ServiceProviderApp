@@ -1,4 +1,7 @@
 import React from "react";
+
+// import { LineChart } from "react-native-chart-kit";
+
 import { View, Dimensions } from "react-native";
 
 const screenWidth = Dimensions.get("window").width;
@@ -26,7 +29,9 @@ const chartConfig = {
 export default function Graph() {
   return (
     <View>
+
       {/* <LineChart
+
         data={data}
         width={screenWidth}
         height={220}
@@ -36,7 +41,9 @@ export default function Graph() {
           marginTop: 20,
           borderRadius: 16,
         }}
+
       /> */}
+
     </View>
   );
 }

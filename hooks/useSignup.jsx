@@ -4,6 +4,8 @@ import axios from "axios";
 import { useRouter } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import BASE_URL from '../constants/globals'
+import {Urls} from "../constants/Urls"
+
 
 export const useSignup = () => {
   const [error, setError] = useState(null);
@@ -23,7 +25,9 @@ export const useSignup = () => {
     setError(null);
 
     try {
-      const response = await axios.post(`${BASE_URL}/signup`, {
+
+//       const response = await axios.post(`${BASE_URL}/signup`, {
+      const response = await axios.post(`${Urls.SPRING}/signup`, {
         first_name,
         last_name,
         mobile_no,
@@ -47,13 +51,14 @@ export const useSignup = () => {
         //   "user",
         //   JSON.stringify(response.data.content.user)
         // );
-        if (response && response.data && response.data.access_token) {
-          await AsyncStorage.setItem("token", response.data.access_token);
-          await AsyncStorage.setItem(
-            "user",
-            JSON.stringify(response.data.content.user)
-          );
-        }
+        
+//         if (response && response.data && response.data.access_token) {
+//           await AsyncStorage.setItem("token", response.data.access_token);
+//           await AsyncStorage.setItem(
+//             "user",
+//             JSON.stringify(response.data.content.user)
+//           );
+//         }
         // await AsyncStorage.setItem(
         //   "user",
         //   JSON.stringify(response.data.content.user)
