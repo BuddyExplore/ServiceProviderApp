@@ -14,12 +14,13 @@ export const useLogin = () => {
   const handleLogin = async (email, password) => {
     setLoading(true);
     setError(null);
-
+    console.log(password)
     try {
       const response = await axios.post(`${BASE_URL}/login`, {
         email,
         password,
       });
+
 
       if (response.status === 200 && response.data.code === "00") {
         // console.log("Login response:", response);

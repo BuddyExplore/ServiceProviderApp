@@ -10,9 +10,18 @@ export default function TourGuideLayout() {
         headerShown: false,
       }}
     >
-      <Stack.Screen name="ongoingtrips" options={{ headerShown: true, headerTitle: "Ongoing Trips" }} />
-      <Stack.Screen name="completedtrips" options={{ headerShown: true, headerTitle: "Completed Trips" } } />
-      <Stack.Screen name="upcomingtrips" options={{ headerShown: true, headerTitle: "Upcoming Trips" }} />
+      <Stack.Screen
+        name="ongoingtrips"
+        options={{ headerShown: true, headerTitle: "Ongoing Trips" }}
+      />
+      <Stack.Screen
+        name="completedtrips"
+        options={{ headerShown: true, headerTitle: "Completed Trips" }}
+      />
+      <Stack.Screen
+        name="upcomingtrips"
+        options={{ headerShown: true, headerTitle: "Upcoming Trips" }}
+      />
     </Stack>
   );
 }

@@ -9,170 +9,73 @@ import {
 import React, { useState, useEffect } from "react";
 import { ColoLKR } from "../../constants/Colors";
 import GuidesListItem from "./item";
+import axios from "axios";
+import {Urls} from "../../constants/Urls"
+
 
 export default function AssignmentList(props) {
   const [preferences, setPreferences] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [data, setData] = useState([]);
+ 
+  useEffect(() => {
+    
+    const fetchItems = async () => {
+      setLoading(true);
+      console.log("Here")
+      try {
+        const response = await axios.get(
+          `${Urls.SPRING}/api/Booking/Vehicle/driverBookings/123`
+        );
+        setData(response.data.content);
+        console.log(data)
+      } catch (error) {
+        console.error("Error fetching items:", error);
+      }
+    };
+
+    fetchItems();
+    setLoading(false);
+  }, []);
+
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      const preferencesLists = [
-        {
-          name: "John",
-          price: "LKR 2000",
-          where: "Nugegoda",
-          icon: "🔔",
-          img: require("./../../assets/images/Vehicle/ella.jpeg"),
-          status: "Upcoming",
-        },
-        {
-          name: "Karan",
-          price: "LKR 2400",
-          where: "Hokanda",
-          icon: "👤",
-          img: require("./../../assets/images/Vehicle/Dunhinda_Falls.jpg"),
-          status: "Upcoming",
-        },
-        {
-          name: "Doe",
-          price: "LKR 1200",
-          where: "Moratuwa",
-          icon: "🔔",
-          img: require("./../../assets/images/Vehicle/ella.jpeg"),
-          status: "Upcoming",
-        },
-        {
-          name: "Adams",
-          price: "LKR 700",
-          where: "Pannipitiya",
-          icon: "⚙️",
-          img: require("./../../assets/images/Vehicle/Dunhinda_Falls.jpg"),
-          status: "Upcoming",
-        },
-        {
-          name: "Peter",
-          price: "LKR 550",
-          where: "Nugegoda",
-          icon: "🔔",
-          img: require("./../../assets/images/Vehicle/ella.jpeg"),
-          status: "Upcoming",
-        },
-        {
-          name: "Smith",
-          price: "LKR 500",
-          where: "Hokanda",
-          icon: "👤",
-          img: require("./../../assets/images/Vehicle/ella.jpeg"),
-          status: "Upcoming",
-        },
-        {
-          name: "David",
-          price: "LKR 300",
-          where: "Moratuwa",
-          icon: "🔔",
-          img: require("./../../assets/images/Vehicle/Dunhinda_Falls.jpg"),
-          status: "Ongoing",
-        },
-        {
-          name: "Walpaper",
-          price: "LKR 200",
-          where: "Pannipitiya",
-          icon: "⚙️",
-          img: require("./../../assets/images/Vehicle/Dunhinda_Falls.jpg"),
-          status: "Completed",
-        },
-      ];
+      
       const preferencesList = [
+
         {
-          name: "David Williams",
-          price: "LKR 2000",
-          where: "Nugegoda",
-          icon: "🔔",
-          img: require("./../../assets/images/Vehicle/ella.jpeg"),
-          status: "Upcoming",
-          progress: "Trip Started",
-          pickup: "Piliyandala Clock Tower",
-          destination: "3",
-          vehicle: "Toyota Coach",
-          startDate: "Aug 09",
-          endDate: "Aug 11",
+          date: "2024-12-01",
+          distance: 120,
+          driverId: 123,
+          dropOffDate: "2024-12-12",
+          dropOffTime: "18:00:00",
+          id: 1,
+          passengers: 3,
+          pickUpDate: "2024-12-10",
+          pickUpLocation: "Colombo Fort",
+          pickUpTime: "08:30:00",
+          status: 0,
+          touristId: 101,
+          vehicleId: 201,
         },
-        {
-          name: "David Williams",
-          price: "LKR 2000",
-          where: "Nugegoda",
-          icon: "🔔",
-          img: require("./../../assets/images/Vehicle/ella.jpeg"),
-          status: "Upcoming",
-          progress: "Trip Started",
-          pickup: "Piliyandala Clock Tower",
-          destination: "3",
-          vehicle: "Toyota Coach",
-          startDate: "Aug 09",
-          endDate: "Aug 11",
-          Time: "4.30",
-        },
-        {
-          name: "David Williams",
-          price: "LKR 2000",
-          where: "Nugegoda",
-          icon: "🔔",
-          img: require("./../../assets/images/Vehicle/ella.jpeg"),
-          status: "Upcoming",
-          progress: "Trip Started",
-          pickup: "Piliyandala Clock Tower",
-          destination: "3",
-          vehicle: "Toyota Coach",
-          startDate: "Aug 09",
-          endDate: "Aug 11",
-          Time: "5.30",
-        },
-        {
-          name: "David Williams",
-          price: "LKR 2000",
-          where: "Nugegoda",
-          icon: "🔔",
-          img: require("./../../assets/images/Vehicle/ella.jpeg"),
-          status: "Upcoming",
-          progress: "Trip Started",
-          pickup: "Piliyandala Clock Tower",
-          destination: "3",
-          vehicle: "Toyota Coach",
-          startDate: "Aug 09",
-          endDate: "Aug 11",
-          Time: "6.00",
-        },
-        {
-          name: "David Williams",
-          price: "LKR 2000",
-          where: "Nugegoda",
-          icon: "🔔",
-          img: require("./../../assets/images/Vehicle/ella.jpeg"),
-          status: "Upcoming",
-          progress: "Trip Started",
-          pickup: "Piliyandala Clock Tower",
-          destination: "3",
-          vehicle: "Toyota Coach",
-          startDate: "Aug 09",
-          endDate: "Aug 11",
-          Time: "6.30",
-        },
-        {
-          name: "David Williams",
-          price: "LKR 2000",
-          where: "Nugegoda",
-          icon: "🔔",
-          img: require("./../../assets/images/Vehicle/ella.jpeg"),
-          status: "Upcoming",
-          progress: "Trip Started",
-          pickup: "Piliyandala Clock Tower",
-          destination: "3",
-          vehicle: "Toyota Coach",
-          startDate: "Aug 09",
-          endDate: "Aug 11",
-          Time: "7.30",
-        },
+
+        // {
+        //   name: "David Williams",
+        //   price: "LKR 2000",
+        //   where: "Nugegoda",
+        //   icon: "🔔",
+        //   img: require("./../../assets/images/Vehicle/ella.jpeg"),
+        //   status: "Upcoming",
+        //   progress: "Trip Started",
+        //   pickup: "Piliyandala Clock Tower",
+        //   destination: "3",
+        //   vehicle: "Toyota Coach",
+        //   startDate: "Aug 09",
+        //   endDate: "Aug 11",
+        //   Time: "7.30",
+        // },
       ];
 
       await new Promise((resolve) => setTimeout(resolve, 100));
@@ -199,6 +102,21 @@ export default function AssignmentList(props) {
     );
   }
 
+  const fetchName = async (id) => {
+    console.log("Here")
+    try {
+      const response = await axios.get(
+        `${Urls.SPRING}/getUser/${id}`
+      );
+      setTourist(response.data.content);
+      return `${response.data.content.first_name} ${response.data.content.last_name}`
+      //console.log(response)
+    } catch (error) {
+      return "Private User"
+    }
+  };
+
+
   return (
     <View>
       {/* <Text
@@ -211,19 +129,9 @@ export default function AssignmentList(props) {
         Trips
       </Text> */}
       <ScrollView contentContainerStyle={styles.scrollContainer}>
-        <View
-          style={{
-            padding: 20,
-            paddingBottom: 0,
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-            marginTop: 1,
-            alignItems: "center",
-          }}
-        ></View>
 
-        {preferences.map((item, index) => (
+        {!data && <Text style={{fontSize: 20, margin: 'auto', color:'grey', marginTop:30}}>No Data</Text>}
+        {data && data.map((item, index) => (
           <GuidesListItem preference={item} key={index} />
         ))}
       </ScrollView>

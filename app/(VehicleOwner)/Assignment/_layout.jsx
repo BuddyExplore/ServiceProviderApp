@@ -7,12 +7,23 @@ export default function ProfileLayout() {
       initialRouteName="Index"
       screenOptions={{
         headerBackButtonMenuEnabled: true,
+        backgroundColor: '#ffffff' 
       }}
     >
-      <Stack.Screen name="Index" options={{ headerShown: false }} />
+      <Stack.Screen
+        name="index"
+        options={{
+          cardStyle: { backgroundColor: '#ffffff' },
+          headerShown: false,
+          headerBackButtonMenuEnabled: true,
+          headerShadowVisible: false,
+          headerTitleAlign: "center",
+        }}
+      />
       <Stack.Screen
         name="requestdetails"
         options={{
+          title: "Request Details",
           headerShown: true,
           headerBackButtonMenuEnabled: true,
           headerShadowVisible: false,

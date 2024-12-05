@@ -1,3 +1,3 @@
-const BASE_URL = "http://192.168.8.122:5001";
+const BASE_URL = "https://buddybackend-production.up.railway.app";
 
 export default BASE_URL;

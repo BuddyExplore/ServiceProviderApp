@@ -29,7 +29,7 @@ const TabLayout = () => {
         },
       }}
     >
-      <Tabs.Screen
+      {/* <Tabs.Screen
         name="Overview"
         options={{
           tabBarLabel: "Overview",
@@ -37,7 +37,7 @@ const TabLayout = () => {
             <Entypo name="compass" size={24} color={color} />
           ),
         }}
-      />
+      /> */}
       <Tabs.Screen
         name="ManageTab"
         options={{
@@ -48,7 +48,7 @@ const TabLayout = () => {
           ),
         }}
       />
-      <Tabs.Screen
+      {/* <Tabs.Screen
         name="Orders"
         options={{
           tabBarLabel: "Orders",
@@ -56,7 +56,7 @@ const TabLayout = () => {
             <Ionicons name="newspaper-outline" size={24} color={color} />
           ),
         }}
-      />
+      /> */}
       <Tabs.Screen
         name="Profile"
         options={{

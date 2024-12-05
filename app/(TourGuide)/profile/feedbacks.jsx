@@ -7,7 +7,7 @@ import Header from "../../../components/TourGuide/header";
 const FeedbackScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
-      <Header title="Feedback" navigation={navigation} />
+      <Header backButtonShown="flex" title="Feedback" navigation={navigation} />
       <FeedbackForm />
     </SafeAreaView>
   );

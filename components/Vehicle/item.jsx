@@ -6,19 +6,100 @@ import {
   StyleSheet,
   Image,
 } from "react-native";
-import React from "react";
+import React , {useEffect, useState} from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { Colors } from "../../constants/Colors";
 import { router, useNavigation } from "expo-router";
-export default function GuidesListItem({ preference }) {
+import axios from "axios";
+import {Urls} from "../../constants/Urls"
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+
+
+export default function GuidesListItem({ preference, name }) {
   const navigaton = useNavigation();
   console.log(navigaton.getState().routeNames[0]);
+  const [loading, setLoading] = useState(false);
+
+  const[tourist, setTourist] = useState();
+  const[touristName, setTouristName] = useState('David');
+  const date = new Date(preference.pickUpDate);
+
+  const saveDataToStorage = async (bookingObject) => {
+    try {
+      await AsyncStorage.setItem('booking', JSON.stringify(bookingObject));
+    } catch (error) {
+      console.error('Error saving data to AsyncStorage', error);
+    }
+  };
+
+  const formattedPickupDate = date.toLocaleDateString('en-GB', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric',
+  });
+
+  // useEffect(() => {
+    
+  //   const fetchItems = async () => {
+  //     console.log("Here")
+  //     try {
+  //       const response = await axios.get(
+  //         `${Urls.SPRING}/getUser/${preference.touristId}`
+  //       );
+  //       setTourist(response.data.content);
+  //       if(tourist === null){
+  //         console.log("No tourist found")
+  //       }
+  //       console.log(preference.touristId)
+  //       console.log(response.data.content)
+  //       //console.log(response)
+  //     } catch (error) {
+
+  //     } finally {
+  //       await new Promise((resolve) => setTimeout(resolve, 100));
+  //       // Set loading to false after fetching is done
+  //     }
+  //   };
+
+  //   fetchItems();
+  //   setLoading(false); 
+  // }, []);
+
+
+
+  const handleStatus = (status) => {
+    switch (status) {
+      case 0:
+        return 'Pending';
+      case 1:
+        return 'Accepted';
+      case 2:
+        return 'Dispatched';
+      default:
+        return 'Unknown';
+    }
+  };
+
+  
+  if (loading) {
+    return (
+      <Text style={{ justifyContent: "center", alignItems: "center" }}>
+        Loading...
+      </Text>
+    );
+  }
+
+
   return (
     <View style={styles.container}>
       <TouchableOpacity
         style={styles.touchable}
-        onPress={() =>
+        onPress={() =>{
+          saveDataToStorage(preference); //This should be present always, no matter what status is
           router.push("(VehicleOwner)/Assignment/requestdetails?accepted=true")
+        }
+
         }
       >
         <View>
@@ -31,8 +112,8 @@ export default function GuidesListItem({ preference }) {
               gap: 20,
               backgroundColor: "white",
               paddingRight: 20,
-              borderBottomColor: "black",
-              borderBottomWidth: StyleSheet.hairlineWidth,
+              borderBottomColor: "#D4D4D4",
+              borderBottomWidth: 0.1,
             }}
           >
             <View
@@ -45,10 +126,10 @@ export default function GuidesListItem({ preference }) {
               }}
             >
               <Image
-                source={preference.img}
+                source={require("./../../assets/images/default.jpg")}
                 style={{
-                  width: 34,
-                  height: 34,
+                  width: 38,
+                  height: 38,
                   borderRadius: 34,
                 }}
               />
@@ -56,21 +137,23 @@ export default function GuidesListItem({ preference }) {
                 <Text
                   style={{
                     color: "black",
-                    fontSize: 19,
+                    fontSize: 17,
                     fontWeight: "bold",
+                    fontFamily: 'poppins-semibold'
                   }}
                 >
-                  {preference.name}
+                  {formattedPickupDate }
                 </Text>
                 <Text
                   style={{
                     color: "black",
-                    fontSize: 15,
+                    fontSize: 12,
+                    fontFamily: 'poppins-light'
                   }}
                 >
-                  {navigaton.getState().routeNames[0] !== "TourGuideIndex"
-                    ? preference.startDate - preference.endDate
-                    : preference.startDate}
+                  {preference.fullName
+                    ? preference.fullName
+                    : 'Private User'}
                 </Text>
                 <View></View>
               </View>
@@ -94,8 +177,12 @@ export default function GuidesListItem({ preference }) {
                     : "#fff",
                 borderRadius: 5,
                 padding: 5,
+                fontFamily: 'poppins-light',
                 justifyContent: "center",
+                fontSize: 12,
+                display: 'flex',
                 alignContent: "center",
+                borderRadius: 15,
                 width: 90,
                 color:
                   navigaton.getState().routeNames[0] !== "TourGuideIndex"
@@ -104,8 +191,8 @@ export default function GuidesListItem({ preference }) {
               }}
             >
               {navigaton.getState().routeNames[0] !== "TourGuideIndex"
-                ? preference.progress
-                : preference.price}
+                ? handleStatus(preference.status)
+                : "Loading"}
             </Text>
             {/* <Ionicons
             name="arrow-forward"
@@ -136,7 +223,7 @@ export default function GuidesListItem({ preference }) {
               >
                 <Text style={{ width: "50%", color: "#969696" }}>Pickup</Text>
                 <Text style={{ width: "50%", textAlign: "right" }}>
-                  {preference.pickup}
+                  {preference.pickUpLocation}
                 </Text>
               </View>
             </View>
@@ -150,14 +237,14 @@ export default function GuidesListItem({ preference }) {
                 }}
               >
                 <Text style={{ width: "50%", color: "#969696" }}>
-                  Destination
+                  Drop-off Date
                 </Text>
                 <Text style={{ width: "50%", textAlign: "right" }}>
-                  {preference.destination}
+                  {preference.dropOffDate}
                 </Text>
               </View>
             </View>
-            <View style={{ flexDirection: "column" }}>
+            {/* <View style={{ flexDirection: "column" }}>
               <View
                 style={{
                   fontSize: 12,
@@ -170,7 +257,7 @@ export default function GuidesListItem({ preference }) {
                   {preference.vehicle}
                 </Text>
               </View>
-            </View>
+            </View> */}
           </View>
         </View>
       </TouchableOpacity>
@@ -183,11 +270,17 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     margin: 10,
+    backgroundColor: 'white',
   },
   touchable: {
     width: "100%",
-    height: 200,
+    height: "100%",
     borderRadius: 10,
+    borderColor: '#d6d6d6',
+    borderWidth: 1,
+
+
+
     overflow: "hidden", // Ensures rounded corners are applied to the image ''
     // backgroundColor: "rgba(0, 0, 0, 0.02)",
   },

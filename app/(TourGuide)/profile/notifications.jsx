@@ -25,7 +25,12 @@ const notifications = [
 const NotificationsScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
-      <Header title="Notifications" navigation={navigation} />
+      <Header
+        backButtonShown="flex"
+        notificationButtonShown="none"
+        title="Notifications"
+        navigation={navigation}
+      />
 
       <View style={styles.page}>
         <Text style={styles.title}>Notifications</Text>

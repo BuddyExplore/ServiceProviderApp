@@ -1,4 +1,4 @@
-import React from "react";
+import React ,{useEffect, useState} from "react";
 import {
   View,
   Text,
@@ -7,90 +7,56 @@ import {
   StyleSheet,
   ScrollView,
 } from "react-native";
-import photo1 from "../../../assets/images/Vehicle/photo1.png";
-import photo2 from "../../../assets/images/Vehicle/photo2.png";
-import { MaterialIcons } from "@expo/vector-icons";
+import axios from "axios";
+import {Urls} from "../../../constants/Urls"
 import { router } from "expo-router";
+import RequestItem from "../../../components/Vehicle/requestitem"
+
+
 const IncomingRequests = () => {
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState([]);
+
+
+  useEffect(() => {
+    
+    const fetchItems = async () => {
+      setLoading(true);
+      console.log("Here")
+      try {
+        const response = await axios.get(
+          `${Urls.SPRING}/api/Booking/Vehicle/driverBookings/123/0`
+        );
+        setData(response.data.content);
+        console.log(response.data.content)
+      } catch (error) {
+        console.error("Error fetching items:", error);
+      }
+    };
+
+    fetchItems();
+    setLoading(false);
+  }, []);
+
+  if (loading) {
+    return (
+      <Text style={{ justifyContent: "center", alignItems: "center" }}>
+        Loading...
+      </Text>
+    );
+  }
+
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.requestsContainer}>
         {/* Request Card 1 */}
-        <View style={styles.requestCard}>
-          <View style={styles.requestHeader}>
-            <Image source={photo1} style={styles.avatar} />
-            <View>
-              <Text style={styles.nameText}>Laura Anne</Text>
-              <Text style={styles.dateText}>Aug 25 - Aug 28</Text>
-            </View>
-
-            <TouchableOpacity
-              style={styles.moreOptions}
-              onPress={() =>
-                router.push(
-                  "(VehicleOwner)/Assignment/requestdetails?accepted=false"
-                )
-              }
-            >
-              <MaterialIcons name="keyboard-arrow-right" size={25} />
-            </TouchableOpacity>
-          </View>
-
-          <View style={styles.requestBody}>
-            <Text style={styles.infoText}>Pick up</Text>
-            <Text style={styles.valueText}>122, Hill Street, Walla</Text>
-
-            <Text style={styles.infoText}>Destinations</Text>
-            <Text style={styles.valueText}>4</Text>
-
-            <Text style={styles.infoText}>Vehicle</Text>
-            <Text style={styles.valueText}>Toyota Coach</Text>
-          </View>
-
-          <View style={styles.buttonsContainer}>
-            <TouchableOpacity style={styles.rejectButton}>
-              <Text style={styles.rejectButtonText}>Reject</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.acceptButton}>
-              <Text style={styles.acceptButtonText}>Accept</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-
-        {/* Request Card 2 */}
-        <View style={styles.requestCard}>
-          <View style={styles.requestHeader}>
-            <Image source={photo1} style={styles.avatar} />
-
-            <View>
-              <Text style={styles.nameText}>Peter Thomson</Text>
-              <Text style={styles.dateText}>Aug 30 - Sep 01</Text>
-            </View>
-            <TouchableOpacity style={styles.moreOptions}>
-              <MaterialIcons name="keyboard-arrow-right" size={25} />
-            </TouchableOpacity>
-          </View>
-
-          <View style={styles.requestBody}>
-            <Text style={styles.infoText}>Pick up</Text>
-            <Text style={styles.valueText}>Piliyandala Clock Tower</Text>
-
-            <Text style={styles.infoText}>Destinations</Text>
-            <Text style={styles.valueText}>1</Text>
-
-            <Text style={styles.infoText}>Vehicle</Text>
-            <Text style={styles.valueText}>Toyota Coach</Text>
-          </View>
-
-          <View style={styles.buttonsContainer}>
-            <TouchableOpacity style={styles.rejectButton}>
-              <Text style={styles.rejectButtonText}>Reject</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.acceptButton}>
-              <Text style={styles.acceptButtonText}>Accept</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
+        {data && data.length > 0 && data.map((item, index) => (
+          <RequestItem booking={item} key={index} />
+        ))}
+        {!data && 
+          <Text style={{margin: 'auto', marginTop: 50, fontSize: 20, color: 'grey'}}>No requests yet..</Text>  
+        }
+        
 
         {/* Add more request cards as needed */}
       </ScrollView>
@@ -140,10 +106,13 @@ const styles = StyleSheet.create({
   },
   nameText: {
     fontSize: 16,
-    fontWeight: "bold",
+    fontFamily:'poppins-regular',
+    fontWeight: 'bold'
   },
   dateText: {
     color: "#888",
+    fontFamily:'poppins-light',
+    fontSize: 12
   },
   moreOptions: {
     marginLeft: "auto",
@@ -153,11 +122,12 @@ const styles = StyleSheet.create({
   },
   infoText: {
     fontSize: 14,
+    fontFamily: 'poppins-light',
     color: "#888",
   },
   valueText: {
     fontSize: 14,
-    fontWeight: "bold",
+    fontFamily: 'poppins-regular',
     marginBottom: 5,
   },
   buttonsContainer: {
@@ -166,24 +136,29 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   rejectButton: {
-    backgroundColor: "#42A5F5",
+    borderColor: "#0A89FF",
+    borderWidth: 1,
+    backgroundColor:'white',
+    width: 100,
+    alignItems:'center',
     paddingVertical: 10,
     paddingHorizontal: 20,
-    borderRadius: 5,
+    borderRadius: 25,
   },
   rejectButtonText: {
-    color: "#fff",
-    fontWeight: "bold",
+    color: "#0A89FF",
+    
   },
   acceptButton: {
-    backgroundColor: "#42A5F5",
+    backgroundColor: "#0A89FF",
     paddingVertical: 10,
     paddingHorizontal: 20,
-    borderRadius: 5,
+    borderRadius: 25,
+    width: 100,
+    alignItems:'center',
   },
   acceptButtonText: {
     color: "#fff",
-    fontWeight: "bold",
   },
 });
 
